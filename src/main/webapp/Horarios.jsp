@@ -1,0 +1,66 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BARBERSHOP — Horarios</title>
+  <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body class="bg-dark text-white">
+
+  <%@ include file="includes/navbar.jspf" %>
+
+  <main class="container my-5">
+    <h2 class="text-primary text-center mb-4">Horarios y Reserva</h2>
+
+    <section class="row g-4">
+      <aside class="col-lg-6">
+        <article class="bg-secondary p-3 rounded">
+          <h3 class="text-danger">Horarios disponibles</h3>
+          <table class="table table-dark table-striped table-bordered mb-0">
+            <thead><tr><th>Turno</th><th>Horas</th></tr></thead>
+            <tbody>
+              <tr><td>Mañana</td><td>09:00 - 12:00</td></tr>
+              <tr><td>Tarde</td><td>14:00 - 17:00</td></tr>
+              <tr><td>Noche</td><td>18:00 - 20:00</td></tr>
+            </tbody>
+          </table>
+          <small class="text-white-50">*Vista de demostración (sin backend).</small>
+        </article>
+      </aside>
+
+      <article class="col-lg-6">
+        <section class="bg-secondary p-3 rounded">
+          <h3 class="text-primary">Reservar cita</h3>
+          <form action="#" method="post">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control mb-2" required>
+
+            <label class="form-label">Teléfono</label>
+            <input type="tel" class="form-control mb-2" required>
+
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control mb-2" required>
+
+            <label class="form-label">Hora</label>
+            <select class="form-select mb-3" required>
+              <option value="">Selecciona una hora</option>
+              <option>09:00</option><option>10:00</option><option>11:00</option>
+              <option>14:00</option><option>15:00</option><option>16:00</option>
+              <option>18:00</option><option>19:00</option>
+            </select>
+
+            <section class="d-flex gap-2">
+              <button class="btn btn-danger">Reservar</button>
+              <button type="reset" class="btn btn-primary">Limpiar</button>
+            </section>
+          </form>
+        </section>
+      </article>
+    </section>
+  </main>
+
+  <%@ include file="includes/footer.jspf" %>
+  <script src="JS/bootstrap.bundle.min.js"></script>
+</body>
+</html>
