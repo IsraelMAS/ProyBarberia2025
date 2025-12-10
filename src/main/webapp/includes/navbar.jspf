@@ -12,7 +12,7 @@
         <li class="nav-item"><a class="nav-link" href="Inicio.jsp">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="Servicios.jsp">Servicios</a></li>
         <li class="nav-item"><a class="nav-link" href="Horarios.jsp">Horarios</a></li>
-        <li class="nav-item"><a class="nav-link" href="?v=servicios">Barberos</a></li>
+        <li class="nav-item"><a class="nav-link" href="Barberos.jsp">Barberos</a></li>
         <li class="nav-item"><a class="nav-link" href="Contacto.jsp">Contacto</a></li>
       </ul>
     </section>

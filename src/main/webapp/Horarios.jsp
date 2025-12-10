@@ -28,7 +28,7 @@
           <small class="text-white-50">*Vista de demostración (sin backend).</small>
         </article>
       </aside>
-
+	
       <article class="col-lg-6">
         <section class="bg-secondary p-3 rounded">
           <h3 class="text-primary">Reservar cita</h3>
@@ -49,7 +49,11 @@
               <option>14:00</option><option>15:00</option><option>16:00</option>
               <option>18:00</option><option>19:00</option>
             </select>
-
+            
+            <label>Instrucciones para su barbero:</label>
+            <div>
+			<textarea rows="4" cols="50"></textarea>
+			</div>
             <section class="d-flex gap-2">
               <button class="btn btn-danger">Reservar</button>
               <button type="reset" class="btn btn-primary">Limpiar</button>
@@ -57,6 +61,27 @@
           </form>
         </section>
       </article>
+      
+      <aside class="col-lg-6">
+  <article class="bg-light p-3 rounded shadow-sm">
+    <h3 class="text-primary">Citas Reservadas</h3>
+
+    <table class="table table-bordered table-hover mb-0">
+      <thead class="table-primary">
+        <tr><th class="text-center">Barbero1</th></tr>
+      </thead>
+      <tbody>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+      </tbody>
+    </table>
+
+    <small class="text-muted">Llegar 10 minutos antes a lo acordado</small>
+  </article>
+</aside>
+
+      
     </section>
   </main>
 
