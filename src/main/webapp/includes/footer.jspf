@@ -1,6 +1,90 @@
+<footer class="bg-black text-white mt-5">
+
+  <!-- Líneas de acento: rojo y azul -->
+  <hr class="border-danger border-2 opacity-100 my-0">
+  <hr class="border-primary border-2 opacity-100 my-0">
+  <hr class="border-light border-2 opacity-100 my-0">
+
+  <section class="container py-5">
+    <div class="row g-4 align-items-center">
+
+      <!-- IZQ: políticas -->
+      <aside class="col-md-4">
+        <h6 class="text-uppercase mb-3">Politicas</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="link-light text-decoration-none" href="#">Aviso legal</a></li>
+          <li><a class="link-light text-decoration-none" href="#">Privacidad</a></li>
+          <li><a class="link-light text-decoration-none" href="#">Cookies</a></li>
+          <li><a class="link-light text-decoration-none" href="#">Calidad</a></li>
+        </ul>
+      </aside>
+
+      <!-- CENTRO: marca + logos (figure + img) y luego los links -->
+      <!-- CENTRO: marca + logos (solo icono clickeable) -->
+<section class="col-md-4 text-center">
+  <h4 class="fw-bold mb-3">BARBERSHOP</h4>
+
+  <div class="d-flex justify-content-center gap-3">
+
+    <!-- FB -->
+    <a href="https://facebook.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+      <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
+        <img src="IMG/Facebook.png" alt="Facebook" class="rounded-circle d-block" width="28" height="28" loading="lazy">
+      </figure>
+    </a>
+
+    <!-- IG -->
+    <a href="https://instagram.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+      <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-danger p-2 m-0">
+        <img src="IMG/Instagram.png" alt="Instagram" class="rounded-circle d-block" width="28" height="28" loading="lazy">
+      </figure>
+    </a>
+
+    <!-- YT -->
+    <a href="https://youtube.com/@tu-barberia" target="_blank" rel="noopener" class="text-reset">
+      <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
+        <img src="IMG/Youtube.png" alt="YouTube" class="rounded-circle d-block" width="28" height="28" loading="lazy">
+      </figure>
+    </a>
+
+    <!-- Pinterest -->
+    <a href="https://pinterest.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+      <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-danger p-2 m-0">
+        <img src="IMG/Pinterest.png" alt="Pinterest" class="rounded-circle d-block" width="28" height="28" loading="lazy">
+      </figure>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/company/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+      <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
+        <img src="IMG/LinkedIn.jpg" alt="LinkedIn" class="rounded-circle d-block" width="28" height="28" loading="lazy">
+      </figure>
+    </a>
+
+  </div>
+</section>
 
 
+      <!-- DER: navegación -->
+      <nav class="col-md-4 text-md-end">
+        <h6 class="text-uppercase mb-3">Navegacion</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="link-light text-decoration-none" href="Inicio.jsp">Inicio</a></li>
+          <li><a class="link-light text-decoration-none" href="Servicios.jsp">Servicios</a></li>
+          <li><a class="link-light text-decoration-none" href="Horarios.jsp">Horarios</a></li>
+          <li><a class="link-light text-decoration-none" href="Barberos.jsp">Barberos</a></li>
+          <li><a class="link-light text-decoration-none" href="Contacto.jsp">Contacto</a></li>
+        </ul>
+      </nav>
 
-<footer class="text-center py-3 border-top border-primary mt-4">
-  <small class="text-white-50">© BARBERSHOP — Proyecto estudiantil</small>
+    </div>
+  </section>
+
+  <!-- Franja inferior -->
+  <section class="text-center small text-white-50 py-3 border-top border-primary">
+    &copy; 2025 BARBERSHOP - Todos los derechos reservados
+  </section>
+  <hr class="border-danger border-2 opacity-100 my-0">
+  <hr class="border-primary border-2 opacity-100 my-0">
+  <hr class="border-light border-2 opacity-100 my-0">
 </footer>
