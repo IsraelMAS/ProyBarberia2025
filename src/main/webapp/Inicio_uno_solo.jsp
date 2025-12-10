@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
 </head>
 <body class="bg-dark text-white">
----------------------------------------------------------------
+
   <!-- NAVBAR -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-primary">
@@ -168,7 +168,7 @@
 
   <!-- FOOTER  -->
   <footer class="text-center py-3 border-top border-primary mt-4">
-    <small class="text-white-50">© BARBERSHOP — Proyecto estudiantil</small>
+    <small class="text-white-50">© BARBERSHOP — </small>
   </footer>
 
   <script src="JS/bootstrap.bundle.min.js"></script>

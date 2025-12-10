@@ -9,11 +9,13 @@
 <body class="bg-dark text-white">
 
   <%@ include file="includes/navbar.jspf" %>
-
   <main>
-    <figure>
-      <img src="IMG/banner.jpg" alt="Banner Barbería" class="img-fluid w-100 d-block">
-    </figure>
+  <br>
+     <figure class="text-center">
+  <img src="IMG/Banner_barberia.jpg"
+       alt="Banner Barbería"
+       class="img-fluid w-75">
+</figure>
 
     <header class="text-center py-4">
       <h1 class="text-danger">Bienvenido a la Barbería Top #1 de Independencia</h1>
