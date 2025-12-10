@@ -19,7 +19,7 @@
 		    <a class="btn btn-danger bg-gradient border border-1 border-white btn-sm px-3" href="Horarios.jsp">Horarios</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="btn btn-primary bg-gradient border border-1 border-white btn-sm px-3" href="#">Barberos</a>
+		    <a class="btn btn-primary bg-gradient border border-1 border-white btn-sm px-3" href="Barberos.jsp">Barberos</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="btn btn-danger bg-gradient border border-1 border-white btn-sm px-3" href="Contacto.jsp">Contacto</a>

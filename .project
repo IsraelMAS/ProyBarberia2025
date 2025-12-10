@@ -28,6 +28,43 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/IMG/Banner_barberia.jpg</name>
+			<type>1</type>
+			<location>D:/IMG/Banner_barberia.jpg</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/CORTES Y BARBA</name>
+			<type>2</type>
+			<location>D:/IMG/CORTES Y BARBA</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/Facebook.png</name>
+			<type>1</type>
+			<location>D:/IMG/Facebook.png</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/Instagram.png</name>
+			<type>1</type>
+			<location>D:/IMG/Instagram.png</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/LinkedIn.jpg</name>
+			<type>1</type>
+			<location>D:/IMG/LinkedIn.jpg</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/Pinterest.png</name>
+			<type>1</type>
+			<location>D:/IMG/Pinterest.png</location>
+		</link>
+		<link>
+			<name>src/main/webapp/IMG/Youtube.png</name>
+			<type>1</type>
+			<location>D:/IMG/Youtube.png</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1765236161186</id>
