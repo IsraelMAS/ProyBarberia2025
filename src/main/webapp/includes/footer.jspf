@@ -27,35 +27,35 @@
   <div class="d-flex justify-content-center gap-3">
 
     <!-- FB -->
-    <a href="https://facebook.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+    <a href="https://www.facebook.com/profile.php?id=100082137446828"  target="_blank" rel="noopener" class="text-reset">
       <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
         <img src="IMG/Facebook.png" alt="Facebook" class="rounded-circle d-block" width="28" height="28" loading="lazy">
       </figure>
     </a>
 
     <!-- IG -->
-    <a href="https://instagram.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+    <a href="https://www.instagram.com/klipperz_barbershop/ " target="_blank" rel="noopener" class="text-reset">
       <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-danger p-2 m-0">
         <img src="IMG/Instagram.png" alt="Instagram" class="rounded-circle d-block" width="28" height="28" loading="lazy">
       </figure>
     </a>
 
     <!-- YT -->
-    <a href="https://youtube.com/@tu-barberia" target="_blank" rel="noopener" class="text-reset">
+    <a href="https://www.youtube.com/@SoyBarbero/videos" target="_blank" rel="noopener" class="text-reset">
       <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
         <img src="IMG/Youtube.png" alt="YouTube" class="rounded-circle d-block" width="28" height="28" loading="lazy">
       </figure>
     </a>
 
     <!-- Pinterest -->
-    <a href="https://pinterest.com/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+    <a href="https://es.pinterest.com/search/pins/?q=cortes%20barbershop&rs=typed" target="_blank" rel="noopener" class="text-reset">
       <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-danger p-2 m-0">
         <img src="IMG/Pinterest.png" alt="Pinterest" class="rounded-circle d-block" width="28" height="28" loading="lazy">
       </figure>
     </a>
 
     <!-- LinkedIn -->
-    <a href="https://linkedin.com/company/tu-barberia" target="_blank" rel="noopener" class="text-reset">
+    <a href="https://www.linkedin.com/company/barbershop.12/" target="_blank" rel="noopener" class="text-reset">
       <figure class="d-inline-flex align-items-center justify-content-center rounded-circle border border-primary p-2 m-0">
         <img src="IMG/LinkedIn.jpg" alt="LinkedIn" class="rounded-circle d-block" width="28" height="28" loading="lazy">
       </figure>
