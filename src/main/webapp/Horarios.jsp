@@ -33,12 +33,31 @@
         <section class="bg-secondary p-3 rounded">
           <h3 class="text-primary">Reservar cita</h3>
           <form action="#" method="post">
+          
             <label class="form-label">Nombre</label>
             <input type="text" class="form-control mb-2" required>
 
             <label class="form-label">Teléfono</label>
             <input type="tel" class="form-control mb-2" required>
-
+            
+            <input type="hidden" name="idBarbero" value="">
+			<label class="form-label">Barbero</label>
+			<div class="d-flex gap-2 align-items-start mb-3">
+    		<input type="text" class="form-control" 
+           		value="" readonly>
+    			<a href="ControladorBarbero?accion=listar" 
+       				class="btn btn-outline-light text-nowrap">Elegir barbero</a>
+    		</div>
+              
+            <input type="hidden" name="idServicio" value="">
+			<label class="form-label">Servicio</label>
+			<div class="d-flex gap-2 align-items-start mb-3">
+    		<input type="text" class="form-control" 
+          		 value="${servicio.nombre}" readonly>
+    		<a href="ControladorServicio?accion=listar" class="btn btn-outline-light text-nowrap">
+       			Elegir servicio </a>
+    		</div>
+            
             <label class="form-label">Fecha</label>
             <input type="date" class="form-control mb-2" required>
 

@@ -1,4 +1,4 @@
-package Interfaces;
+	package Interfaces;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -8,7 +8,7 @@ import Modelos.Cita;
 
 public interface Inter_cita {
 	
-	public boolean insertar(Cita cita);
+	public boolean insertar(Cita c);
 
 	public List<Cita> listarPorBarbero(int idBarbero);
 
