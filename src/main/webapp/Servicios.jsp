@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List"%>
+<%@ page import="Modelos.Servicio"%>
+<%@ page import="ModeloDAO.ServicioDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,10 +48,15 @@
     <li class="nav-item"><a class="nav-link bg-primary" href="#barba">Barba</a></li>
     <li class="nav-item"><a class="nav-link bg-secondary" href="#paquetes">Paquetes</a></li>
   </ul>
-
+	
   <!-- GRID CORTES (3 columnas parejitas) -->
   <section id="cortes" class="row row-cols-1 row-cols-md-3 g-4">
-
+		
+		<%
+            ServicioDAO dao = new ServicioDAO();
+            List<Servicio> lista = dao.listar();
+            for (Servicio s : lista) {
+        %>
     <!-- Corte Fade -->
     <article class="col">
       <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
@@ -65,7 +73,7 @@
           </ul>
           <div class="mt-auto d-flex justify-content-between align-items-center">
             <span class="badge bg-light text-dark">S/ 25</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
+            <a class="btn btn-danger btn-sm" href="ControladorCita?accion=formulario&idServicio=<%=s.getIdServicio()%>&nombreServicio=<%=s.getNombre()%>">Reservar</a>
           </div>
         </div>
       </div>
@@ -114,8 +122,9 @@
         </div>
       </div>
     </article>
-
+<% } %>
   </section>
+ 
 
   <!-- GRID BARBA -->
   <section id="barba" class="row row-cols-1 row-cols-md-3 g-4 mt-4">
@@ -222,6 +231,7 @@
     </article>
   </section>
 
+   
   <!-- GALERIA (ya te queda alineada usando ratio si quieres) -->
   <section class="mt-5">
     <h3 class="text-center text-danger mb-3">Galeria de Estilos</h3>
