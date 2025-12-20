@@ -47,9 +47,7 @@ function initClock() {
     m.textContent = pad(mm);
     s.textContent = pad(ss);
 
-    // Parpadeo leve en segundos
-    s.classList.toggle('opacity-50');
-
+	
     // Cada minuto, intercambia rojo/azul en H y M
     if (ss === 0) {
       flip = !flip;
