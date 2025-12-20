@@ -7,5 +7,5 @@ import Modelos.Barbero;
 public interface Inter_barbero {
 	 public List<Barbero> listar();
 
-	 public Barbero buscarPorId(int idBarbero);
+	 public Barbero buscarPorId(int id);
 }

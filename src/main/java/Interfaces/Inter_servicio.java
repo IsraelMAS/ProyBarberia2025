@@ -9,5 +9,5 @@ public interface Inter_servicio {
 
 	public List<Servicio> listarPorTipo(String tipo);
 
-	public Servicio buscarPorId(int idServicio);
+	public Servicio buscarPorId(int id);
 }
