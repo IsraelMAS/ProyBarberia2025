@@ -1,0 +1,39 @@
+/* Fondo wallpaper fijo */
+.bg-wallpaper{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.90)),
+    url("../IMG/CONTACTO_FONDO.jpg") center/cover no-repeat;
+}
+
+/* Animación rojo-blanco-azul */
+.titulo-rwb{
+  animation: rwb 2.2s linear infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,.12);
+}
+
+@keyframes rwb{
+  0%   { color:#ff3b3b; }
+  33%  { color:#ffffff; }
+  66%  { color:#3b82f6; }
+  100% { color:#ff3b3b; }
+}
+
+/* Banner más pro: misma altura, sin deformar, con bordes suaves */
+.banner-wrap{
+  border-radius: 14px;
+}
+
+.banner-img{
+  width: 100%;
+  max-height: 360px;     /* ajusta si lo quieres más grande */
+  object-fit: cover;
+  transition: opacity .35s ease;
+}
+
+/* Fade cuando cambia el banner */
+.banner-fade{
+  opacity: .15;
+}

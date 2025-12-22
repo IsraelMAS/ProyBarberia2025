@@ -22,16 +22,16 @@
 
         <div class="carousel-inner">
           <!-- Slide 1 -->
-          <div class="carousel-item active">
+          <div class="carousel-item active" data-bs-interval="2800">
             <div class="ratio ratio-21x9">
               <img src="IMG/INICIO/BannerBarberia1.png"
                    class="w-100 h-100 object-fit-cover"
-                   alt="Banner Barberia - experiencia premium">
+                   alt="Banner Barbería — experiencia premium">
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="3200">
             <div class="ratio ratio-21x9">
               <img src="IMG/INICIO/BannerBarberia2.png"
                    class="w-100 h-100 object-fit-cover"
@@ -40,7 +40,7 @@
           </div>
 
           <!-- Slide 3 -->
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="3000">
             <div class="ratio ratio-21x9">
               <img src="IMG/INICIO/BannerBarberia3.png"
                    class="w-100 h-100 object-fit-cover"
@@ -134,19 +134,20 @@
       </header>
       <div class="row g-3">
         <article class="col-md-4">
-          <div class="p-4 bg-secondary text-white rounded-3 border border-primary fade js-reveal">
+          <!-- Compat: fade + (js-reveal | revelar) -->
+          <div class="p-4 bg-secondary text-white rounded-3 border border-primary fade js-reveal revelar">
             <h5 class="mb-2">💈 Calidad real</h5>
             <p class="text-white-50 mb-0">Herramientas higienizadas, productos pro y técnica pulida en cada corte.</p>
           </div>
         </article>
         <article class="col-md-4">
-          <div class="p-4 bg-secondary text-white rounded-3 border border-danger fade js-reveal">
+          <div class="p-4 bg-secondary text-white rounded-3 border border-danger fade js-reveal revelar">
             <h5 class="mb-2">⏱️ Puntualidad</h5>
             <p class="text-white-50 mb-0">Respetamos tu tiempo: citas claras y atención sin rodeos.</p>
           </div>
         </article>
         <article class="col-md-4">
-          <div class="p-4 bg-secondary text-white rounded-3 border border-primary fade js-reveal">
+          <div class="p-4 bg-secondary text-white rounded-3 border border-primary fade js-reveal revelar">
             <h5 class="mb-2">🧭 Asesoría honesta</h5>
             <p class="text-white-50 mb-0">Te recomendamos lo que de verdad te queda y cómo mantenerlo.</p>
           </div>
@@ -154,19 +155,25 @@
       </div>
     </section>
 
-    <!-- SECTION: Métricas rápidas (contadores simples) -->
+    <!-- SECTION: Métricas rápidas (contadores) -->
     <section class="container mb-5" aria-label="Métricas">
       <div class="row text-center g-3">
         <aside class="col-6 col-md-4">
-          <div class="h2 text-danger mb-0"><span data-count="250">0</span>+</div>
+          <div class="h2 text-danger mb-0">
+            <span data-count="250" data-meta="250">0</span>+
+          </div>
           <div class="text-white-50">Clientes felices</div>
         </aside>
         <aside class="col-6 col-md-4">
-          <div class="h2 text-primary mb-0"><span data-count="40">0</span>+</div>
+          <div class="h2 text-primary mb-0">
+            <span data-count="40" data-meta="40">0</span>+
+          </div>
           <div class="text-white-50">Estilos dominados</div>
         </aside>
         <aside class="col-12 col-md-4">
-          <div class="h2 text-light mb-0"><span data-count="180">0</span>+</div>
+          <div class="h2 text-light mb-0">
+            <span data-count="180" data-meta="180">0</span>+
+          </div>
           <div class="text-white-50">Reseñas 5★</div>
         </aside>
       </div>
@@ -179,19 +186,19 @@
       </header>
       <div class="row g-3">
         <article class="col-md-4">
-          <div class="p-3 bg-secondary text-white rounded-3 border border-primary fade js-reveal">
+          <div class="p-3 bg-secondary text-white rounded-3 border border-primary fade js-reveal revelar">
             <h6 class="mb-1">1) Elige servicio</h6>
             <p class="small text-white-50 mb-0">Corte, barba o combo. Mira detalles y duración.</p>
           </div>
         </article>
         <article class="col-md-4">
-          <div class="p-3 bg-secondary text-white rounded-3 border border-danger fade js-reveal">
+          <div class="p-3 bg-secondary text-white rounded-3 border border-danger fade js-reveal revelar">
             <h6 class="mb-1">2) Selecciona horario</h6>
             <p class="small text-white-50 mb-0">Elige el día y la hora que te acomode.</p>
           </div>
         </article>
         <article class="col-md-4">
-          <div class="p-3 bg-secondary text-white rounded-3 border border-primary fade js-reveal">
+          <div class="p-3 bg-secondary text-white rounded-3 border border-primary fade js-reveal revelar">
             <h6 class="mb-1">3) Confirma</h6>
             <p class="small text-white-50 mb-0">Te esperamos. Llegas, te atendemos y sales fresh.</p>
           </div>
@@ -201,7 +208,8 @@
 
   </main>
 
-<script src="JS/bootstrap.bundle.min.js"></script>
-<script src="JS/app.js"></script>
+  <!-- Scripts (usa contextPath para que carguen en todas las páginas) -->
+  <script src="<%= request.getContextPath() %>/JS/bootstrap.bundle.min.js"></script>
+  <script src="<%= request.getContextPath() %>/JS/app.js"></script>
 </body>
 </html>

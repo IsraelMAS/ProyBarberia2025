@@ -55,7 +55,7 @@
       const mm = d.getMinutes();
       const ss = d.getSeconds();
       const ap = hh >= 12 ? 'PM' : 'AM';
-      hh = hh % 12 || 12;                      // 12h amigable
+      hh = hh % 12 || 12;                      // 12h 
 
       // pinta los textos
       $h.textContent = pad(hh);

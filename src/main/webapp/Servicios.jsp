@@ -1,280 +1,320 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>BARBERSHOP — Servicios</title>
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/app.css">
 </head>
-<style>
-  /* alto consistente + imagen recortada parejo */
-  .card-eq { display:flex; flex-direction:column; height:100%; }
-  .card-eq .ratio > img { width:100%; height:100%; object-fit:cover; }
+<body class="bg-dark text-white app-compact">
 
-  /* micro-zoom y sombra suave */
-  .zoomable { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-  .zoomable:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 .5rem 1rem rgba(0,0,0,.35); }
-  .zoomable:active { transform: scale(1.04); }
-
-  /* pinta el borde al hover en rojo/azul alternado (usa data-accent) */
-  .zoomable[data-accent="danger"]:hover { border-color:#dc3545 !important; }
-  .zoomable[data-accent="primary"]:hover { border-color:#0d6efd !important; }
-
-  /* pills grandes, blancas y con “glow” */
-  .pill-xl .nav-link { color:#fff; font-weight:600; font-size:1.05rem; padding:.6rem 1rem; }
-  .pill-xl .nav-link:hover { filter: brightness(1.12); }
-</style>
-
-
-
-<body class="bg-dark text-white">
+  <!-- Fondo global rotativo (JS lo llena) -->
+  <div id="bgRotativo" class="bg-rotativo">
+    <div class="bg-capa"></div>
+  </div>
 
   <%@ include file="includes/navbar.jspf" %>
 
-  <!-- SERVICIOS -->
-    <section class="container my-5">
+  <main>
 
-  <header class="text-center mb-4">
-    <h2 class="text-danger mb-1">Nuestros Servicios</h2>
-    <p class="text-white-50 mb-0">Cortes y cuidado de barba con enfoque profesional.</p>
-  </header>
+    <!-- Título -->
+    <section class="container text-center py-5">
+      <h1 class="fw-bold titulo-rwb titulo-grande">💈Nuestros Servicios💈</h1>
+      <p class="text-white-50 m-0">Cortes, barba y combos pensados para salir impecable.</p>
+    </section>
 
-  <!-- Pills grandes -->
-  <ul class="nav nav-pills justify-content-center gap-3 pill-xl mb-4">
-    <li class="nav-item"><a class="nav-link bg-danger"  href="#cortes">Cortes</a></li>
-    <li class="nav-item"><a class="nav-link bg-primary" href="#barba">Barba</a></li>
-    <li class="nav-item"><a class="nav-link bg-secondary" href="#paquetes">Paquetes</a></li>
-  </ul>
+		<!-- BUSCADOR DE SERVICIOS -->
+	<section class="container mb-3">
+	  <div class="buscador card bg-secondary border border-primary shadow-sm">
+	    <div class="card-body">
+	      <label for="buscarServicios" class="form-label m-0 text-white-50">
+	        Busca por nombre, tipo o descripción
+	      </label>
+	
+	      <div class="input-group">
+	        <span class="input-group-text bg-dark text-white border-0">🔎</span>
+	        <input id="buscarServicios" type="search"
+	               class="form-control bg-dark text-white border-0"
+	               placeholder="Ej: fade, barba, clásico, rápido…">
+	        <button id="btnLimpiarBuscador" class="btn btn-outline-light">Limpiar</button>
+	      </div>
+	
+	      <span class="badge bg-primary ms-auto" id="badgeResultados">
+	        Resultados: <span id="buscarContador">0</span>
+	      </span>
+	    </div>
+	  </div>
+	</section>
+		
 
-  <!-- GRID CORTES (3 columnas parejitas) -->
-  <section id="cortes" class="row row-cols-1 row-cols-md-3 g-4">
 
-    <!-- Corte Fade -->
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/CorteFade.jpg"
-               alt="Corte fade (degradado alto) en barberia; laterales desvanecidos y acabado nitido">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-danger mb-1">Corte Fade</h5>
-          <p class="card-text mb-3">Transicion limpia en laterales y nuca. Acabado nitido.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">30-40 min</li>
-            <li class="list-inline-item badge bg-danger">Incluye peinado</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 25</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
+    <!-- Anclas simples -->
+    <section class="container text-center mb-3">
+      <div class="d-inline-flex gap-2">
+        <a href="#cortes"   class="btn btn-danger">Cortes</a>
+        <a href="#paquetes" class="btn btn-primary">Paquetes</a>
+      </div>
+    </section>
+
+    <!-- CORTES (6) -->
+    <section id="cortes" class="container py-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <!-- 1 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/CorteFade.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Corte Fade degradado limpio" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-danger">Corte Fade</h5>
+              <p class="small text-white-50">Transición limpia en laterales y nuca. Acabado nítido.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">30–40 min</span>
+                <span class="badge text-bg-dark border border-light">Incluye peinado</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 25</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/CorteClasico.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Corte clásico masculino" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-primary">Corte Clásico</h5>
+              <p class="small text-white-50">Tradicional y prolijo. Perfecto para oficina o estudio.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">25–35 min</span>
+                <span class="badge text-bg-dark border border-light">Corte a tijera</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 22</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/Pompadour.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Corte Pompadour volumen" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-danger">Pompadour</h5>
+              <p class="small text-white-50">Volumen arriba con laterales prolijos. Look llamativo.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">35–45 min</span>
+                <span class="badge text-bg-dark border border-light">Secado y styling</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 28</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/PerfiladoBarba.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Perfilado de barba recto y preciso" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-danger">Perfilado de Barba</h5>
+              <p class="small text-white-50">Definición con línea precisa y longitud a medida.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">20–30 min</span>
+                <span class="badge text-bg-dark border border-light">Aceite/baume</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 18</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/CorteBarbaTradicional.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Afeitado con toalla caliente" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-primary">Afeitado con Toalla Caliente</h5>
+              <p class="small text-white-50">Relajante y con acabado al ras.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">25–35 min</span>
+                <span class="badge text-bg-dark border border-light">After shave</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 20</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
+            <div class="ratio ratio-4x3">
+              <img data-fade
+                   src="IMG/CORTES Y BARBA/BuzzCut.jpg"
+                   class="w-100 h-100 img-completa" 
+                   alt="Buzz cut máquina a una medida" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-danger">Buzz Cut</h5>
+              <p class="small text-white-50">Rápido, parejo y fresco. Ideal para bajo mantenimiento.</p>
+              <div class="d-flex gap-2 mb-2">
+                <span class="badge bg-primary">15–20 min</span>
+                <span class="badge text-bg-dark border border-light">Máquina n° fija</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-danger fs-6">S/ 15</span>
+                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PAQUETES -->
+    <section id="paquetes" class="container pb-5">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <article class="col">
+          <div class="card bg-secondary text-white border border-primary h-100 p-3 zoomable" data-accent="primary">
+            <h5 class="text-danger mb-2">Combo Corte + Barba</h5>
+            <p class="mb-2">Corte a elección + perfilado de barba. Renueva tu look completo.</p>
+            <ul class="mb-3">
+              <li>Lavado rápido</li>
+              <li>Peinado y acabado</li>
+            </ul>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge bg-light text-dark">S/ 38</span>
+              <a href="Horarios.jsp" class="btn btn-danger">Reservar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="col">
+          <div class="card bg-secondary text-white border border-danger h-100 p-3 zoomable" data-accent="danger">
+            <h5 class="text-primary mb-2">Combo Ejecutivo</h5>
+            <p class="mb-2">Corte clásico + afeitado con toalla caliente. Imagen formal.</p>
+            <ul class="mb-3">
+              <li>Toalla caliente</li>
+              <li>After shave</li>
+            </ul>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge bg-light text-dark">S/ 42</span>
+              <a href="Horarios.jsp" class="btn btn-primary">Reservar</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- GALERÍA (carrusel compacto sin recorte) -->
+    <section class="container my-5 galeria-compacta">
+      <header class="text-center mb-3">
+        <h2 class="titulo-rwb fw-bold">Galería de estilos</h2>
+        <p class="text-white-50 mb-0">Un vistazo a algunos trabajos recientes.</p>
+      </header>
+
+      <div class="wrap">
+        <div id="carruselGaleria" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2600">
+          <div class="carousel-inner galeria-borde">
+
+            <div class="carousel-item active">
+              <div class="ratio ratio-16x9 bg-dark bg-opacity-50">
+                <img src="IMG/CORTES Y BARBA/FadeCat.jpg" class="w-100 h-100 object-fit-contain" alt="Galería - Fade clean" loading="lazy">
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="ratio ratio-16x9 bg-dark bg-opacity-50">
+                <img src="IMG/CORTES Y BARBA/PompadourCat.jpg" class="w-100 h-100 object-fit-contain" alt="Galería - Pompadour" loading="lazy">
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="ratio ratio-16x9 bg-dark bg-opacity-50">
+                <img src="IMG/CORTES Y BARBA/PerfiladoBarbaCat.jpg" class="w-100 h-100 object-fit-contain" alt="Galería - Perfilado de barba" loading="lazy">
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="ratio ratio-16x9 bg-dark bg-opacity-50">
+                <img src="IMG/CORTES Y BARBA/BuzzCutCat.jpg" class="w-100 h-100 object-fit-contain" alt="Galería - Buzz Cut" loading="lazy">
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="ratio ratio-16x9 bg-dark bg-opacity-50">
+                <img src="IMG/CORTES Y BARBA/QuiffCat.jpg" class="w-100 h-100 object-fit-contain" alt="Galería - Quiff" loading="lazy">
+              </div>
+            </div>
+
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselGaleria" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselGaleria" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="0" class="active" aria-current="true" aria-label="1"></button>
+            <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="1" aria-label="2"></button>
+            <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="2" aria-label="3"></button>
+            <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="3" aria-label="4"></button>
+            <button type="button" data-bs-target="#carruselGaleria" data-bs-slide-to="4" aria-label="5"></button>
           </div>
         </div>
       </div>
-    </article>
+    </section>
 
-    <!-- Corte Clasico -->
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-danger zoomable" data-accent="danger">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/CorteClasico.jpg"
-               alt="Corte clasico masculino, estilo formal a tijera con raya lateral">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-primary mb-1">Corte Clasico</h5>
-          <p class="card-text mb-3">Estilo tradicional y formal, perfecto para oficina o estudio.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">25-35 min</li>
-            <li class="list-inline-item badge bg-danger">Corte a tijera</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 22</span>
-            <a class="btn btn-primary btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
+  </main>
 
-    <!-- Pompadour -->
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/Pompadour.jpg"
-               alt="Peinado pompadour con volumen frontal y laterales prolijos">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-danger mb-1">Pompadour</h5>
-          <p class="card-text mb-3">Volumen arriba con laterales prolijos. Look llamativo.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">35-45 min</li>
-            <li class="list-inline-item badge bg-danger">Secado y styling</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 28</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- GRID BARBA -->
-  <section id="barba" class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/PerfiladoBarba.jpg"
-               alt="Perfilado de barba con lineas definidas y contorno preciso">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-danger mb-1">Perfilado de Barba</h5>
-          <p class="card-text mb-3">Definicion con linea precisa y longitud a medida.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">20-30 min</li>
-            <li class="list-inline-item badge bg-danger">Aceite/baume</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 18</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-danger zoomable" data-accent="danger">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/CorteBarbaTradicional.jpg"
-               alt="Afeitado tradicional con toalla caliente y navaja barbera">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-primary mb-1">Afeitado con Toalla Caliente</h5>
-          <p class="card-text mb-3">Experiencia relajante con acabado al ras.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">25-35 min</li>
-            <li class="list-inline-item badge bg-danger">After shave</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 20</span>
-            <a class="btn btn-primary btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
-        <div class="ratio ratio-4x3">
-          <img src="IMG/CORTES Y BARBA/BuzzCut.jpg"
-               alt="Buzz cut corto y parejo con maquina; look de bajo mantenimiento">
-        </div>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-danger mb-1">Buzz Cut</h5>
-          <p class="card-text mb-3">Rapido, parejo y fresco. Ideal para bajo mantenimiento.</p>
-          <ul class="list-inline small mb-3">
-            <li class="list-inline-item badge bg-primary">15-20 min</li>
-            <li class="list-inline-item badge bg-danger">Maquina n&ordm; fija</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 15</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- PAQUETES -->
-  <section id="paquetes" class="row row-cols-1 row-cols-md-2 g-4 mt-4">
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-primary zoomable" data-accent="primary">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-danger">Combo Corte + Barba</h5>
-          <p class="card-text">Corte a eleccion + perfilado de barba. Renueva tu look completo.</p>
-          <ul class="small mb-3">
-            <li>Lavado rapido</li>
-            <li>Peinado y acabado</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 38</span>
-            <a class="btn btn-danger btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="col">
-      <div class="card card-eq bg-secondary text-white border border-2 border-danger zoomable" data-accent="danger">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title text-primary">Combo Ejecutivo</h5>
-          <p class="card-text">Corte clasico + afeitado con toalla caliente. Imagen formal.</p>
-          <ul class="small mb-3">
-            <li>Toalla caliente</li>
-            <li>After shave</li>
-          </ul>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-light text-dark">S/ 42</span>
-            <a class="btn btn-primary btn-sm" href="Horarios.jsp">Reservar</a>
-          </div>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- GALERIA (ya te queda alineada usando ratio si quieres) -->
-  <section class="mt-5">
-    <h3 class="text-center text-danger mb-3">Galeria de Estilos</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-3">
-      <figure class="col m-0">
-        <div class="ratio ratio-4x3">
-          <img class="img-fluid rounded border border-primary"
-               src="IMG/CORTES Y BARBA/FadeCat.jpg"
-               alt="Degradado fade limpio en laterales y nuca">
-        </div>
-        <figcaption class="small text-center mt-1 text-white-50">Fade</figcaption>
-      </figure>
-      <figure class="col m-0">
-        <div class="ratio ratio-4x3">
-          <img class="img-fluid rounded border border-danger"
-               src="IMG/CORTES Y BARBA/PompadourCat.jpg"
-               alt="Pompadour con alto volumen y brillo">
-        </div>
-        <figcaption class="small text-center mt-1 text-white-50">Pompadour</figcaption>
-      </figure>
-      <figure class="col m-0">
-        <div class="ratio ratio-4x3">
-          <img class="img-fluid rounded border border-primary"
-               src="IMG/CORTES Y BARBA/QuiffCat.jpg"
-               alt="Quiff peinado hacia arriba con textura">
-        </div>
-        <figcaption class="small text-center mt-1 text-white-50">Quiff</figcaption>
-      </figure>
-      <figure class="col m-0">
-        <div class="ratio ratio-4x3">
-          <img class="img-fluid rounded border border-danger"
-               src="IMG/CORTES Y BARBA/BuzzCutCat.jpg"
-               alt="Corte al ras uniforme con maquina">
-        </div>
-        <figcaption class="small text-center mt-1 text-white-50">Buzz cut</figcaption>
-      </figure>
-      <figure class="col m-0">
-        <div class="ratio ratio-4x3">
-          <img class="img-fluid rounded border border-primary"
-               src="IMG/CORTES Y BARBA/PerfiladoBarbaCat.jpg"
-               alt="Barba recortada y alineada con acabado definido">
-        </div>
-        <figcaption class="small text-center mt-1 text-white-50">Perfilado de barba</figcaption>
-      </figure>
-    </div>
-    <p class="small text-center text-white-50 mt-2">*Imagenes locales de demostracion.</p>
-  </section>
-
-</section>
-
-  <%-- footer --%>
   <%@ include file="includes/footer.jspf" %>
-  
-  <script src="JS/bootstrap.bundle.min.js"></script>
+
+  <!-- Base para rutas en JS -->
+  <script>window.APP_CTX = '<%= request.getContextPath() %>/';</script>
+  <script src="<%= request.getContextPath() %>/JS/bootstrap.bundle.min.js"></script>
+  <script src="<%= request.getContextPath() %>/JS/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,148 @@
+/* ====== Fondo rotativo global con crossfade ====== */
+.bg-rotativo{ position:fixed; inset:0; z-index:-1; overflow:hidden; }
+.bg-rotativo .bg-img{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  opacity:0; transition:opacity .9s ease; will-change:opacity;
+}
+.bg-rotativo .bg-img.activa{ opacity:1; }
+.bg-rotativo .bg-capa{ position:absolute; inset:0; background:rgba(0,0,0,.6); }
+
+/* ====== Título grande + animación rojo/blanco/azul NEÓN ====== */
+
+.titulo-rwb{
+  animation: rwb 2.2s linear infinite;
+  text-shadow: 0 0 12px rgba(255,255,255,.12);
+  
+}
+  
+@keyframes rwb{
+  0%   { color:#ff3b3b; }
+  33%  { color:#ffffff; }
+  66%  { color:#3b82f6; }
+  100% { color:#ff3b3b; }
+}
+
+
+/* ====== Cards encuadradas + micro-zoom ====== */
+.card-eq{ display:flex; flex-direction:column; height:100%; }
+.card-eq .ratio>img{ width:100%; height:100%; }
+.zoomable{ transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.zoomable:hover{ transform: translateY(-4px) scale(1.02); box-shadow:0 .5rem 1rem rgba(0,0,0,.35); }
+.zoomable:active{ transform: scale(1.04); }
+.zoomable[data-accent="danger"]:hover{ border-color: var(--bs-danger)!important; }
+.zoomable[data-accent="primary"]:hover{ border-color: var(--bs-primary)!important; }
+
+/* Mostrar imagen COMPLETA dentro del recuadro */
+.obj-contain{ object-fit: contain; background: rgba(255,255,255,.03); }
+
+/* Fade de imágenes al entrar */
+img[data-fade]{ opacity:0; filter:blur(2px); transition: opacity .55s ease, filter .55s ease, transform .25s ease; }
+img[data-fade].on{ opacity:1; filter:blur(0); }
+.img-fx:hover img{ transform: scale(1.02); }
+
+/* ====== Galería ====== */
+.galeria-shell{ border:1px solid var(--bs-primary); border-radius:.75rem; overflow:hidden; box-shadow:0 .5rem 1rem rgba(0,0,0,.25); }
+.galeria-img{ object-fit: contain; background: rgba(255,255,255,.02); }
+.carousel-dark .carousel-control-prev-icon,
+.carousel-dark .carousel-control-next-icon{ filter: invert(1) drop-shadow(0 0 6px rgba(0,0,0,.6)); }
+
+/* ====== Compactar layout un toque ====== */
+.tight .row{ --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
+.tight .card-body{ padding:.85rem; }
+
+
+
+/* === Layout más “alejado” SOLO dentro de .page-narrow === */
+.page-narrow .container{
+  /* hacemos el contenedor un poco más angosto que el container de Bootstrap */
+  max-width: 1080px;            /* antes podía llegar a 1320px en xxl */
+}
+
+@media (min-width: 1400px){
+  .page-narrow .container{
+    max-width: 1040px;          /* aún más compacto en pantallas muy anchas */
+  }
+}
+
+/* un pelín menos de separación horizontal entre columnas */
+.page-narrow .row{
+  --bs-gutter-x: 1.25rem;       /* default g-4 ~1.5rem, lo bajamos un poco */
+  --bs-gutter-y: 1.5rem;        /* vertical cómodo */
+}
+
+/* margen lateral mínimo para que nada pegue al borde en viewports chicos */
+.page-narrow{ 
+  padding-inline: .5rem; 
+}
+
+
+/* ===== Vista un poco más “alejada” ===== */
+.app-compact .container{ max-width: 1160px; } /* más estrecho que el XL por defecto */
+
+/* ===== Fondo rotativo global ===== */
+.bg-rotativo{ position:fixed; inset:0; z-index:-1; overflow:hidden; }
+.bg-rotativo .bg-img{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.2s ease; }
+.bg-rotativo .bg-img.activa{ opacity:1; }
+.bg-rotativo .bg-capa{ position:absolute; inset:0; background:rgba(0,0,0,.60); }
+
+/* ===== Título grande + cambio rojo/blanco/azul ===== */
+.titulo-grande{ font-size:clamp(2.2rem,5vw,3.4rem); letter-spacing:.4px }
+.titulo-rwb{ animation:rwb 1.5s steps(1,end) infinite }
+@keyframes rwb{
+  0%{color:#dc3545} 33%{color:#ffffff} 66%{color:#0d6efd} 100%{color:#dc3545}
+}
+
+/* ===== Cards (altura uniforme + hover suave) ===== */
+.card-eq{ display:flex; flex-direction:column; height:100% }
+.zoomable{ transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease }
+.zoomable:hover{ transform: translateY(-4px) scale(1.02); box-shadow:0 .5rem 1rem rgba(0,0,0,.35) }
+.zoomable:active{ transform: scale(1.04) }
+.zoomable[data-accent="danger"]:hover{ border-color:#dc3545 !important }
+.zoomable[data-accent="primary"]:hover{ border-color:#0d6efd !important }
+
+/* Imagen completa dentro del recuadro (sin recorte) */
+.img-completa{ object-fit: contain !important; background: rgba(0,0,0,.30); }
+
+/* Fade-in para las imágenes marcadas con data-fade */
+img[data-fade]{ opacity:0; transition: opacity .6s ease }
+img[data-fade].on{ opacity:1 }
+
+/* ===== Galería compacta (carrusel) ===== */
+.galeria-compacta .wrap{ max-width: 980px; margin-inline:auto; }
+.galeria-borde{ border:1px solid var(--bs-primary); border-radius:.75rem; overflow:hidden }
+.galeria-compacta .carousel-item img{ transition: transform .35s ease; }
+.galeria-compacta .carousel-item:hover img{ transform: scale(1.015); }
+.galeria-compacta .carousel-indicators [data-bs-target]{ width:28px; height:3px; background:rgba(255,255,255,.55) }
+.galeria-compacta .carousel-indicators .active{ background-image:linear-gradient(90deg,#dc3545,#fff,#0d6efd) }
+
+
+
+/****************************************************************/
+
+				/* Buscador */
+/* --- Buscador compacto y centrado --- */
+.buscador {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.buscador .card-body {
+  display: grid;
+  grid-template-columns: 1fr auto;  /* input | badge */
+  gap: .75rem;
+  align-items: center;
+}
+.buscador .form-label { grid-column: 1 / -1; }
+.buscador .input-group .form-control {
+  min-height: 44px;
+}
+.buscador .input-group .form-control::placeholder {
+  color: #aeb5bb;
+}
+.buscador .input-group .form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(13,110,253,.2);
+}
+#badgeResultados { justify-self: end; }
+
+/* (opcional) que las imágenes del grid hagan fade-in al cargar/entrar */
+img[data-fade] { opacity: 0; transition: opacity .4s ease; }
+img[data-fade].on { opacity: 1; }
