@@ -11,89 +11,74 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import Config.Conexion;
+	
 
 public class ServicioDAO implements Inter_servicio{
-
 	
 	Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    Servicio s = new Servicio();
 
 	@Override
 	public List<Servicio> listar() {
-		ArrayList<Servicio> list = new ArrayList<>();
-        String sql = "SELECT * FROM servicio";
 
+		List<Servicio> list = new ArrayList<>();
+		
+        String sql = "SELECT id, nombre, descripcion, duracion_min, incluye, precio, imagen, alt, orden " +
+                     "FROM servicio ORDER BY orden, nombre";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
-                Servicio ser = new Servicio();
-                ser.setIdServicio(rs.getInt("id_servicio"));
-                ser.setNombre(rs.getString("nombre"));
-                ser.setTipo(rs.getString("tipo"));
-                ser.setPrecio(rs.getDouble("precio"));
-                ser.setDuracionMinutos(rs.getInt("duracion_minutos"));
-                list.add(ser);
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error listar servicios: " + e.getMessage());
-        }
-        return list;
-	}
-
-	@Override
-	public List<Servicio> listarPorTipo(String tipo) {
-		ArrayList<Servicio> list = new ArrayList<>();
-        String sql = "SELECT * FROM servicio WHERE tipo='" + tipo + "'";
-
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Servicio ser = new Servicio();
-                ser.setIdServicio(rs.getInt("id_servicio"));
-                ser.setNombre(rs.getString("nombre"));
-                ser.setTipo(rs.getString("tipo"));
-                ser.setPrecio(rs.getDouble("precio"));
-                ser.setDuracionMinutos(rs.getInt("duracion_minutos"));
-                list.add(ser);
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error listar servicios por tipo: " + e.getMessage());
-        }
-        return list;
-	}
-
-	@Override
-	public Servicio buscarPorId(int id) {
-		String sql = "SELECT * FROM servicio WHERE id_servicio=" + id;
-
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                s.setIdServicio(rs.getInt("id_servicio"));
+                Servicio s = new Servicio();
+                s.setId(rs.getInt("id"));
                 s.setNombre(rs.getString("nombre"));
-                s.setTipo(rs.getString("tipo"));
+                s.setDescripcion(rs.getString("descripcion"));
+                s.setDuracionMin(rs.getInt("duracion_min"));
+                s.setIncluye(rs.getString("incluye"));
                 s.setPrecio(rs.getDouble("precio"));
-                s.setDuracionMinutos(rs.getInt("duracion_minutos"));
+                s.setImagen(rs.getString("imagen"));
+                s.setAlt(rs.getString("alt"));
+                s.setOrden(rs.getInt("orden"));
+                list.add(s);
             }
-
         } catch (Exception e) {
-            System.err.println("Error buscar servicio por ID: " + e.getMessage());
-        }
+            System.err.println("Error Metodo listar servicios: " + e.getMessage());
+        } 
+        return list;
+    }
+
+
+	@Override
+	public Servicio obtenerPorId(int id) {
+
+		Servicio s = null;
+		
+        String sql = "SELECT id, nombre, descripcion, duracion_min, incluye, precio, imagen, alt, orden " +
+                     "FROM servicio WHERE id = " + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                s = new Servicio();
+                s.setId(rs.getInt("id"));
+                s.setNombre(rs.getString("nombre"));
+                s.setDescripcion(rs.getString("descripcion"));
+                s.setDuracionMin(rs.getInt("duracion_min"));
+                s.setIncluye(rs.getString("incluye"));
+                s.setPrecio(rs.getDouble("precio"));
+                s.setImagen(rs.getString("imagen"));
+                s.setAlt(rs.getString("alt"));
+                s.setOrden(rs.getInt("orden"));
+            }
+        } catch (Exception e) {
+            System.err.println("Error Metodo obtenerPorId servicio: " + e.getMessage());
+        } 
         return s;
+    }
+
 	}
 
-}

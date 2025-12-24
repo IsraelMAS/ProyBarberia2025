@@ -1,4 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="ModeloDAO.ServicioDAO"%>
+<%@ page import="Modelos.Servicio"%>
+<%@ page import="Config.Conexion"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page import="java.sql.Statement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="ModeloDAO.PaqueteDAO"%>
+<%@ page import="Modelos.Paquete"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,187 +46,73 @@
     <section id="cortes" class="container py-4">
       <div class="row row-cols-1 row-cols-md-3 g-4">
 
+	<%
+	  ServicioDAO dao = new ServicioDAO();
+      List<Servicio> list = dao.listar();
+      Iterator<Servicio> iter = list.iterator();
+      Servicio per = null; 
+      while (iter.hasNext()) {
+        per = iter.next();
+    %>
         <!-- 1 -->
         <article class="col">
           <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
             <div class="ratio ratio-4x3">
               <img data-fade
-                   src="IMG/CORTES Y BARBA/CorteFade.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Corte Fade degradado limpio" loading="lazy">
+                   src="<%= per.getImagen() %>" 
+           		   class="w-100 h-100 img-completa" 
+                   alt="<%= per.getAlt() %>" loading="lazy">
             </div>
             <div class="card-body">
-              <h5 class="card-title text-danger">Corte Fade</h5>
-              <p class="small text-white-50">Transición limpia en laterales y nuca. Acabado nítido.</p>
+              <h5 class="card-title text-danger"><%= per.getNombre() %></h5>
+              <p class="small text-white-50"><%= per.getDescripcion() %></p>
               <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">30–40 min</span>
-                <span class="badge text-bg-dark border border-light">Incluye peinado</span>
+                <span class="badge bg-primary"><%= per.getDuracionMin() %> min</span>
+                <span class="badge text-bg-dark border border-light"><%= per.getIncluye() %></span>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 25</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
+                <span class="badge bg-danger fs-6">S/ <%= per.getPrecio() %></span>
+                <a href="Horarios.jsp?id=<%= per.getId() %>&nombre=<%= per.getNombre() %>" class="btn btn-outline-light btn-sm">Reservar</a>
               </div>
             </div>
           </div>
         </article>
-
-        <!-- 2 -->
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
-            <div class="ratio ratio-4x3">
-              <img data-fade
-                   src="IMG/CORTES Y BARBA/CorteClasico.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Corte clásico masculino" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-primary">Corte Clásico</h5>
-              <p class="small text-white-50">Tradicional y prolijo. Perfecto para oficina o estudio.</p>
-              <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">25–35 min</span>
-                <span class="badge text-bg-dark border border-light">Corte a tijera</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 22</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3 -->
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
-            <div class="ratio ratio-4x3">
-              <img data-fade
-                   src="IMG/CORTES Y BARBA/Pompadour.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Corte Pompadour volumen" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-danger">Pompadour</h5>
-              <p class="small text-white-50">Volumen arriba con laterales prolijos. Look llamativo.</p>
-              <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">35–45 min</span>
-                <span class="badge text-bg-dark border border-light">Secado y styling</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 28</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4 -->
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
-            <div class="ratio ratio-4x3">
-              <img data-fade
-                   src="IMG/CORTES Y BARBA/PerfiladoBarba.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Perfilado de barba recto y preciso" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-danger">Perfilado de Barba</h5>
-              <p class="small text-white-50">Definición con línea precisa y longitud a medida.</p>
-              <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">20–30 min</span>
-                <span class="badge text-bg-dark border border-light">Aceite/baume</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 18</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 5 -->
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="primary">
-            <div class="ratio ratio-4x3">
-              <img data-fade
-                   src="IMG/CORTES Y BARBA/CorteBarbaTradicional.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Afeitado con toalla caliente" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-primary">Afeitado con Toalla Caliente</h5>
-              <p class="small text-white-50">Relajante y con acabado al ras.</p>
-              <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">25–35 min</span>
-                <span class="badge text-bg-dark border border-light">After shave</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 20</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 6 -->
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 card-eq zoomable" data-accent="danger">
-            <div class="ratio ratio-4x3">
-              <img data-fade
-                   src="IMG/CORTES Y BARBA/BuzzCut.jpg"
-                   class="w-100 h-100 img-completa" 
-                   alt="Buzz cut máquina a una medida" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title text-danger">Buzz Cut</h5>
-              <p class="small text-white-50">Rápido, parejo y fresco. Ideal para bajo mantenimiento.</p>
-              <div class="d-flex gap-2 mb-2">
-                <span class="badge bg-primary">15–20 min</span>
-                <span class="badge text-bg-dark border border-light">Máquina n° fija</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-danger fs-6">S/ 15</span>
-                <a href="Horarios.jsp" class="btn btn-outline-light btn-sm">Reservar</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
+        
+		<% 
+     		} 
+    	%>
       </div>
     </section>
 
     <!-- PAQUETES -->
     <section id="paquetes" class="container pb-5">
       <div class="row row-cols-1 row-cols-md-2 g-4">
+      <%
+      	PaqueteDAO daoP = new PaqueteDAO();
+      	List<Paquete> listP = daoP.listar();
+      	Iterator<Paquete> iterP = listP.iterator();
+      	Paquete perP = null;
+
+      	while (iterP.hasNext()) {
+        perP = iterP.next();
+      %>
 
         <article class="col">
           <div class="card bg-secondary text-white border border-primary h-100 p-3 zoomable" data-accent="primary">
-            <h5 class="text-danger mb-2">Combo Corte + Barba</h5>
-            <p class="mb-2">Corte a elección + perfilado de barba. Renueva tu look completo.</p>
-            <ul class="mb-3">
-              <li>Lavado rápido</li>
-              <li>Peinado y acabado</li>
-            </ul>
+            <h5 class="text-danger mb-2"><%= perP.getNombre() %></h5>
+            <p class="mb-2"><%= perP.getDescripcion() %></p>
+            <div class="small mb-3" style="white-space: pre-line;">
+      			<%= perP.getDetalles() %>
+    		</div>
             <div class="d-flex justify-content-between align-items-center">
-              <span class="badge bg-light text-dark">S/ 38</span>
-              <a href="Horarios.jsp" class="btn btn-danger">Reservar</a>
+              <span class="badge bg-light text-dark">S/ <%= perP.getPrecio() %></span>
+              <a href="Horarios.jsp?id=<%= perP.getId() %>&nombre=<%= perP.getNombre() %>" class="btn btn-danger">Reservar</a>
             </div>
           </div>
         </article>
 
-        <article class="col">
-          <div class="card bg-secondary text-white border border-danger h-100 p-3 zoomable" data-accent="danger">
-            <h5 class="text-primary mb-2">Combo Ejecutivo</h5>
-            <p class="mb-2">Corte clásico + afeitado con toalla caliente. Imagen formal.</p>
-            <ul class="mb-3">
-              <li>Toalla caliente</li>
-              <li>After shave</li>
-            </ul>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="badge bg-light text-dark">S/ 42</span>
-              <a href="Horarios.jsp" class="btn btn-primary">Reservar</a>
-            </div>
-          </div>
-        </article>
-
+        
+		<% } %>
       </div>
     </section>
 
