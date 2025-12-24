@@ -2,53 +2,135 @@ package Modelos;
 
 public class Servicio {
 	
-    private int idServicio;
+
+	private int id;
     private String nombre;
-    private String tipo; // CORTE, BARBA, COMBO
+    private String descripcion;
+    private int duracionMin;
+    private String incluye;
     private double precio;
-    private int duracionMinutos;
+    private String imagen;
+    private String alt;
+    private int orden;
+
+    
     
 	public Servicio() {
 		
+		
 	}
-	public Servicio(String nombre, String tipo, double precio, int duracionMinutos) {
+
+
+	public Servicio(String nombre, String descripcion, int duracionMin, String incluye, double precio, String imagen,
+			String alt, int orden) {
 		
 		this.nombre = nombre;
-		this.tipo = tipo;
+		this.descripcion = descripcion;
+		this.duracionMin = duracionMin;
+		this.incluye = incluye;
 		this.precio = precio;
-		this.duracionMinutos = duracionMinutos;
+		this.imagen = imagen;
+		this.alt = alt;
+		this.orden = orden;
 	}
-	public int getIdServicio() {
-		return idServicio;
+
+
+	public int getId() {
+		return id;
 	}
-	public void setIdServicio(int idServicio) {
-		this.idServicio = idServicio;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getTipo() {
-		return tipo;
+
+
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
+
+
+	public int getDuracionMin() {
+		return duracionMin;
+	}
+
+
+	public void setDuracionMin(int duracionMin) {
+		this.duracionMin = duracionMin;
+	}
+
+
+	public String getIncluye() {
+		return incluye;
+	}
+
+
+	public void setIncluye(String incluye) {
+		this.incluye = incluye;
+	}
+
+
 	public double getPrecio() {
 		return precio;
 	}
+
+
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	public int getDuracionMinutos() {
-		return duracionMinutos;
-	}
-	public void setDuracionMinutos(int duracionMinutos) {
-		this.duracionMinutos = duracionMinutos;
+
+
+	public String getImagen() {
+		return imagen;
 	}
 
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
+	public String getAlt() {
+		return alt;
+	}
+
+
+	public void setAlt(String alt) {
+		this.alt = alt;
+	}
+
+
+	public int getOrden() {
+		return orden;
+	}
+
+
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
+	
+	
+
+	
+	
+
+    
+	
     
 	
 }

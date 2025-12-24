@@ -67,21 +67,32 @@
 
             <label class="form-label">Teléfono</label>
             <input type="tel" class="form-control mb-2" required>
+            
+            <%
+   			
+            	String idBarbero = request.getParameter("idBarbero");
+            	String nombreBarbero = request.getParameter("nombreBarbero");
+            	if (nombreBarbero == null) nombreBarbero = "No seleccionado";
 
-            <input type="hidden" name="idBarbero" value="">
+            	String idServ = request.getParameter("id"); 
+            	String nomServ = request.getParameter("nombre"); 
+            	if (nomServ == null) nomServ = "No seleccionado";
+    
+			%>
+
+            <input type="hidden" name="idBarbero" value="<%= (idBarbero != null) ? idBarbero : "" %>">
             <label class="form-label">Barbero</label>
             <div class="d-flex gap-2 align-items-start mb-3">
-              <input type="text" class="form-control" value="" readonly>
-              <a href="ControladorBarbero?accion=listar"
+              <input type="text" class="form-control" value="<%= nombreBarbero %>" readonly>
+              <a href="Barberos.jsp"
                  class="btn btn-outline-light text-nowrap">Elegir barbero</a>
             </div>
-
-            <input type="hidden" name="idServicio" value="">
+            <input type="hidden" name="idServicio" value="<%= (idServ != null) ? idServ : "" %>">
             <label class="form-label">Servicio</label>
             <div class="d-flex gap-2 align-items-start mb-3">
               <input type="text" class="form-control"
-                     value="${servicio.nombre}" readonly>
-              <a href="ControladorServicio?accion=listar"
+                     value="<%= nomServ %>" readonly>
+              <a href="Servicios.jsp#cortes"
                  class="btn btn-outline-light text-nowrap">Elegir servicio</a>
             </div>
 
