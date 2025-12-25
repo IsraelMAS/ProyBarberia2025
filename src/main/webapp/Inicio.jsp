@@ -35,7 +35,7 @@
             <div class="ratio ratio-21x9">
               <img src="IMG/INICIO/BannerBarberia2.png"
                    class="w-100 h-100 object-fit-cover"
-                   alt="Barberos expertos y ambiente top">
+                   alt="Barberos expertos y ambiente top"> e
             </div>
           </div>
 

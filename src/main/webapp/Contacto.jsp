@@ -76,6 +76,9 @@
                   <span class="badge bg-primary">Ver</span>
                 </div>
                 <small class="text-white-50">Ubicación: Cerca al mercado central</small>
+               <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede1.png" alt="">
+
+                
               </a>
 
               <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
@@ -86,6 +89,7 @@
                   <span class="badge bg-primary">Ver</span>
                 </div>
                 <small class="text-white-50">Ubicación: Cerca al mercado central</small>
+                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede2.png" alt="">
               </a>
 
               <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
@@ -96,6 +100,7 @@
                   <span class="badge bg-primary">Ver</span>
                 </div>
                 <small class="text-white-50">Ubicación: Cerca al mercado central</small>
+                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede3.png" alt="">
               </a>
 
               <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
@@ -106,9 +111,12 @@
                   <span class="badge bg-primary">Ver</span>
                 </div>
                 <small class="text-white-50">Ubicación: Cerca al mercado central</small>
+                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede4.png" alt="">
+              	<br>
+              	<br>
+              	<br>              	
               </a>
             </div>
-
             <hr class="border-light opacity-25 my-4">
 
             <h4 class="titulo-rwb fw-bold mb-2">Contacto</h4>
