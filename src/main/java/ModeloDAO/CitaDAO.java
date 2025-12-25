@@ -28,7 +28,7 @@ public class CitaDAO implements Inter_cita{
 		String sql = "INSERT INTO cita (id_cliente, id_barbero, id_servicio, fecha, hora, instrucciones) "
                 + "VALUES (" + c.getCliente().getIdCliente() + ", "
                 + c.getBarbero().getIdBarbero() + ", "
-                + c.getServicio().getIdServicio() + ", '"
+                + c.getServicio().getId() + ", '"
                 + c.getFecha() + "', '"
                 + c.getHora() + "', '"
                 + c.getInstrucciones() + "')";
