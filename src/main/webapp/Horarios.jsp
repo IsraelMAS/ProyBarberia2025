@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="ModeloDAO.HorarioDAO"%>
+<%@ page import="Modelos.Horario"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +31,26 @@
                 <tr><th>Turno</th><th>Horas</th></tr>
               </thead>
               <tbody>
-                <tr><td>Mañana</td><td>09:00 - 12:00</td></tr>
-                <tr><td>Tarde</td><td>14:00 - 17:00</td></tr>
-                <tr><td>Noche</td><td>18:00 - 20:00</td></tr>
+        <%
+          // Suponiendo que ya tienes un HorarioDAO similar a los anteriores
+          HorarioDAO daoH = new HorarioDAO();
+          List<Horario> listaH = daoH.listar();
+          Iterator<Horario> iterH = listaH.iterator();
+          Horario h = null;
+
+          while (iterH.hasNext()) {
+            h = iterH.next();
+        %>
+                <tr><td><%= h.getTurno() %></td><td><%= h.getHora() %></td></tr>
+         <% 
+          } 
+        %>
               </tbody>
             </table>
-            <small class="text-white-50">*Vista de demostración (sin backend).</small>
+            <small class="text-white-50">Horarios actualizados desde el sistema.</small>
           </article>
         </aside>
-
+		
 
         <aside>
           <article class="bg-light p-3 rounded shadow-sm">
@@ -97,23 +112,29 @@
             </div>
 
             <label class="form-label">Fecha</label>
-            <input type="date" class="form-control mb-2" required>
+            <input type="date" name="txtFecha" class="form-control mb-2" required>
 
             <label class="form-label">Hora</label>
-            <select class="form-select mb-3" required>
+            <select name="txtHora" class="form-select mb-3" required>
               <option value="">Selecciona una hora</option>
-              <option>09:00</option><option>10:00</option><option>11:00</option>
-              <option>14:00</option><option>15:00</option><option>16:00</option>
-              <option>18:00</option><option>19:00</option>
+        	  <option value="09:00:00">09:00</option>
+              <option value="10:00:00">10:00</option>
+              <option value="11:00:00">11:00</option>
+              <option value="14:00:00">14:00</option>
+              <option value="15:00:00">15:00</option>
+              <option value="16:00:00">16:00</option>
+              <option value="18:00:00">18:00</option>
+              <option value="19:00:00">19:00</option>
             </select>
 
             <label>Instrucciones para su barbero:</label>
             <div>
-              <textarea rows="4" cols="50"></textarea>
+              <textarea name="txtInstrucciones" class="form-control" rows="4" ></textarea>
             </div>
-
+			<input type="hidden" name="txtEstado" value="RESERVADA">
+			
             <section class="d-flex gap-2 mt-3">
-              <button class="btn btn-danger">Reservar</button>
+              <button type="submit" name="accion" value="GuardarCita" class="btn btn-danger">Reservar</button>
               <button type="reset" class="btn btn-primary">Limpiar</button>
             </section>
 
