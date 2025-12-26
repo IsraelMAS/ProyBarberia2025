@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title>BARBERSHOP — Inicio</title>
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/app.css">
+  <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
 </head>
 <body class="bg-dark text-white">
 
@@ -67,6 +69,8 @@
         </div>
       </div>
     </header>
+    
+    <div id="inicioHero" class="inicio-hero">
 
     <!-- SECTION: Franja/CTA debajo del banner -->
     <section class="container my-3" aria-label="Franja de bienvenida">
@@ -205,7 +209,7 @@
         </article>
       </div>
     </section>
-
+</div>
   </main>
 
   <!-- Scripts (usa contextPath para que carguen en todas las páginas) -->

@@ -3,7 +3,7 @@
 
 <html lang="es">
 <head>
-    <title>Agregar Cliente</title>
+    <title>Agregar Barberos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
-                        <h2 class="h5 mb-0">Nuevo Cliente</h2>
+                        <h2 class="h5 mb-0">Nuevo Barbero</h2>
                     </div>
                     <div class="card-body">
                         <form action="${pageContext.request.contextPath}/AdminClientes" method="post">

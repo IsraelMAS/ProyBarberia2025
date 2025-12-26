@@ -14,6 +14,73 @@ document.addEventListener('DOMContentLoaded', () => {
  
 });
 
+
+/**********************************			INICIO FONDO		*****************************************************/
+
+(function () {
+
+  // 1) Buscamos el div principal del inicio (donde está el fondo)
+  const hero = document.getElementById("inicioHero");
+  if (!hero) return; // si no existe en esta página, salimos
+
+  // 2) Posición "a donde queremos llegar" (target) y posición actual (actual)
+  //    Empezamos al centro del fondo: 50% 50%
+  let targetX = 50, targetY = 50;
+  let actualX = 50, actualY = 50;
+
+  // 3) Esta función se ejecuta cuando movemos el mouse dentro del hero
+  function moverFondoConMouse(evento) {
+    const rect = hero.getBoundingClientRect(); // tamaño y posición del hero en pantalla
+
+    // Coordenadas del mouse dentro del hero en porcentaje (0 a 1)
+    const mouseX = (evento.clientX - rect.left) / rect.width;
+    const mouseY = (evento.clientY - rect.top) / rect.height;
+
+    // Convertimos ese 0..1 a un movimiento alrededor del centro (50%)
+    // "rango" es cuánto se moverá el fondo (más rango = más movimiento)
+    const rangoX = 12;
+    const rangoY = 10;
+
+    targetX = 50 + (mouseX - 0.5) * rangoX;
+    targetY = 50 + (mouseY - 0.5) * rangoY;
+  }
+
+  // 4) Animación suave: no brinca directo, se acerca poco a poco al target
+  function animarSuave() {
+    // "velocidad" controla qué tan rápido se acerca al target
+    const velocidad = 0.06;
+
+    actualX = actualX + (targetX - actualX) * velocidad;
+    actualY = actualY + (targetY - actualY) * velocidad;
+
+    // Aplicamos la posición al background (en %)
+    hero.style.backgroundPosition = `${actualX}% ${actualY}%`;
+
+    // Pedimos el próximo frame (60 veces aprox por segundo)
+    requestAnimationFrame(animarSuave);
+  }
+
+  // 5) Solo lo activamos en pantallas grandes (para no molestar en móvil)
+  const esDesktop = window.matchMedia("(min-width: 992px)").matches;
+
+  if (esDesktop) {
+    // Cuando se mueve el mouse dentro del hero → calculamos destino (target)
+    hero.addEventListener("mousemove", moverFondoConMouse);
+
+    // Cuando el mouse sale del hero → regresamos el fondo al centro
+    hero.addEventListener("mouseleave", () => {
+      targetX = 50;
+      targetY = 50;
+    });
+
+    // Iniciamos la animación suave
+    animarSuave();
+  }
+
+})();
+
+////////////////////////////////////////////////////////////////////////////////////////
+
 /* --- 1) Fade de bloques con .revelar (si los usas) --- */
 function revelarAlEntrar() {
   const bloques = document.querySelectorAll('.revelar');

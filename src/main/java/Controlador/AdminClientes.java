@@ -27,7 +27,7 @@ public class AdminClientes extends HttpServlet {
         }
 
         if (accion.equals("new")) {
-            req.getRequestDispatcher("/Vistas/Admin/agregar-clientes.jsp")
+            req.getRequestDispatcher("/Vistas/Admin/agregar-barberos.jsp")
                .forward(req, resp);
         } else {
             listar(req, resp);
@@ -42,11 +42,12 @@ public class AdminClientes extends HttpServlet {
 
         String nombre = req.getParameter("nombre");
         String telefono = req.getParameter("telefono");
+        String contrasena = req.getParameter("contrasena");
 
         if (nombre != null && !nombre.isBlank()
                 && telefono != null && !telefono.isBlank()) {
 
-            Cliente c = new Cliente(nombre, telefono);
+            Cliente c = new Cliente(nombre, telefono, contrasena);
             dao.insertar(c);
         }
 

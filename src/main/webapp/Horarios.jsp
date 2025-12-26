@@ -7,54 +7,74 @@
 <%@ page import="Modelos.Cita"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>BARBERSHOP — Horarios</title>
+
+  <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
+
+  <!-- Bootstrap + estilos -->
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/app.css">
+  <link rel="stylesheet" href="CSS/Horario.css">
 </head>
-<body class="bg-dark text-white">
 
-<%@ include file="includes/navbar.jspf" %>
+<body class="bg-dark text-white page-horarios">
 
-<main class="container my-5">
-  <h2 class="text-primary text-center mb-4">Horarios y Reserva</h2>
+  <%@ include file="includes/navbar.jspf" %>
 
-  <section class="row g-4">
+  <!-- Fondo dinámico (NO afecta tu HTML interno) -->
+  <div class="horario-bg" aria-hidden="true"></div>
+  <div class="horario-ov" aria-hidden="true"></div>
 
-    <!-- ================= HORARIOS ================= -->
-    <div class="col-lg-6 d-flex flex-column gap-4">
+  <main class="container my-5">
 
-      <aside>
-        <article class="bg-secondary p-3 rounded">
-          <h3 class="text-danger">Horarios disponibles</h3>
-          <table class="table table-dark table-striped table-bordered mb-0">
-            <thead>
-              <tr><th>Turno</th><th>Horas</th></tr>
-            </thead>
-            <tbody>
-            <%
-              HorarioDAO daoH = new HorarioDAO();
-              List<Horario> listaH = daoH.listar();
-              for (Horario h : listaH) {
-            %>
-              <tr>
-                <td><%= h.getTurno() %></td>
-                <td><%= h.getHora() %></td>
-              </tr>
-            <% } %>
-            </tbody>
-          </table>
-          <small class="text-white-50">Horarios actualizados desde el sistema.</small>
-        </article>
-      </aside>
+    <h2 class="text-primary text-center mb-4">Horarios y Reserva</h2>
 
-	<aside>
+    <section class="row g-4">
+
+      <!-- ================= HORARIOS ================= -->
+      <div class="col-lg-6 d-flex flex-column gap-4">
+
+        <aside>
+          <article class="bg-secondary p-3 rounded">
+            <h3 class="text-danger">Horarios disponibles</h3>
+
+            <table class="table table-dark table-striped table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Turno</th>
+                  <th>Horas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                  HorarioDAO daoH = new HorarioDAO();
+                  List<Horario> listaH = daoH.listar();
+                  for (Horario h : listaH) {
+                %>
+                <tr>
+                  <td><%= h.getTurno() %></td>
+                  <td><%= h.getHora() %></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+
+            <small class="text-white-50">Horarios actualizados desde el sistema.</small>
+          </article>
+        </aside>
+
+        <aside>
           <article class="bg-light p-3 rounded shadow-sm">
             <h3 class="text-primary">Citas Reservadas</h3>
+
             <table class="table table-bordered table-hover mb-0">
               <thead class="table-primary">
-                <tr><th class="text-center">Barbero1</th></tr>
+                <tr>
+                  <th class="text-center">Barbero1</th>
+                </tr>
               </thead>
               <tbody>
                 <tr><td></td></tr>
@@ -62,191 +82,187 @@
                 <tr><td></td></tr>
               </tbody>
             </table>
+
             <small class="text-muted">Llegar 10 minutos antes a lo acordado</small>
           </article>
         </aside>
-	
 
-    </div>
+      </div>
 
-    <!-- ================= FORMULARIO ================= -->
-    <article class="col-lg-6">
-      <section class="bg-secondary p-3 rounded">
-        <h3 class="text-primary">Reservar cita</h3>
+      <!-- ================= FORMULARIO ================= -->
+      <article class="col-lg-6">
+        <section class="bg-secondary p-3 rounded">
+          <h3 class="text-primary">Reservar cita</h3>
 
-<%
-    /* ================= CITA EN EDICIÓN ================= */
-    Cita citaEdit = (Cita) session.getAttribute("citaSeleccionada");
+          <%
+            /* ================= CITA EN EDICIÓN ================= */
+            Cita citaEdit = (Cita) session.getAttribute("citaSeleccionada");
 
-    String f    = (citaEdit != null) ? citaEdit.getFecha().toString() : "";
-    String ho   = (citaEdit != null) ? citaEdit.getHora().toString() : "";
-    String inst = (citaEdit != null) ? citaEdit.getInstrucciones() : "";
-    int idCita  = (citaEdit != null) ? citaEdit.getIdCita() : 0;
+            String f    = (citaEdit != null) ? citaEdit.getFecha().toString() : "";
+            String ho   = (citaEdit != null) ? citaEdit.getHora().toString() : "";
+            String inst = (citaEdit != null) ? citaEdit.getInstrucciones() : "";
+            int idCita  = (citaEdit != null) ? citaEdit.getIdCita() : 0;
 
-    String nomCli = (citaEdit != null) ? citaEdit.getCliente().getNombre() : "Cliente 1";
-    String telCli = (citaEdit != null) ? citaEdit.getCliente().getTelefono() : "999999999";
+            String nomCli = (citaEdit != null) ? citaEdit.getCliente().getNombre() : "Cliente 1";
+            String telCli = (citaEdit != null) ? citaEdit.getCliente().getTelefono() : "999999999";
 
-    /* ================= BARBERO ================= */
-    String idB  = request.getParameter("idBarbero");
-    String nomB = request.getParameter("nombreBarbero");
+            /* ================= BARBERO ================= */
+            String idB  = request.getParameter("idBarbero");
+            String nomB = request.getParameter("nombreBarbero");
 
-    if (idB != null && nomB != null) {
-        session.setAttribute("idBarbero", idB);
-        session.setAttribute("nombreBarbero", nomB);
-    }
+            if (idB != null && nomB != null) {
+              session.setAttribute("idBarbero", idB);
+              session.setAttribute("nombreBarbero", nomB);
+            }
 
-    if (nomB == null || nomB.isBlank()) {
-        idB  = (String) session.getAttribute("idBarbero");
-        nomB = (String) session.getAttribute("nombreBarbero");
-    }
+            if (nomB == null || nomB.isBlank()) {
+              idB  = (String) session.getAttribute("idBarbero");
+              nomB = (String) session.getAttribute("nombreBarbero");
+            }
 
-    if (nomB == null || nomB.isBlank()) {
-        nomB = "No seleccionado";
-    }
+            if (nomB == null || nomB.isBlank()) {
+              nomB = "No seleccionado";
+            }
 
-    /* ================= SERVICIO ================= */
-    String idS  = request.getParameter("id");
-    String nomS = request.getParameter("nombre");
+            /* ================= SERVICIO ================= */
+            String idS  = request.getParameter("id");
+            String nomS = request.getParameter("nombre");
 
-    if (idS != null && nomS != null) {
-        session.setAttribute("idServicio", idS);
-        session.setAttribute("nombreServicio", nomS);
-    }
+            if (idS != null && nomS != null) {
+              session.setAttribute("idServicio", idS);
+              session.setAttribute("nombreServicio", nomS);
+            }
 
-    if (nomS == null || nomS.isBlank()) {
-        idS  = (String) session.getAttribute("idServicio");
-        nomS = (String) session.getAttribute("nombreServicio");
-    }
+            if (nomS == null || nomS.isBlank()) {
+              idS  = (String) session.getAttribute("idServicio");
+              nomS = (String) session.getAttribute("nombreServicio");
+            }
 
-    if (nomS == null || nomS.isBlank()) {
-        nomS = "No seleccionado";
-    }
+            if (nomS == null || nomS.isBlank()) {
+              nomS = "No seleccionado";
+            }
 
-    String accion = (citaEdit != null) ? "Actualizar" : "Agregar";
-    String texto  = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
-%>
+            String accion = (citaEdit != null) ? "Actualizar" : "Agregar";
+            String texto  = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
+          %>
 
-<form action="ControladorCita" method="GET">
+          <form action="ControladorCita" method="GET">
 
-  <input type="hidden" name="txtIdCita" value="<%= idCita %>">
-  <input type="hidden" name="txtIdCliente" value="1">
+            <input type="hidden" name="txtIdCita" value="<%= idCita %>">
+            <input type="hidden" name="txtIdCliente" value="1">
 
-  <label>Nombre</label>
-  <input type="text" class="form-control mb-2" value="<%= nomCli %>" readonly>
+            <label>Nombre</label>
+            <input type="text" class="form-control mb-2" value="<%= nomCli %>" readonly>
 
-  <label>Teléfono</label>
-  <input type="text" class="form-control mb-2" value="<%= telCli %>" readonly>
+            <label>Teléfono</label>
+            <input type="text" class="form-control mb-2" value="<%= telCli %>" readonly>
 
-  <label>Barbero</label>
-  <div class="d-flex gap-2 mb-3">
-    <input type="text" class="form-control" value="<%= nomB %>" readonly>
-    <a href="Barberos.jsp" class="btn btn-outline-light">Elegir</a>
-  </div>
-  <input type="hidden" name="idBarbero" value="<%= (idB != null) ? idB : "0" %>">
+            <label>Barbero</label>
+            <div class="d-flex gap-2 mb-3">
+              <input type="text" class="form-control" value="<%= nomB %>" readonly>
+              <a href="Barberos.jsp" class="btn btn-outline-light">Elegir</a>
+            </div>
+            <input type="hidden" name="idBarbero" value="<%= (idB != null) ? idB : "0" %>">
 
-  <label>Servicio</label>
-  <div class="d-flex gap-2 mb-3">
-    <input type="text" class="form-control" value="<%= nomS %>" readonly>
-    <a href="Servicios.jsp#cortes" class="btn btn-outline-light">Elegir</a>
-  </div>
-  <input type="hidden" name="idServicio" value="<%= (idS != null) ? idS : "" %>">
+            <label>Servicio</label>
+            <div class="d-flex gap-2 mb-3">
+              <input type="text" class="form-control" value="<%= nomS %>" readonly>
+              <a href="Servicios.jsp#cortes" class="btn btn-outline-light">Elegir</a>
+            </div>
+            <input type="hidden" name="idServicio" value="<%= (idS != null) ? idS : "" %>">
 
-  <label>Fecha</label>
-  <input type="date" name="txtFecha" value="<%= f %>" class="form-control mb-2" required>
+            <label>Fecha</label>
+            <input type="date" name="txtFecha" value="<%= f %>" class="form-control mb-2" required>
 
-  <label>Hora</label>
-  <select name="txtHora" class="form-select mb-3" required>
-    <option value="">Seleccione</option>
-    <option value="09:00:00" <%= ho.equals("09:00:00") ? "selected" : "" %>>09:00</option>
-    <option value="10:00:00" <%= ho.equals("10:00:00") ? "selected" : "" %>>10:00</option>
-    <option value="11:00:00" <%= ho.equals("11:00:00") ? "selected" : "" %>>11:00</option>
-    <option value="14:00:00" <%= ho.equals("14:00:00") ? "selected" : "" %>>14:00</option>
-    <option value="15:00:00" <%= ho.equals("15:00:00") ? "selected" : "" %>>15:00</option>
-    <option value="16:00:00" <%= ho.equals("16:00:00") ? "selected" : "" %>>16:00</option>
-    <option value="18:00:00" <%= ho.equals("18:00:00") ? "selected" : "" %>>18:00</option>
-    <option value="19:00:00" <%= ho.equals("19:00:00") ? "selected" : "" %>>19:00</option>
-  </select>
+            <label>Hora</label>
+            <select name="txtHora" class="form-select mb-3" required>
+              <option value="">Seleccione</option>
+              <option value="09:00:00" <%= ho.equals("09:00:00") ? "selected" : "" %>>09:00</option>
+              <option value="10:00:00" <%= ho.equals("10:00:00") ? "selected" : "" %>>10:00</option>
+              <option value="11:00:00" <%= ho.equals("11:00:00") ? "selected" : "" %>>11:00</option>
+              <option value="14:00:00" <%= ho.equals("14:00:00") ? "selected" : "" %>>14:00</option>
+              <option value="15:00:00" <%= ho.equals("15:00:00") ? "selected" : "" %>>15:00</option>
+              <option value="16:00:00" <%= ho.equals("16:00:00") ? "selected" : "" %>>16:00</option>
+              <option value="18:00:00" <%= ho.equals("18:00:00") ? "selected" : "" %>>18:00</option>
+              <option value="19:00:00" <%= ho.equals("19:00:00") ? "selected" : "" %>>19:00</option>
+            </select>
 
-  <label>Instrucciones</label>
-  <textarea name="txtInstrucciones" class="form-control mb-3"><%= inst %></textarea>
+            <label>Instrucciones</label>
+            <textarea name="txtInstrucciones" class="form-control mb-3"><%= inst %></textarea>
 
-  <input type="hidden" name="txtEstado" value="RESERVADA">
+            <input type="hidden" name="txtEstado" value="RESERVADA">
 
-  <button type="submit" name="accion" value="<%= accion %>" class="btn btn-danger">
-    <%= texto %>
-  </button>
+            <button type="submit" name="accion" value="<%= accion %>" class="btn btn-danger">
+              <%= texto %>
+            </button>
 
-  <a href="Horarios.jsp" class="btn btn-primary ms-2">Limpiar</a>
+            <a href="Horarios.jsp" class="btn btn-primary ms-2">Limpiar</a>
+          </form>
 
-</form>
+        </section>
+      </article>
 
-      </section>
-    </article>
+      <!-- ================= MIS CITAS ================= -->
+      <aside class="col-12">
+        <article class="bg-light p-3 rounded shadow-sm">
+          <h3 class="text-primary mb-3">Mis Citas Reservadas</h3>
 
-	<aside>
-  <article class="bg-light p-3 rounded shadow-sm">
-    <h3 class="text-primary mb-3">Mis Citas Reservadas</h3>
-    
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover mb-0">
-      
-        <%
-	        CitaDAO daoC = new CitaDAO();
-            List<Cita> listaC = daoC.listarPorCliente(1);
-            Iterator<Cita> iterC = listaC.iterator();
-            Cita perC = null;
-            
-            while(iterC.hasNext()){
-                perC = iterC.next();
-        %>
-        <thead class="table-primary">
-          <tr>
-            <th class="text-center">
-                <%-- Aquí podrías mostrar el nombre del barbero si haces un Join, 
-                     por ahora mostramos la fecha de la cita --%>
-                Cita: <%= perC.getFecha() %>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">
-                <div class="fw-bold"><%= perC.getHora() %></div>
-                <div class="badge <%= perC.getEstado().equals("CANCELADA") ? "bg-danger" : "bg-success" %> mb-2">
-                    <%= perC.getEstado() %>
-                </div>
-                
-                <div class="d-flex gap-2 justify-content-center">
-                    
-                    <a href="ControladorCita?accion=editar&id=<%= perC.getIdCita() %>" 
-                       class="btn btn-sm btn-warning">
-                       <i class="bi bi-pencil"></i> Editar
-                    </a>
-                              
-                    <a href="ControladorCita?accion=eliminar&id=<%= perC.getIdCita() %>" 
-                       class="btn btn-sm btn-dark">
-                       Cancelar
-                    </a>
-                </div>
-            </td>
-          </tr>
-        </tbody>
-        <% }  %>
-      </table>
-    </div>
-    
-    <div class="mt-3 text-center">
-        <small class="text-muted">
-            <i class="bi bi-info-circle"></i> Llegar 10 minutos antes a lo acordado
-        </small>
-    </div>
-  </article>
-</aside>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover mb-0">
+              <%
+                CitaDAO daoC = new CitaDAO();
+                List<Cita> listaC = daoC.listarPorCliente(1);
+                Iterator<Cita> iterC = listaC.iterator();
+                Cita perC = null;
 
-  </section>
-</main>
+                while (iterC.hasNext()) {
+                  perC = iterC.next();
+              %>
+              <thead class="table-primary">
+                <tr>
+                  <th class="text-center">Cita: <%= perC.getFecha() %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <div class="fw-bold"><%= perC.getHora() %></div>
 
-<%@ include file="includes/footer.jspf" %>
-<script src="JS/bootstrap.bundle.min.js"></script>
+                    <div class="badge <%= perC.getEstado().equals("CANCELADA") ? "bg-danger" : "bg-success" %> mb-2">
+                      <%= perC.getEstado() %>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-center">
+                      <a href="ControladorCita?accion=editar&id=<%= perC.getIdCita() %>" class="btn btn-sm btn-warning">
+                        Editar
+                      </a>
+                      <a href="ControladorCita?accion=eliminar&id=<%= perC.getIdCita() %>" class="btn btn-sm btn-dark">
+                        Cancelar
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <% } %>
+            </table>
+          </div>
+
+          <div class="mt-3 text-center">
+            <small class="text-muted">Llegar 10 minutos antes a lo acordado</small>
+          </div>
+        </article>
+      </aside>
+
+    </section>
+  </main>
+
+  <%@ include file="includes/footer.jspf" %>
+
+  <!-- JS -->
+  <script src="JS/bootstrap.bundle.min.js"></script>
+  <script>window.APP_CTX = '<%= request.getContextPath() %>/';</script>
+  <script src="JS/Horario.js"></script>
+
 </body>
 </html>
+	

@@ -1,0 +1,64 @@
+/* =========================================
+   HORARIOS.CSS
+   Solo decoración: fondo + legibilidad
+   No rompe tu form / tablas
+   ========================================= */
+
+/* Fondo (lo setea Horario.js) */
+.page-horarios .horario-bg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background: center / cover no-repeat fixed;
+  filter: saturate(1.05) contrast(1.05);
+
+  /* fade cuando cambia imagen */
+  opacity: 1;
+  transition: opacity .6s ease;
+}
+
+/* Overlay oscuro para que el texto se lea */
+.page-horarios .horario-ov{
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* capas: colores suaves + oscuro */
+  background:
+    radial-gradient(circle at 25% 20%, rgba(13,110,253,.18), transparent 45%),
+    radial-gradient(circle at 75% 60%, rgba(220,53,69,.18), transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,.70), rgba(0,0,0,.85));
+}
+
+/* Asegura que navbar, main y footer estén por encima */
+.page-horarios nav.navbar,
+.page-horarios main,
+.page-horarios footer{
+  position: relative;
+  z-index: 2;
+}
+
+/* Un toque pro sin tocar tu estructura */
+.page-horarios article.bg-secondary{
+  background-color: rgba(33,37,41,.85) !important; /* dark con transparencia */
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+}
+
+/* Los bg-light quedan bonitos sobre fondo */
+.page-horarios article.bg-light{
+  background-color: rgba(248,249,250,.95) !important;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+/* Tablas: sin mover nada */
+.page-horarios .table{ margin-bottom: 0; }
+
+/* Móvil: fixed puede laggear, lo ponemos scroll */
+@media (max-width: 768px){
+  .page-horarios .horario-bg{
+    background-attachment: scroll;
+  }
+}
