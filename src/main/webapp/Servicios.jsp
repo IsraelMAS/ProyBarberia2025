@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="ModeloDAO.ServicioDAO"%>
 <%@ page import="Modelos.Servicio"%>
+<%@ page import="Modelos.Paquete"%>
 <%@ page import="Config.Conexion"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
@@ -8,7 +9,6 @@
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="ModeloDAO.PaqueteDAO"%>
-<%@ page import="Modelos.Paquete"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +45,15 @@
     <!-- CORTES (6) -->
     <section id="cortes" class="container py-4">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-
+	<%
+    // Capturamos el ID de la cita que viene en la URL para no perderlo
+    String idCitaUrl = request.getParameter("txtIdCita");
+    int idC = 0; // Valor por defecto
+    
+    if (idCitaUrl != null && !idCitaUrl.isEmpty()) {
+        idC = Integer.parseInt(idCitaUrl);
+    }
+	%>
 	<%
 	  ServicioDAO dao = new ServicioDAO();
       List<Servicio> list = dao.listar();
@@ -72,7 +80,8 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <span class="badge bg-danger fs-6">S/ <%= per.getPrecio() %></span>
-                <a href="Horarios.jsp?id=<%= per.getId() %>&nombre=<%= per.getNombre() %>" class="btn btn-outline-light btn-sm">Reservar</a>
+                <a href="Horarios.jsp?id=<%= per.getId() %>&nombre=<%= per.getNombre() %>" 
+   				class="btn btn-outline-light btn-sm">Seleccionar</a>
               </div>
             </div>
           </div>

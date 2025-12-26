@@ -33,7 +33,7 @@ public class ServicioDAO implements Inter_servicio{
             rs = ps.executeQuery();
             while (rs.next()) {
                 Servicio s = new Servicio();
-                s.setId(rs.getInt("id"));
+                s.setId(rs.getInt("id_servicio"));
                 s.setNombre(rs.getString("nombre"));
                 s.setDescripcion(rs.getString("descripcion"));
                 s.setDuracionMin(rs.getInt("duracion_min"));
@@ -64,7 +64,7 @@ public class ServicioDAO implements Inter_servicio{
             rs = ps.executeQuery();
             if (rs.next()) {
                 s = new Servicio();
-                s.setId(rs.getInt("id"));
+                s.setId(rs.getInt("id_servicio"));
                 s.setNombre(rs.getString("nombre"));
                 s.setDescripcion(rs.getString("descripcion"));
                 s.setDuracionMin(rs.getInt("duracion_min"));
