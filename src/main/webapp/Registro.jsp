@@ -5,14 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BARBERSHOP — Registro</title>
-
+  <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/bootstrap.min.css">
   <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/app.css">
 </head>
 
 <body class="bg-dark text-white">
 
-  <!-- Fondo rotativo -->
   <div id="bgRotativo" class="bg-rotativo bg-overlay"></div>
 
   <%@ include file="/includes/navbar.jspf" %>
@@ -41,7 +40,7 @@
               <input type="hidden" name="accion" value="registrar">
 
               <div class="mb-3">
-                <label for="nombre" class="form-label text-white-50">Nombre (Usuario)</label>
+                <label for="nombre" class="form-label text-white-50">Nombre</label>
                 <input type="text" id="nombre" name="nombre"
                        class="form-control bg-dark text-white border-0"
                        placeholder="Ej: Israaa" required>
@@ -51,13 +50,15 @@
                 <label for="telefono" class="form-label text-white-50">Teléfono</label>
                 <input type="text" id="telefono" name="telefono"
                        class="form-control bg-dark text-white border-0"
-                       placeholder="Ej: 999888777" required>
+                       placeholder="Ej: 999888777"
+                       inputmode="numeric" pattern="[0-9]{6,15}"
+                       required>
               </div>
 
               <div class="mb-2">
-                <label for="password" class="form-label text-white-50">Contraseña</label>
+                <label for="contrasena" class="form-label text-white-50">Contraseña</label>
                 <div class="input-group">
-                  <input type="password" id="password" name="password"
+                  <input type="password" id="contrasena" name="contrasena"
                          class="form-control bg-dark text-white border-0"
                          placeholder="••••••••" required>
                   <button class="btn btn-outline-light" type="button" id="btnVerPassReg">Ver</button>
@@ -87,9 +88,8 @@
   <script src="<%= request.getContextPath() %>/JS/bootstrap.bundle.min.js"></script>
 
   <script>
-    // mostrar/ocultar contraseña
     const br = document.getElementById("btnVerPassReg");
-    const pr = document.getElementById("password");
+    const pr = document.getElementById("contrasena");
     if (br && pr) {
       br.addEventListener("click", () => {
         const oculto = pr.type === "password";
@@ -99,7 +99,6 @@
     }
   </script>
 
-  <!-- Base para rutas + app.js (fondo rotativo) -->
   <script>window.APP_CTX = '<%= request.getContextPath() %>/';</script>
   <script src="<%= request.getContextPath() %>/JS/app.js"></script>
 

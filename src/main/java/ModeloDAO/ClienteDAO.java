@@ -3,103 +3,52 @@ package ModeloDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import Config.Conexion;
-import Interfaces.Inter_cliente;
 import Modelos.Cliente;
 
-public class ClienteDAO implements Inter_cliente {
+public class ClienteDAO {
 
-    Conexion cn = new Conexion();
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
-    Cliente c = new Cliente();
+    private final Conexion cn = new Conexion();
 
+    public boolean registrar(Cliente cliente) {
+        String sql = "INSERT INTO cliente (nombre, telefono, contrasena) VALUES (?, ?, ?)";
+        try (Connection con = cn.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-    // ================= INSERTAR =================
-    @Override
-	public boolean insertar(Cliente cliente) {
-		String sql = "INSERT INTO cliente (nombre, telefono) VALUES('" + cliente.getNombre() + "','" + cliente.getTelefono() + "')";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.execute();
-            return true;
-        } catch (Exception e) {
-            System.err.println("Error insertar cliente: " + e.getMessage());
-        }
-        return false;
-	}
-
-    // ================= BUSCAR POR TELÉFONO =================
-    @Override
-    public Cliente buscarPorTelefono(String telefono) {
-		String sql = "SELECT * FROM cliente WHERE telefono='" + telefono + "'";
-
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                c.setIdCliente(rs.getInt("id_cliente"));
-                c.setNombre(rs.getString("nombre"));
-                c.setTelefono(rs.getString("telefono"));
-            }
-        } catch (Exception e) {
-            System.err.println("Error buscar cliente por teléfono: " + e.getMessage());
-        }
-        return c;
-	}
-
-    // ================= BUSCAR POR ID =================
-    @Override
-    public Cliente buscarPorId(int idCliente) {
-		String sql = "SELECT * FROM cliente WHERE id_cliente=" + idCliente;
-
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                c.setIdCliente(rs.getInt("id_cliente"));
-                c.setNombre(rs.getString("nombre"));
-                c.setTelefono(rs.getString("telefono"));
-            }
-        } catch (Exception e) {
-            System.err.println("Error buscar cliente por ID: " + e.getMessage());
-        }
-        return c;
-	}
-    // ================= LISTAR (ADMIN) =================
-    public List<Cliente> listar() {
-        List<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT id_cliente, nombre, telefono FROM cliente ORDER BY id_cliente DESC";
-
-
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Cliente c = new Cliente();
-                c.setIdCliente(rs.getInt("id_cliente"));
-                c.setNombre(rs.getString("nombre"));
-                c.setTelefono(rs.getString("telefono"));
-                lista.add(c);
-            }
+            ps.setString(1, cliente.getNombre());
+            ps.setString(2, cliente.getTelefono());
+            ps.setString(3, cliente.getContrasena());
+            return ps.executeUpdate() > 0;
 
         } catch (Exception e) {
-            System.err.println("Error listar clientes: " + e.getMessage());
+            System.err.println("Error registrar cliente: " + e.getMessage());
+            return false;
         }
-
-        return lista;
     }
 
+    public Cliente validarLogin(String telefono, String contrasena) {
+        String sql = "SELECT id_cliente, nombre, telefono, contrasena FROM cliente WHERE telefono=? AND contrasena=?";
+        try (Connection con = cn.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
+            ps.setString(1, telefono);
+            ps.setString(2, contrasena);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Cliente c = new Cliente();
+                    c.setIdCliente(rs.getInt("id_cliente"));
+                    c.setNombre(rs.getString("nombre"));
+                    c.setTelefono(rs.getString("telefono"));
+                    c.setContrasena(rs.getString("contrasena"));
+                    return c;
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error validar login: " + e.getMessage());
+        }
+        return null;
+    }
 }

@@ -23,6 +23,96 @@
 }
 
 
+/*********************************INICIO------ FONDO***********************************************/
+
+/* ===============================
+   HERO FONDO ANIMADO (InicioMain)
+   =============================== */
+.inicio-hero{
+  position: relative;
+  overflow: hidden;
+
+  /* aire arriba/abajo para que no se sienta pegado */
+  padding: 2.5rem 0 1rem;
+
+  /* el fondo */
+  background-image: url("../IMG/INICIO/InicioMain.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* “respiración” suave */
+  animation: heroBreath 10s ease-in-out infinite;
+
+  /* para que el texto se lea */
+  color: #fff;
+}
+
+/* overlay oscuro para contraste (no tapa tu contenido) */
+.inicio-hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(13,110,253,.18), transparent 45%),
+              radial-gradient(circle at 70% 60%, rgba(220,53,69,.18), transparent 50%),
+              linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.75));
+  z-index: 0;
+}
+
+/* destello diagonal animado (tipo “neón que pasa”) */
+.inicio-hero::after{
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  width: 60%;
+  height: 160%;
+  transform: rotate(18deg);
+
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,.18),
+    rgba(255,255,255,.10),
+    transparent
+  );
+
+  filter: blur(1px);
+  opacity: .35;
+  z-index: 0;
+
+  animation: heroSweep 6.5s ease-in-out infinite;
+}
+
+/* Asegura que TODO lo que está dentro se vea encima */
+.inicio-hero > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Animación “breathing zoom” sin marear */
+@keyframes heroBreath{
+  0%   { background-size: 100%; }
+  50%  { background-size: 108%; }
+  100% { background-size: 100%; }
+}
+
+/* Destello diagonal */
+@keyframes heroSweep{
+  0%   { left: -70%; opacity: 0; }
+  15%  { opacity: .30; }
+  50%  { left: 120%; opacity: .35; }
+  80%  { opacity: .10; }
+  100% { left: 140%; opacity: 0; }
+}
+
+/* Si el usuario prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .inicio-hero{ animation: none; }
+  .inicio-hero::after{ animation: none; display: none; }
+
+}
+
 /* ====== Cards encuadradas + micro-zoom ====== */
 .card-eq{ display:flex; flex-direction:column; height:100%; }
 .card-eq .ratio>img{ width:100%; height:100%; }
@@ -149,9 +239,6 @@ img[data-fade].on { opacity: 1; }
 
 
 
-
-
-
 				/********* LOGIN *************/
 
 
@@ -192,4 +279,72 @@ img[data-fade].on { opacity: 1; }
   background: rgba(0,0,0,0.65);
   z-index: -2;
 }
+
+
+
+/************INICIAR SESION :::::::::::NAVBAR   *************/
+
+
+/* CTA Login - vivo, brillante, elegante */
+.btn-login-cta{
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 999px !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px;
+  text-transform: none;
+
+  /* degradado más vivo */
+  background: linear-gradient(90deg,
+    #ff2d55,   /* rojo pink */
+    #ff6a00,   /* naranja */
+    #0d6efd,   /* azul */
+    #6f42c1    /* morado */
+  ) !important;
+
+  background-size: 220% 220%;
+  animation: ctaShift 4s ease infinite;
+
+  /* brillo */
+  box-shadow:
+    0 10px 28px rgba(255,45,85,.25),
+    0 10px 28px rgba(13,110,253,.22),
+    0 0 0 2px rgba(255,255,255,.12) inset;
+
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* hover más "wow" */
+.btn-login-cta:hover{
+  filter: saturate(1.15) brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 34px rgba(255,45,85,.32),
+    0 14px 34px rgba(13,110,253,.28),
+    0 0 18px rgba(255,106,0,.18),
+    0 0 0 2px rgba(255,255,255,.16) inset;
+}
+
+/* focus accesible */
+.btn-login-cta:focus,
+.btn-login-cta:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 .25rem rgba(255,45,85,.25),
+    0 0 0 .25rem rgba(13,110,253,.22),
+    0 14px 34px rgba(13,110,253,.28);
+}
+
+/* click */
+.btn-login-cta:active{
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+@keyframes ctaShift{
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 

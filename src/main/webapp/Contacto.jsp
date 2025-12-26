@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BARBERSHOP — Contacto</title>
-
+    <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
   <link rel="stylesheet" href="CSS/Contactos.css">
+  <link rel="stylesheet" href="CSS/app.css">
 </head>
 
 <body class="bg-dark text-white">

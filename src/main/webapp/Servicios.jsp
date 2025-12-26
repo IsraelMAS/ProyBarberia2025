@@ -14,6 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <title>BARBERSHOP — Servicios</title>
+  <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
   <link rel="stylesheet" href="CSS/app.css">
 </head>
