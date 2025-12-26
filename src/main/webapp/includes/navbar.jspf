@@ -5,81 +5,116 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-primary">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="Inicio.jsp">&#x1F488; BARBERSHOP</a>
 
-    <!-- Reloj Pills (dinámico) -->
+    <!-- LOGO / MARCA -->
+    <a class="navbar-brand fw-bold"
+       href="<%= request.getContextPath() %>/Inicio.jsp">
+      &#x1F488; BARBERSHOP
+    </a>
+
+    <!-- Reloj Pills -->
     <div id="clockPills"
          class="d-none d-lg-flex align-items-center gap-1 me-3"
-         data-bs-toggle="tooltip" data-bs-placement="bottom"
+         data-bs-toggle="tooltip"
+         data-bs-placement="bottom"
          title="Hora actual">
-      <span id="ck-h" class="badge rounded-pill bg-danger  bg-gradient fs-6 px-3">00</span>
+
+      <span id="ck-h" class="badge rounded-pill bg-danger fs-6 px-3">00</span>
       <span class="text-white-50">:</span>
-      <span id="ck-m" class="badge rounded-pill bg-primary bg-gradient fs-6 px-3">00</span>
+      <span id="ck-m" class="badge rounded-pill bg-primary fs-6 px-3">00</span>
       <span class="text-white-50">:</span>
-      <span id="ck-s" class="badge rounded-pill bg-secondary bg-gradient fs-6 px-3">00</span>
+      <span id="ck-s" class="badge rounded-pill bg-secondary fs-6 px-3">00</span>
       <span id="ck-ampm" class="badge rounded-pill text-bg-dark border border-light ms-1">AM</span>
     </div>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="menu" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto gap-2">
-        <li class="nav-item"><a class="btn btn-danger  bg-gradient border border-white btn-sm px-3" href="Inicio.jsp">Inicio</a></li>
-        <li class="nav-item"><a class="btn btn-primary bg-gradient border border-white btn-sm px-3" href="Servicios.jsp">Servicios</a></li>
-        <li class="nav-item"><a class="btn btn-danger  bg-gradient border border-white btn-sm px-3" href="Horarios.jsp">Horarios</a></li>
-        <li class="nav-item"><a class="btn btn-primary bg-gradient border border-white btn-sm px-3" href="Barberos.jsp">Barberos</a></li>
-        <li class="nav-item"><a class="btn btn-danger  bg-gradient border border-white btn-sm px-3" href="Contacto.jsp">Contacto</a></li>
+
+        <li class="nav-item">
+          <a class="btn btn-danger btn-sm px-3"
+             href="<%= request.getContextPath() %>/Inicio.jsp">
+            Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-primary btn-sm px-3"
+             href="<%= request.getContextPath() %>/Servicios.jsp">
+            Servicios
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-danger btn-sm px-3"
+             href="<%= request.getContextPath() %>/Horarios.jsp">
+            Horarios
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-primary btn-sm px-3"
+             href="<%= request.getContextPath() %>/Barberos.jsp">
+            Barberos
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-danger btn-sm px-3"
+             href="<%= request.getContextPath() %>/Contacto.jsp">
+            Contacto
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- JS del reloj (entendible y corto) -->
+<!-- JS del reloj -->
 <script>
-  // Actualiza HH:MM:SS + AM/PM cada segundo, con efectos leves usando clases Bootstrap
-  (function () {
-    const $h = document.getElementById('ck-h');
-    const $m = document.getElementById('ck-m');
-    const $s = document.getElementById('ck-s');
-    const $ampm = document.getElementById('ck-ampm');
-    const $pills = document.getElementById('clockPills');
-    let flipColors = false;                     // alterna colores de H/M cada minuto
+(function () {
+  const $h = document.getElementById('ck-h');
+  const $m = document.getElementById('ck-m');
+  const $s = document.getElementById('ck-s');
+  const $ampm = document.getElementById('ck-ampm');
+  const $pills = document.getElementById('clockPills');
+  let flipColors = false;
 
-    const pad = n => (n < 10 ? '0' + n : '' + n);
+  const pad = n => (n < 10 ? '0' + n : '' + n);
 
-    function tick() {
-      const d = new Date();
-      let hh = d.getHours();
-      const mm = d.getMinutes();
-      const ss = d.getSeconds();
-      const ap = hh >= 12 ? 'PM' : 'AM';
-      hh = hh % 12 || 12;                      // 12h 
+  function tick() {
+    const d = new Date();
+    let hh = d.getHours();
+    const mm = d.getMinutes();
+    const ss = d.getSeconds();
+    const ap = hh >= 12 ? 'PM' : 'AM';
+    hh = hh % 12 || 12;
 
-      // pinta los textos
-      $h.textContent = pad(hh);
-      $m.textContent = pad(mm);
-      $s.textContent = pad(ss);
-      $ampm.textContent = ap;
+    $h.textContent = pad(hh);
+    $m.textContent = pad(mm);
+    $s.textContent = pad(ss);
+    $ampm.textContent = ap;
 
-
-      // cada minuto (cuando ss == 0) intercambia rojo/azul de H y M
-      if (ss === 0) {
-        flipColors = !flipColors;
-        $h.classList.toggle('bg-danger',  flipColors);
-        $h.classList.toggle('bg-primary', !flipColors);
-        $m.classList.toggle('bg-primary',  flipColors);
-        $m.classList.toggle('bg-danger',  !flipColors);
-      }
+    if (ss === 0) {
+      flipColors = !flipColors;
+      $h.classList.toggle('bg-danger',  flipColors);
+      $h.classList.toggle('bg-primary', !flipColors);
+      $m.classList.toggle('bg-primary',  flipColors);
+      $m.classList.toggle('bg-danger',  !flipColors);
     }
+  }
 
-    tick();
-    setInterval(tick, 1000);
+  tick();
+  setInterval(tick, 1000);
 
-    // Tooltip Bootstrap (usa el bundle)
-    if (window.bootstrap) {
-      new bootstrap.Tooltip($pills);
-    }
-  })();
+  if (window.bootstrap && $pills) {
+    new bootstrap.Tooltip($pills);
+  }
+})();
 </script>

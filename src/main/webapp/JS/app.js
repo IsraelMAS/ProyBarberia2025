@@ -157,3 +157,43 @@ function initBuscadorServicios() {
 
   filtrar(); // contador inicial
 }
+
+
+
+//////////////////////////FONDO LOGIN /////////////////////////////////
+
+
+
+// ===== Fondo rotativo con fade + zoom =====
+
+const fondos = [
+  "IMG/FONDOS/servicios1.png",
+  "IMG/FONDOS/servicios2.png",
+  "IMG/FONDOS/servicios3.png"
+];
+
+let fondoIndex = 0;
+const bg = document.getElementById("bgRotativo");
+
+if (bg) {
+  const capa = document.createElement("div");
+  capa.className = "bg-rotativo";
+  document.body.prepend(capa);
+
+  function cambiarFondo() {
+    const url = window.APP_CTX + fondos[fondoIndex];
+
+    capa.style.setProperty("--fondo", `url('${url}')`);
+    capa.style.backgroundImage = `url('${url}')`;
+
+    capa.classList.remove("activo");
+    void capa.offsetWidth; // forzar reflow
+    capa.classList.add("activo");
+
+    fondoIndex = (fondoIndex + 1) % fondos.length;
+  }
+
+  cambiarFondo();
+  setInterval(cambiarFondo, 8000);
+}
+	

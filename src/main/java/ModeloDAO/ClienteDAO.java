@@ -80,6 +80,7 @@ public class ClienteDAO implements Inter_cliente {
         List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT id_cliente, nombre, telefono FROM cliente ORDER BY id_cliente DESC";
 
+<<<<<<< Updated upstream
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -99,4 +100,7 @@ public class ClienteDAO implements Inter_cliente {
 
         return lista;
     }
+=======
+
+>>>>>>> Stashed changes
 }

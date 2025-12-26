@@ -146,3 +146,50 @@ img[data-fade].on{ opacity:1 }
 /* (opcional) que las imágenes del grid hagan fade-in al cargar/entrar */
 img[data-fade] { opacity: 0; transition: opacity .4s ease; }
 img[data-fade].on { opacity: 1; }
+
+
+
+
+
+
+				/********* LOGIN *************/
+
+
+/* ===== FONDO ROTATIVO ===== */
+
+.bg-rotativo {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+}
+
+/* capas de fondo */
+.bg-rotativo::before,
+.bg-rotativo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1.8s ease-in-out, transform 10s ease;
+}
+
+/* capa visible */
+.bg-rotativo.activo::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* overlay oscuro */
+.bg-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -2;
+}
+
