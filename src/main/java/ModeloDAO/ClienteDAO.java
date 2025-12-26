@@ -3,20 +3,24 @@ package ModeloDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import Config.Conexion;
 import Interfaces.Inter_cliente;
 import Modelos.Cliente;
 
-public class ClienteDAO implements Inter_cliente{
+public class ClienteDAO implements Inter_cliente {
 
-	Conexion cn = new Conexion();
+    Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     Cliente c = new Cliente();
-    
-	@Override
+
+
+    // ================= INSERTAR =================
+    @Override
 	public boolean insertar(Cliente cliente) {
 		String sql = "INSERT INTO cliente (nombre, telefono) VALUES('" + cliente.getNombre() + "','" + cliente.getTelefono() + "')";
         try {
@@ -30,8 +34,9 @@ public class ClienteDAO implements Inter_cliente{
         return false;
 	}
 
-	@Override
-	public Cliente buscarPorTelefono(String telefono) {
+    // ================= BUSCAR POR TELÉFONO =================
+    @Override
+    public Cliente buscarPorTelefono(String telefono) {
 		String sql = "SELECT * FROM cliente WHERE telefono='" + telefono + "'";
 
         try {
@@ -50,8 +55,9 @@ public class ClienteDAO implements Inter_cliente{
         return c;
 	}
 
-	@Override
-	public Cliente buscarPorId(int idCliente) {
+    // ================= BUSCAR POR ID =================
+    @Override
+    public Cliente buscarPorId(int idCliente) {
 		String sql = "SELECT * FROM cliente WHERE id_cliente=" + idCliente;
 
         try {
@@ -69,5 +75,28 @@ public class ClienteDAO implements Inter_cliente{
         }
         return c;
 	}
+    // ================= LISTAR (ADMIN) =================
+    public List<Cliente> listar() {
+        List<Cliente> lista = new ArrayList<>();
+        String sql = "SELECT id_cliente, nombre, telefono FROM cliente ORDER BY id_cliente DESC";
 
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setIdCliente(rs.getInt("id_cliente"));
+                c.setNombre(rs.getString("nombre"));
+                c.setTelefono(rs.getString("telefono"));
+                lista.add(c);
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error listar clientes: " + e.getMessage());
+        }
+
+        return lista;
+    }
 }

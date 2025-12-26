@@ -28,19 +28,19 @@
     <!-- BANNER ROTATIVO -->
     <section class="mb-5">
       <div class="card bg-black border-0 shadow-sm overflow-hidden banner-wrap">
-        <!-- Arranca con la 1era imagen real -->
-        <img id="bannerContacto"
-	     src="IMG/CONTACTANOS/Contactos1.png"
-	     class="img-fluid banner-img"
-	     alt="Banner Contáctanos">
+        <img
+          id="bannerContacto"
+          src="IMG/CONTACTANOS/Contactos1.png"
+          class="img-fluid banner-img"
+          alt="Banner Contáctanos">
       </div>
     </section>
 
     <!-- 2 COLUMNAS -->
-    <section class="row g-4 align-items-stretch">
+    <section class="row g-4 flex-column">
 
       <!-- MAPA -->
-      <div class="col-lg-6">
+      <div class="col-12">
         <div class="card bg-secondary border-0 h-100 shadow-sm">
           <div class="card-body">
             <h3 class="text-danger fw-bold mb-3">¡Nuestra sede principal!</h3>
@@ -49,9 +49,10 @@
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.6558067705249!2d-77.0548002180425!3d-12.00055188072266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cf01b74742f7%3A0xceff321873004bcd!2sFabulosa&#39;s%20Barberia!5e0!3m2!1ses!2spe!4v1766205532872!5m2!1ses!2spe"
                 style="border:0;"
-                allowfullscreen=""
+                allowfullscreen
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
 
             <p class="text-white-50 small mt-3 mb-0">
@@ -61,81 +62,141 @@
         </div>
       </div>
 
-      <!-- SEDES + CONTACTO -->
-      <div class="col-lg-6">
-        <div class="card bg-secondary border-0 h-100 shadow-sm">
-          <div class="card-body">
-            <h3 class="text-primary fw-bold mb-3">¡Nuestras sedes!</h3>
+<!-- NUESTRAS SEDES -->
+<section class="mt-4">
+  <h3 class="text-primary fw-bold mb-3">¡Nuestras sedes!</h3>
 
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-                 href="https://www.facebook.com/profile.php?id=100064898444989#"
-                 target="_blank" rel="noopener noreferrer">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="fw-bold">Sede N°2</span>
-                  <span class="badge bg-primary">Ver</span>
-                </div>
-                <small class="text-white-50">Ubicación: Cerca al mercado central</small>
-               <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede1.png" alt="">
+  <div class="row g-4">
+  <!-- Sede 2 -->
+<div class="col-12 col-md-6">
+  <a href="https://www.facebook.com/profile.php?id=100064898444989#"
+     target="_blank"
+     class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
 
-                
-              </a>
+    <div class="card-body">
+      <h5 class="fw-bold">Sede N°2</h5>
+      <p class="text-white-50 small">Cerca al mercado central</p>
+      <img src="IMG/CONTACTANOS/Sede1.png" class="img-fluid rounded mb-3" alt="Sede 2">
 
-              <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-                 href="https://www.facebook.com/profile.php?id=100064898444989#"
-                 target="_blank" rel="noopener noreferrer">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="fw-bold">Sede N°3</span>
-                  <span class="badge bg-primary">Ver</span>
-                </div>
-                <small class="text-white-50">Ubicación: Cerca al mercado central</small>
-                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede2.png" alt="">
-              </a>
-
-              <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-                 href="https://www.facebook.com/profile.php?id=100064898444989#"
-                 target="_blank" rel="noopener noreferrer">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="fw-bold">Sede N°4</span>
-                  <span class="badge bg-primary">Ver</span>
-                </div>
-                <small class="text-white-50">Ubicación: Cerca al mercado central</small>
-                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede3.png" alt="">
-              </a>
-
-              <a class="list-group-item list-group-item-action bg-dark text-white border-secondary"
-                 href="https://www.facebook.com/profile.php?id=100064898444989#"
-                 target="_blank" rel="noopener noreferrer">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="fw-bold">Sede N°5</span>
-                  <span class="badge bg-primary">Ver</span>
-                </div>
-                <small class="text-white-50">Ubicación: Cerca al mercado central</small>
-                <img class="img-fluid banner-img" src="IMG/CONTACTANOS/Sede4.png" alt="">
-              	<br>
-              	<br>
-              	<br>              	
-              </a>
-            </div>
-            <hr class="border-light opacity-25 my-4">
-
-            <h4 class="titulo-rwb fw-bold mb-2">Contacto</h4>
-            <div class="text-white-50">
-              <div>📍 Av. Ejemplo 123, Independencia</div>
-              <div>📞 998-414-111</div>
-              <div>✉️ <a class="text-white" href="mailto:jkdiazdahua@gmail.com">jkdiazdahua@gmail.com</a></div>
-            </div>
-
-          </div>
-        </div>
+      <!-- MAPA CENTRADO -->
+      <div class="ratio ratio-16x9 rounded overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d668.5107189983752!2d-77.06403550821317!3d-11.994423233020514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cfe765a7e049%3A0x6497a18ba7d4e90!2sGlobal%20Barber%20Supply!5e0!3m2!1ses!2spe!4v1766722560967!5m2!1ses!2spe"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
 
-    </section>
+    </div>
+  </a>
+</div>
+
+
+    <!-- Sede 3 -->
+<!-- Sede 3 -->
+<div class="col-12 col-md-6">
+  <a href="https://www.facebook.com/profile.php?id=100064898444989#"
+     target="_blank"
+     class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
+
+    <div class="card-body">
+      <h5 class="fw-bold">Sede N°3</h5>
+      <p class="text-white-50 small">Cerca al mercado central</p>
+
+      <img
+        src="IMG/CONTACTANOS/Sede2.png"
+        class="img-fluid rounded mb-3"
+        alt="Sede 3">
+
+      <!-- MAPA CENTRADO Y ENCAJADO -->
+      <div class="ratio ratio-16x9 rounded overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1014848108839!2d-77.06311521162075!3d-11.99231140848259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce56a5a86dad%3A0xd0e8889e72e3836f!2sChamaco%20Barber%20shop!5e0!3m2!1ses!2spe!4v1766722687324!5m2!1ses!2spe"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </a>
+</div>
+
+
+<!-- Sede 4 -->
+<div class="col-12 col-md-6">
+  <a href="https://www.facebook.com/profile.php?id=100064898444989#"
+     target="_blank"
+     class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
+
+    <div class="card-body">
+      <h5 class="fw-bold">Sede N°4</h5>
+      <p class="text-white-50 small">Cerca al mercado central</p>
+
+      <img
+        src="IMG/CONTACTANOS/Sede3.png"
+        class="img-fluid rounded mb-3"
+        alt="Sede 4">
+
+      <!-- MAPA CENTRADO Y RESPONSIVE -->
+      <div class="ratio ratio-16x9 rounded overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.767783110942!2d-77.06909936532105!3d-11.990563726198422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cf0e79402b77%3A0x185109bfc8887fce!2sRasato%20Barberia!5e0!3m2!1ses!2spe!4v1766723177119!5m2!1ses!2spe"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </a>
+</div>
+
+
+    <!-- Sede 5 -->
+<div class="col-12 col-md-6">
+  <a href="https://www.facebook.com/profile.php?id=100064898444989#"
+     target="_blank"
+     class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
+
+    <div class="card-body">
+      <h5 class="fw-bold">Sede N°5</h5>
+      <p class="text-white-50 small">Cerca al mercado central</p>
+
+      <img
+        src="IMG/CONTACTANOS/Sede4.png"
+        class="img-fluid rounded mb-3"
+        alt="Sede 5">
+
+      <!-- MAPA CENTRADO Y RESPONSIVE -->
+      <div class="ratio ratio-16x9 rounded overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.767783110942!2d-77.06909936532105!3d-11.990563726198422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce50e8eb15b3%3A0x8657ad12530a7fbb!2sMontalvo%20For%20Men%20Izaguirre!5e0!3m2!1ses!2spe!4v1766723084484!5m2!1ses!2spe"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </a>
+</div>
+
+      </a>
+    </div>
+  </div>
+</section>
   </main>
 
   <%@ include file="includes/footer.jspf" %>
 
   <script src="JS/bootstrap.bundle.min.js"></script>
   <script src="JS/Contactos.js"></script>
+
 </body>
 </html>
