@@ -34,13 +34,9 @@ public class ControladorCita extends HttpServlet {
         String acceso = "";
         Cita c = new Cita();
 
-        // --- SOLUCIÓN: Limpiar al entrar por primera vez ---
-        if (action == null || action.isEmpty() || action.equalsIgnoreCase("listar")) {
-            // Al entrar sin acción, borramos cualquier edición pendiente
-            request.getSession().removeAttribute("citaSeleccionada");
+        if (action == null || action.isEmpty()) {
             acceso = horarios;
         } 
-        // ---------------------------------------------------
         else if (action.equalsIgnoreCase("Agregar")) {
             capturarDatos(request, c);
             dao.insertar(c);

@@ -20,12 +20,12 @@ public class ServicioDAO implements Inter_servicio{
     PreparedStatement ps;
     ResultSet rs;
 
-	@Override
-	public List<Servicio> listar() {
-
-		List<Servicio> list = new ArrayList<>();
-		
-        String sql = "SELECT id, nombre, descripcion, duracion_min, incluye, precio, imagen, alt, orden " +
+    @Override
+    public List<Servicio> listar() {
+        List<Servicio> list = new ArrayList<>();
+        
+        // Cambié 'id' por 'id_servicio' en la consulta SQL
+        String sql = "SELECT id_servicio, nombre, descripcion, duracion_min, incluye, precio, imagen, alt, orden " +
                      "FROM servicio ORDER BY orden, nombre";
         try {
             con = cn.getConnection();
@@ -33,7 +33,8 @@ public class ServicioDAO implements Inter_servicio{
             rs = ps.executeQuery();
             while (rs.next()) {
                 Servicio s = new Servicio();
-                s.setId(rs.getInt("id_servicio"));
+                // Asegúrate de que este nombre sea igual al del SELECT (id_servicio)
+                s.setId(rs.getInt("id_servicio")); 
                 s.setNombre(rs.getString("nombre"));
                 s.setDescripcion(rs.getString("descripcion"));
                 s.setDuracionMin(rs.getInt("duracion_min"));

@@ -90,17 +90,16 @@
     String nomCli = (citaEdit != null) ? citaEdit.getCliente().getNombre() : "Cliente 1";
     String telCli = (citaEdit != null) ? citaEdit.getCliente().getTelefono() : "999999999";
 
-    // 3. Lógica para Barbero (Ajustada para evitar el borrado al editar)
     String idB = request.getParameter("idBarbero");
     String nomB = request.getParameter("nombreBarbero");
-    
-    // Si NO hemos seleccionado un barbero nuevo en el clic actual (es null o vacío)
-    // y tenemos una cita en edición, recuperamos el barbero original.
-    if ((idB == null || idB.isEmpty()) && citaEdit != null && citaEdit.getBarbero() != null) {
-        idB = String.valueOf(citaEdit.getBarbero().getIdBarbero());
-        nomB = citaEdit.getBarbero().getNombre();
+
+    if (nomB == null || nomB.trim().isEmpty()) {
+        if (citaEdit != null && citaEdit.getBarbero() != null) {
+            idB = String.valueOf(citaEdit.getBarbero().getIdBarbero());
+            nomB = citaEdit.getBarbero().getNombre();
+        }
     }
-    if (nomB == null || nomB.isEmpty()) nomB = "No seleccionado";
+    if (nomB == null || nomB.trim().isEmpty()) nomB = "No seleccionado";
 
  // 4. Lógica para Servicio
     String idS = request.getParameter("id"); // ID del servicio desde URL (si eliges uno nuevo)
@@ -119,7 +118,7 @@
     if (nomS == null || nomS.trim().isEmpty()) {
         nomS = "No seleccionado";
     }
-
+    
     // 5. Configuración del Botón
     String miAccion = (citaEdit != null) ? "Actualizar" : "Agregar"; 
     String textoBoton = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
@@ -136,12 +135,13 @@
             <label class="form-label">Teléfono</label>
             <input type="tel" value="<%= (telCli.equals("")) ? "999-999-999" : telCli %>" class="form-control mb-2" readonly>
 
-            <input type="hidden" name="idBarbero" value="<%= (idB != null) ? idB : "" %>">
             <label class="form-label">Barbero</label>
             <div class="d-flex gap-2 align-items-start mb-3">
                 <input type="text" class="form-control" value="<%= nomB %>" readonly>
                 <a href="Barberos.jsp" class="btn btn-outline-light text-nowrap">Elegir barbero</a>
             </div>
+             <input type="hidden" name="idBarbero" value="<%= (idB != null) ? idB : "0" %>">
+
 
             
             <label class="form-label">Servicio</label>

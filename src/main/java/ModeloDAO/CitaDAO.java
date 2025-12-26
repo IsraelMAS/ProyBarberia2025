@@ -25,26 +25,35 @@ public class CitaDAO implements Inter_cita{
     PreparedStatement ps;
     ResultSet rs;
     
-	@Override
-	public boolean insertar(Cita c) {
-		String sql = "INSERT INTO cita (id_cliente, id_barbero, id_servicio, fecha, hora, instrucciones, estado) "
-                + "VALUES (" + c.getCliente().getIdCliente() + ", "
-                + c.getBarbero().getIdBarbero() + ", "
-                + c.getServicio().getId() + ", '"
-                + c.getFecha() + "', '"
-                + c.getHora() + "', '"
-                + c.getInstrucciones() + "', '"
-                + c.getEstado() + "')";
+    @Override
+    public boolean insertar(Cita c) {
+        // IMPORTANTE: id_servicio debe coincidir con c.getServicio().getId()
+        // Las fechas y horas DEBEN ir entre comillas simples ' '
+        String sql = "INSERT INTO cita (id_cliente, id_barbero, id_servicio, fecha, hora, instrucciones, estado) "
+                    + "VALUES (" 
+                    + c.getCliente().getIdCliente() + ", "
+                    + c.getBarbero().getIdBarbero() + ", "
+                    + c.getServicio().getId() + ", '"
+                    + c.getFecha() + "', '"    // Verificamos que esto devuelva YYYY-MM-DD
+                    + c.getHora() + "', '"     // Verificamos que esto devuelva HH:MM:SS
+                    + c.getInstrucciones() + "', '"
+                    + c.getEstado() + "')";
+        
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.execute();
-            return true;
+            
+            // Usamos executeUpdate() que es el método correcto para INSERT, UPDATE, DELETE
+            int resultado = ps.executeUpdate(); 
+            
+            return resultado > 0; // Si insertó al menos una fila, devuelve true
         } catch (Exception e) {
-            System.err.println("Error insertar cita: " + e.getMessage());
+            // Este mensaje te dirá exactamente por qué falla (ej: error de llave foránea)
+            System.err.println("Error insertar cita en CitaDAO: " + e.getMessage());
+            e.printStackTrace(); 
         }
         return false;
-	}
+    }
 
 	@Override
 	public Cita listarId(int id) {
