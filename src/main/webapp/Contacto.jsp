@@ -76,7 +76,7 @@
     <div class="card-body">
       <h5 class="fw-bold">Sede N°2</h5>
       <p class="text-white-50 small">Cerca al mercado central</p>
-      <img src="IMG/CONTACTANOS/Sede1.png" class="img-fluid rounded mb-3" alt="Sede 2">
+      <img src="IMG/CONTACTANOS/1.png" class="img-fluid rounded mb-3" alt="Sede 2">
 
       <!-- MAPA CENTRADO -->
       <div class="ratio ratio-16x9 rounded overflow-hidden">
@@ -106,7 +106,7 @@
       <p class="text-white-50 small">Cerca al mercado central</p>
 
       <img
-        src="IMG/CONTACTANOS/Sede2.png"
+        src="IMG/CONTACTANOS/2.png"
         class="img-fluid rounded mb-3"
         alt="Sede 3">
 
@@ -137,7 +137,7 @@
       <p class="text-white-50 small">Cerca al mercado central</p>
 
       <img
-        src="IMG/CONTACTANOS/Sede3.png"
+        src="IMG/CONTACTANOS/3.png"
         class="img-fluid rounded mb-3"
         alt="Sede 4">
 
@@ -168,7 +168,7 @@
       <p class="text-white-50 small">Cerca al mercado central</p>
 
       <img
-        src="IMG/CONTACTANOS/Sede4.png"
+        src="IMG/CONTACTANOS/4.png"
         class="img-fluid rounded mb-3"
         alt="Sede 5">
 
