@@ -21,7 +21,6 @@
 <main class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-7 col-lg-5">
-
             <!-- Título -->
             <div class="text-center mb-4">
                 <span class="badge bg-primary px-3 py-2">BARBERSHOP • LOGIN</span>
