@@ -22,8 +22,8 @@
         <!-- Encabezado y acción -->
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h2 class="h4 mb-0">Lista de Clientes</h2>
-            <a href="${pageContext.request.contextPath}/AdminClientes?accion=new" class="btn btn-primary">
-                <i class="bi bi-person-plus"></i> Nuevo Cliente
+            <a  href="<%= request.getContextPath() %>/AdminBarberos" class="btn btn-primary">
+                <i class="bi bi-person-plus"></i> Nuevo Barbero
             </a>
         </div>
 
@@ -58,9 +58,6 @@
                                 <td colspan="3" class="text-center py-4">
                                     <div class="alert alert-info mb-0" role="alert">
                                         No hay clientes registrados aún.
-                                        <a class="alert-link" href="${pageContext.request.contextPath}/AdminClientes?accion=new">
-                                            Crear uno nuevo
-                                        </a>.
                                     </div>
                                 </td>
                             </tr>

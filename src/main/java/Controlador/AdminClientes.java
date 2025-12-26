@@ -27,7 +27,7 @@ public class AdminClientes extends HttpServlet {
         }
 
         if (accion.equals("new")) {
-            req.getRequestDispatcher("/Vistas/Admin/agregar-clientes.jsp")
+            req.getRequestDispatcher("/Vistas/Admin/agregar-barberos.jsp")
                .forward(req, resp);
         } else {
             listar(req, resp);

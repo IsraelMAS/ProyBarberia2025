@@ -36,7 +36,7 @@
         <div class="card bg-secondary text-white border border-primary shadow-sm">
           <div class="card-body p-4">
 
-            <form action="<%= request.getContextPath() %>/ControladorSesion" method="post" autocomplete="off">
+            <form action="<%= request.getContextPath() %>/Registro" method="post" autocomplete="off">
               <input type="hidden" name="accion" value="registrar">
 
               <div class="mb-3">
@@ -71,7 +71,7 @@
 
               <div class="text-center mt-3">
                 <span class="text-white-50 small">¿Ya tienes cuenta?</span>
-                <a href="<%= request.getContextPath() %>/Login.jsp" class="link-light fw-semibold text-decoration-none">
+                <a href="<%= request.getContextPath() %>/Login" class="link-light fw-semibold text-decoration-none">
                   Inicia sesión
                 </a>
               </div>

@@ -29,6 +29,8 @@ public class ControladorCita extends HttpServlet {
    
     CitaDAO dao = new CitaDAO();
 
+    
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("accion");
         String acceso = "";
