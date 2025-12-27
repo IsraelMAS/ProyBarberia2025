@@ -62,3 +62,24 @@
     background-attachment: scroll;
   }
 }
+
+
+/* === FIX definitivo: que las 3 líneas de acento SIEMPRE se vean === */
+.page-horarios hr.border-danger,
+.page-horarios hr.border-primary,
+.page-horarios hr.border-light{
+  position: relative;
+  z-index: 9999 !important;
+  opacity: 1 !important;
+}
+
+/* Navbar también por encima */
+.page-horarios nav.navbar{
+  position: relative;
+  z-index: 9998 !important;
+}
+
+/* Fondo y overlay siempre atrás */
+.page-horarios .horario-bg{ z-index: -2 !important; }
+.page-horarios .horario-ov{ z-index: -1 !important; }
+

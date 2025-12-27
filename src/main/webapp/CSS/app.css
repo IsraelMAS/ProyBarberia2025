@@ -348,3 +348,30 @@ img[data-fade].on { opacity: 1; }
 }
 
 
+/* ===== FIX EXPRESS: panel del menú hamburguesa (móvil) ===== */
+@media (max-width: 991.98px){
+
+  /* El contenedor desplegable */
+  .navbar #menu.navbar-collapse{
+    background: rgba(0,0,0,.88);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    padding: .9rem;
+    margin-top: .75rem;
+  }
+
+  /* Lista en columna y ordenada */
+  .navbar #menu .navbar-nav{
+    width: 100%;
+    gap: .75rem !important;
+    align-items: stretch;
+  }
+
+  /* Botones al 100% */
+  .navbar #menu .navbar-nav .btn{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    padding: .65rem 1rem;
+  }
+}
