@@ -60,7 +60,7 @@
                             <label class="form-label">Imagen (ruta)</label>
                             <input type="text" name="imagen"
                                    class="form-control"
-                                   placeholder="IMG/barbero1.jpg">
+                                   placeholder="IMG/Barbero1.jpg">
                         </div>
 
                         <!-- Botón -->
