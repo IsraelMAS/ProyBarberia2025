@@ -5,6 +5,7 @@
 <%@ page import="java.util.Iterator"%>
 <%@ page import="ModeloDAO.CitaDAO"%>
 <%@ page import="Modelos.Cita"%>
+<%@ page import ="ModeloDAO.ClienteDAO" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -152,10 +153,10 @@
             <input type="hidden" name="txtIdCliente" value="1">
 
             <label>Nombre</label>
-            <input type="text" class="form-control mb-2" value="<%= nomCli %>" readonly>
+            <input type="text" class="form-control mb-2" value="<%= clienteLogueado.getNombre() %>" readonly>
 
             <label>Teléfono</label>
-            <input type="text" class="form-control mb-2" value="<%= telCli %>" readonly>
+            <input type="text" class="form-control mb-2" value="<%= clienteLogueado.getTelefono() %>" readonly>
 
             <label>Barbero</label>
             <div class="d-flex gap-2 mb-3">
