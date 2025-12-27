@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bootstrap.min.css">
     <!-- Estilos propios -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/app.css">
-
+	<link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
