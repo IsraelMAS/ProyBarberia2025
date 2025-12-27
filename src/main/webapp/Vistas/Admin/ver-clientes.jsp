@@ -22,9 +22,11 @@
         <!-- Encabezado y acción -->
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h2 class="h4 mb-0">Lista de Clientes</h2>
-            <a  href="<%= request.getContextPath() %>/AdminBarberos" class="btn btn-primary">
-                <i class="bi bi-person-plus"></i> Nuevo Barbero
-            </a>
+            <a href="${pageContext.request.contextPath}/AdminClientes?accion=new"
+   class="btn btn-primary">
+   Nuevo Barbero
+</a>
+
         </div>
 
         <!-- Tarjeta contenedora -->

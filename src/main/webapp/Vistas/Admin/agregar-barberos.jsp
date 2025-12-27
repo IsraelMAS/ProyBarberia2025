@@ -23,7 +23,8 @@
                         <h2 class="h5 mb-0">Nuevo Barbero</h2>
                     </div>
                     <div class="card-body">
-                        <form action="${pageContext.request.contextPath}/AdminClientes" method="post">
+                        <form action="${pageContext.request.contextPath}/Barberos" method="post">
+
                             
                             <!-- Nombre -->
                             <div class="mb-3">
@@ -39,7 +40,7 @@
 
                             <!-- Botón -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-success">
+                                <button href="ver-barberos.jsp" type="submit" class="btn btn-success">
                                     <i class="bi bi-save"></i> Guardar
                                 </button>
                             </div>

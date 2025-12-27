@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+r<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="ModeloDAO.ServicioDAO"%>
 <%@ page import="Modelos.Servicio"%>
 <%@ page import="Modelos.Paquete"%>
