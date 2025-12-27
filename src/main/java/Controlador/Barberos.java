@@ -41,9 +41,6 @@ public class Barberos extends HttpServlet {
         if (nombre != null && telefono != null) {
             Barbero b = new Barbero();
             b.setNombre(nombre);
-            // b.setTelefono(telefono); // si existe en tu modelo
-
-            // dao.insertar(b); // si ya lo tienes
         }
 
         // 🔥 ESTA LÍNEA ES LA CLAVE 🔥
