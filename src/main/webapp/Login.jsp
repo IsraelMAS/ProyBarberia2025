@@ -118,14 +118,3 @@
 <%@ include file="/includes/footer.jspf" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
