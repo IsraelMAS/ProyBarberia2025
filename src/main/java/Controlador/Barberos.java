@@ -35,15 +35,24 @@ public class Barberos extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nombre = request.getParameter("nombre");
-        String telefono = request.getParameter("telefono");
+        String especialidad = request.getParameter("especialidad");
+        int experiencia = Integer.parseInt(request.getParameter("experiencia"));
+        double rating = Double.parseDouble(request.getParameter("rating"));
+        String descripcion = request.getParameter("descripcion");
 
-        // SOLO si tienes insertar en el DAO
-        if (nombre != null && telefono != null) {
-            Barbero b = new Barbero();
-            b.setNombre(nombre);
-        }
+        Barbero b = new Barbero();
+        b.setNombre(nombre);
+        b.setEspecialidad(especialidad);
+        b.setExperiencia(experiencia);
+        b.setRating(rating);
+        b.setDescripcion(descripcion);
+        b.setActivo(true);
 
-        // 🔥 ESTA LÍNEA ES LA CLAVE 🔥
+        // 🔥 AHORA SÍ SE GUARDA
+        dao.insertar(b);
+
+        // POST → REDIRECT → GET
         response.sendRedirect(request.getContextPath() + "/Barberos");
     }
+
 }

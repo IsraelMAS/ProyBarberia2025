@@ -75,8 +75,8 @@
      class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
 
     <div class="card-body">
-      <h5 class="fw-bold">Sede N°2</h5>
-      <p class="text-white-50 small">Cerca al mercado central</p>
+      <h5 class="fw-bold">¡Nuestro local Global Barber Supply!</h5>
+      <p class="text-white-50 small">Destacamos por elegancia</p>
       <img src="IMG/CONTACTANOS/1.png" class="img-fluid rounded mb-3" alt="Sede 2">
 
       <!-- MAPA CENTRADO -->
@@ -103,8 +103,8 @@
      class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
 
     <div class="card-body">
-      <h5 class="fw-bold">Sede N°3</h5>
-      <p class="text-white-50 small">Cerca al mercado central</p>
+      <h5 class="fw-bold">¡Nuestro local Chamaco Barber shop!</h5>
+      <p class="text-white-50 small">Destacamos por elegancia</p>
 
       <img
         src="IMG/CONTACTANOS/2.png"
@@ -134,8 +134,8 @@
      class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
 
     <div class="card-body">
-      <h5 class="fw-bold">Sede N°4</h5>
-      <p class="text-white-50 small">Cerca al mercado central</p>
+      <h5 class="fw-bold">¡Nuestro local Rasato Barberia!</h5>
+      <p class="text-white-50 small">Destacamos por elegancia</p>
 
       <img
         src="IMG/CONTACTANOS/3.png"
@@ -165,8 +165,8 @@
      class="card bg-secondary text-white border-0 h-100 shadow-sm text-decoration-none">
 
     <div class="card-body">
-      <h5 class="fw-bold">Sede N°5</h5>
-      <p class="text-white-50 small">Cerca al mercado central</p>
+      <h5 class="fw-bold">¡Nuestro local Montalvo For Men!</h5>
+      <p class="text-white-50 small">Destacamos por elegancia</p>
 
       <img
         src="IMG/CONTACTANOS/4.png"
