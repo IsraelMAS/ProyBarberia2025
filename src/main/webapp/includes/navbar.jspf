@@ -20,9 +20,8 @@
       &#x1F488; BARBERSHOP
     </a>
 
-    
-      <!-- Reloj Pills -->
-	<div id="clockPills"
+    <!-- Reloj Pills -->
+    <div id="clockPills"
          class="d-none d-lg-flex align-items-center gap-1 ms-3"
          data-bs-toggle="tooltip"
          data-bs-placement="bottom"
@@ -34,9 +33,6 @@
       <span id="ck-s" class="badge rounded-pill bg-secondary fs-6 px-3">00</span>
       <span id="ck-ampm" class="badge rounded-pill text-bg-dark border border-light ms-1">AM</span>
     </div>
-
-	    <div class="collapse navbar-collapse justify-content-end">
-
 
     <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button"
@@ -81,45 +77,58 @@
         <li class="nav-item d-none d-lg-block">
           <span class="text-white-50 mx-2">|</span>
         </li>
+<
+	    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
 
         <% if (clienteLogueado != null) { %>
 
-          <!-- Cliente (DESKTOP) -->
-          <li class="nav-item d-none d-lg-flex align-items-center gap-2">
-            <span class="badge text-bg-dark border border-light">Cliente</span>
-            <span class="text-white fw-semibold"><%= clienteLogueado.getNombre() %></span>
-          </li>
+    <!-- CLIENTE -->
+    <li class="nav-item">
+        <span class="nav-link text-white">
+             <strong><%= clienteLogueado.getNombre() %></strong>
+        </span>
+    </li>
 
-          <!-- Cliente (MÓVIL) -->
-          <li class="nav-item d-lg-none">
-            <div class="text-center text-white-50 small">
-              Cliente: <span class="text-white fw-semibold"><%= clienteLogueado.getNombre() %></span>
-            </div>
-          </li>
+    <li class="nav-item">
+        <a class="nav-link text-danger"
+           href="<%= request.getContextPath() %>/LogoutController">
+            Cerrar sesión
+        </a>
+    </li>
 
-          <!-- Cerrar sesión -->
-          <li class="nav-item">
-            <a class="btn btn-outline-danger btn-sm px-3"
-               href="<%= request.getContextPath() %>/LogoutController">
-              Cerrar Sesion
-            </a>
-          </li>
+<% } else if (adminLogueado != null) { %>
 
-        <% } else { %>
+    <!-- ADMIN -->
+    <li class="nav-item">
+        <span class="nav-link text-warning">
+            <strong>Admin: <%= adminLogueado.getUsuario() %></strong>
+        </span>
+    </li>
 
-          <!-- Iniciar sesión -->
-          <li class="nav-item">
-            <a class="btn btn-outline-light btn-sm px-3 btn-login-cta"
-               href="<%= request.getContextPath() %>/Login">
-              Iniciar Sesion
-            </a>
-          </li>
+    <li class="nav-item">
+        <a class="nav-link text-danger"
+           href="<%= request.getContextPath() %>/LogoutController">
+            Cerrar sesion
+        </a>
+    </li>
 
-        <% } %>
+<% } else { %>
+
+    <!-- NO LOGUEADO -->
+    <li class="nav-item">
+        <a class="nav-link"
+           href="<%= request.getContextPath() %>/Login">
+            Iniciar sesion
+        </a>
+    </li>
+
+<% } %>
 
       </ul>
     </div>
   </div>
+	
 </nav>
 
 <!-- JS del reloj -->
