@@ -22,7 +22,7 @@
         <!-- Encabezado y acción -->
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h2 class="h4 mb-0">Lista de Clientes</h2>
-            <a href="${pageContext.request.contextPath}/AdminClientes?accion=new"
+            <a href="${pageContext.request.contextPath}/Barbero?accion=new"
    class="btn btn-primary">
    Nuevo Barbero
 </a>
