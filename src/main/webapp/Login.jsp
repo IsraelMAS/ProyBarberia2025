@@ -16,7 +16,7 @@
 <!-- Fondo rotativo -->
 <div id="bgRotativo" class="bg-rotativo bg-overlay"></div>
 
-<%@ include file="/includes/navbar.jspf" %>
+<%@ include file="includes/navbar.jspf" %>
 
 <main class="container py-5">
     <div class="row justify-content-center">
