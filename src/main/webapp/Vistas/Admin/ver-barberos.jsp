@@ -11,7 +11,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/CSS/bootstrap.min.css">
-</head>
+	</head>
+	<link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
 <body>
 
 <%@ include file="/includes/navbar.jspf" %>

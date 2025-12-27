@@ -67,4 +67,25 @@ public class BarberoDAO implements Inter_barbero{
         return b;
 	}
 
+	public void insertar(Barbero b) {
+	    String sql = "INSERT INTO barbero " +
+	                 "(nombre, especialidad, experiencia, rating, descripcion, activo) " +
+	                 "VALUES (?, ?, ?, ?, ?, 1)";
+
+	    try {
+	        con = cn.getConnection();
+	        ps = con.prepareStatement(sql);
+
+	        ps.setString(1, b.getNombre());
+	        ps.setString(2, b.getEspecialidad());
+	        ps.setInt(3, b.getExperiencia());
+	        ps.setDouble(4, b.getRating());
+	        ps.setString(5, b.getDescripcion());
+
+	        ps.executeUpdate();
+
+	    } catch (Exception e) {
+	        System.err.println("Error al insertar barbero: " + e.getMessage());
+	    }
+	}
 }
