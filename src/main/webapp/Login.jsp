@@ -47,17 +47,14 @@
 
                     <form action="<%= request.getContextPath() %>/Login" method="post" autocomplete="off">
 
-                        <!-- Teléfono -->
+                        <!-- Usuario / Teléfono -->
                         <div class="mb-3">
-                            <label class="form-label text-white-50">Teléfono</label>
-                            <input type="text"
-                                   name="telefono"
-                                   class="form-control bg-dark text-white border-0"
-                                   placeholder="Ej: 999888777"
-                                   inputmode="numeric"
-                                   pattern="[0-9]{6,15}"
-                                   required>
-                        </div>
+                            <label class="form-label text-white-50">Teléfono o usuario</label> 
+                            <input type="text" 
+                            name="login"
+									class="form-control bg-dark text-white border-0"
+									placeholder="Teléfono o usuario admin" required>
+							</div>
 
                         <!-- Contraseña -->
                         <div class="mb-2">
@@ -103,7 +100,6 @@
 <script src="<%= request.getContextPath() %>/JS/bootstrap.bundle.min.js"></script>
 
 <script>
-    // mostrar / ocultar contraseña
     const b = document.getElementById("btnVerPassLogin");
     const p = document.getElementById("contrasena");
 
@@ -122,3 +118,14 @@
 <%@ include file="/includes/footer.jspf" %>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

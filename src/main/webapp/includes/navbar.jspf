@@ -1,10 +1,15 @@
-
 <%@ page import="Modelos.Cliente" %>
+<<<<<<< HEAD
+<%
+  Cliente clienteLogueado = (Cliente) session.getAttribute("clienteLogueado");
+=======
+<%@ page import="Modelos.Admin" %>
 
 <%
     Cliente clienteLogueado = (Cliente) session.getAttribute("clienteLogueado");
+    Admin adminLogueado = (Admin) session.getAttribute("adminLogueado");
+>>>>>>> bd43fc05aea430a8f21eaba99145a1bbf6687bc2
 %>
-
 
 <!-- Líneas de acento -->
 <hr class="border-danger border-2 opacity-100 my-0">
@@ -20,42 +25,66 @@
       &#x1F488; BARBERSHOP
     </a>
 
+<<<<<<< HEAD
+=======
 	    <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
 
         <% if (clienteLogueado != null) { %>
-          <li class="nav-item">
-            <span class="nav-link text-white">
-              👤 <strong><%= clienteLogueado.getNombre() %></strong>
-            </span>
-          </li>
 
-          <li class="nav-item">
-            <a class="nav-link text-danger"
-               href="<%= request.getContextPath() %>/LogoutController">
-               Cerrar sesion
-            </a>
-          </li>
-        <% } else { %>
-          <li class="nav-item">
-            <a class="nav-link"
-               href="<%= request.getContextPath() %>/Login">
-               Iniciar sesion
-            </a>
-          </li>
-        <% } %>
+    <!-- CLIENTE -->
+    <li class="nav-item">
+        <span class="nav-link text-white">
+             <strong><%= clienteLogueado.getNombre() %></strong>
+        </span>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-danger"
+           href="<%= request.getContextPath() %>/LogoutController">
+            Cerrar sesión
+        </a>
+    </li>
+
+<% } else if (adminLogueado != null) { %>
+
+    <!-- ADMIN -->
+    <li class="nav-item">
+        <span class="nav-link text-warning">
+            <strong>Admin: <%= adminLogueado.getUsuario() %></strong>
+        </span>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-danger"
+           href="<%= request.getContextPath() %>/LogoutController">
+            Cerrar sesion
+        </a>
+    </li>
+
+<% } else { %>
+
+    <!-- NO LOGUEADO -->
+    <li class="nav-item">
+        <a class="nav-link"
+           href="<%= request.getContextPath() %>/Login">
+            Iniciar sesion
+        </a>
+    </li>
+
+<% } %>
 
       </ul>
     </div>
   </div>
 	
+>>>>>>> bd43fc05aea430a8f21eaba99145a1bbf6687bc2
     <!-- Reloj Pills -->
     <div id="clockPills"
-         class="d-none d-lg-flex align-items-center gap-1 me-3"
+         class="d-none d-lg-flex align-items-center gap-1 ms-3"
          data-bs-toggle="tooltip"
          data-bs-placement="bottom"
          title="Hora actual">
-
       <span id="ck-h" class="badge rounded-pill bg-danger fs-6 px-3">00</span>
       <span class="text-white-50">:</span>
       <span id="ck-m" class="badge rounded-pill bg-primary fs-6 px-3">00</span>
@@ -64,53 +93,88 @@
       <span id="ck-ampm" class="badge rounded-pill text-bg-dark border border-light ms-1">AM</span>
     </div>
 
+    <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#menu">
+            data-bs-target="#menu"
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Menú -->
     <div id="menu" class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto gap-2">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-2 mt-3 mt-lg-0">
 
         <li class="nav-item">
           <a class="btn btn-danger btn-sm px-3"
-             href="<%= request.getContextPath() %>/Inicio.jsp">
-            Inicio
-          </a>
+             href="<%= request.getContextPath() %>/Inicio.jsp">Inicio</a>
         </li>
 
         <li class="nav-item">
           <a class="btn btn-primary btn-sm px-3"
-             href="<%= request.getContextPath() %>/Servicios.jsp">
-            Servicios
-          </a>
+             href="<%= request.getContextPath() %>/Servicios.jsp">Servicios</a>
         </li>
 
         <li class="nav-item">
           <a class="btn btn-danger btn-sm px-3"
-             href="<%= request.getContextPath() %>/Horarios.jsp">
-            Horarios
-          </a>
+             href="<%= request.getContextPath() %>/Horarios.jsp">Horarios</a>
         </li>
 
         <li class="nav-item">
           <a class="btn btn-primary btn-sm px-3"
-             href="<%= request.getContextPath() %>/Barberos.jsp">
-            Barberos
-          </a>
+             href="<%= request.getContextPath() %>/Barberos.jsp">Barberos</a>
         </li>
 
         <li class="nav-item">
           <a class="btn btn-danger btn-sm px-3"
-             href="<%= request.getContextPath() %>/Contacto.jsp">
-            Contacto
-          </a>
+             href="<%= request.getContextPath() %>/Contacto.jsp">Contacto</a>
         </li>
 
+        <!-- Separador suave (solo desktop) -->
+        <li class="nav-item d-none d-lg-block">
+          <span class="text-white-50 mx-2">|</span>
+        </li>
+
+        <% if (clienteLogueado != null) { %>
+
+          <!-- Cliente (DESKTOP) -->
+          <li class="nav-item d-none d-lg-flex align-items-center gap-2">
+            <span class="badge text-bg-dark border border-light">Cliente</span>
+            <span class="text-white fw-semibold"><%= clienteLogueado.getNombre() %></span>
+          </li>
+
+          <!-- Cliente (MÓVIL) -->
+          <li class="nav-item d-lg-none">
+            <div class="text-center text-white-50 small">
+              Cliente: <span class="text-white fw-semibold"><%= clienteLogueado.getNombre() %></span>
+            </div>
+          </li>
+
+          <!-- Cerrar sesión -->
+          <li class="nav-item">
+            <a class="btn btn-outline-danger btn-sm px-3"
+               href="<%= request.getContextPath() %>/LogoutController">
+              Cerrar Sesion
+            </a>
+          </li>
+
+        <% } else { %>
+
+          <!-- Iniciar sesión -->
+          <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm px-3 btn-login-cta"
+               href="<%= request.getContextPath() %>/Login">
+              Iniciar Sesion
+            </a>
+          </li>
+
+        <% } %>
 
       </ul>
     </div>
+
   </div>
 </nav>
 
