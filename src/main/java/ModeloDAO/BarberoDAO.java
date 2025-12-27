@@ -69,8 +69,8 @@ public class BarberoDAO implements Inter_barbero{
 
 	public void insertar(Barbero b) {
 	    String sql = "INSERT INTO barbero " +
-	                 "(nombre, especialidad, experiencia, rating, descripcion, activo) " +
-	                 "VALUES (?, ?, ?, ?, ?, 1)";
+	                 "(nombre, especialidad, experiencia, rating, descripcion, imagen, activo) " +
+	                 "VALUES (?, ?, ?, ?, ?, ?, 1)";
 
 	    try {
 	        con = cn.getConnection();
@@ -81,11 +81,24 @@ public class BarberoDAO implements Inter_barbero{
 	        ps.setInt(3, b.getExperiencia());
 	        ps.setDouble(4, b.getRating());
 	        ps.setString(5, b.getDescripcion());
-
+	        ps.setString(6, b.getImagen());
 	        ps.executeUpdate();
 
 	    } catch (Exception e) {
 	        System.err.println("Error al insertar barbero: " + e.getMessage());
 	    }
 	}
+	public void eliminar(int id) {
+	    String sql = "UPDATE barbero SET activo = 0 WHERE id_barbero = ?";
+
+	    try {
+	        con = cn.getConnection();
+	        ps = con.prepareStatement(sql);
+	        ps.setInt(1, id);
+	        ps.executeUpdate();
+	    } catch (Exception e) {
+	        System.err.println("Error al eliminar barbero: " + e.getMessage());
+	    }
+	}
+
 }

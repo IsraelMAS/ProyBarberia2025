@@ -34,11 +34,24 @@ public class Barberos extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        String accion = request.getParameter("accion");
+
+        if ("eliminar".equals(accion)) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            dao.eliminar(id);
+
+            response.sendRedirect(request.getContextPath() + "/Barberos");
+            return;
+        }
+
+        // 👉 INSERTAR (lo que ya tenías)
         String nombre = request.getParameter("nombre");
         String especialidad = request.getParameter("especialidad");
         int experiencia = Integer.parseInt(request.getParameter("experiencia"));
         double rating = Double.parseDouble(request.getParameter("rating"));
         String descripcion = request.getParameter("descripcion");
+        String imagen = request.getParameter("imagen");
 
         Barbero b = new Barbero();
         b.setNombre(nombre);
@@ -46,12 +59,11 @@ public class Barberos extends HttpServlet {
         b.setExperiencia(experiencia);
         b.setRating(rating);
         b.setDescripcion(descripcion);
+        b.setImagen(imagen);
         b.setActivo(true);
 
-        // 🔥 AHORA SÍ SE GUARDA
         dao.insertar(b);
 
-        // POST → REDIRECT → GET
         response.sendRedirect(request.getContextPath() + "/Barberos");
     }
 

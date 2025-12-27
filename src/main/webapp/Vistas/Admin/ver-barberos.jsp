@@ -47,19 +47,34 @@
             if (lista != null && !lista.isEmpty()) {
                 for (Barbero b : lista) {
         %>
-            <tr>
-                <td><%= b.getIdBarbero() %></td>
-                <td><%= b.getNombre() %></td>
-                <td><%= b.getEspecialidad() %></td>
-                <td><%= b.getExperiencia() %></td>
-                <td><%= b.getRating() %></td>
-                <td><%= b.getDescripcion() %></td>
-                <td>
-                    <img src="<%= b.getImagen() %>"
-                         width="60" height="60"
-                         class="rounded">
-                </td>
-            </tr>
+          <tr>
+    <td><%= b.getIdBarbero() %></td>
+    <td><%= b.getNombre() %></td>
+    <td><%= b.getEspecialidad() %></td>
+    <td><%= b.getExperiencia() %></td>
+    <td><%= b.getRating() %></td>
+    <td><%= b.getDescripcion() %></td>
+    <td>
+        <img src="<%= b.getImagen() %>"
+             width="60" height="60"
+             class="rounded">
+    </td>
+    <td>
+        <form action="${pageContext.request.contextPath}/Barberos"
+              method="post"
+              style="display:inline;">
+            
+            <input type="hidden" name="accion" value="eliminar">
+            <input type="hidden" name="id" value="<%= b.getIdBarbero() %>">
+
+            <button type="submit"
+                    class="btn btn-danger btn-sm"
+                    onclick="return confirm('¿Seguro que deseas eliminar este barbero?');">
+                🗑 Eliminar
+            </button>
+        </form>
+    </td>
+</tr>
         <%
                 }
             } else {

@@ -56,12 +56,21 @@
                             <textarea name="descripcion" class="form-control" rows="3" required></textarea>
                         </div>
 
+						<div class="mb-3">
+                            <label class="form-label">Imagen (ruta)</label>
+                            <input type="text" name="imagen"
+                                   class="form-control"
+                                   placeholder="IMG/barbero1.jpg">
+                        </div>
+
                         <!-- Botón -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-success">
                                 <i class="bi bi-save"></i> Guardar
                             </button>
                         </div>
+                        
+                        
 
                     </form>
                 </div>
