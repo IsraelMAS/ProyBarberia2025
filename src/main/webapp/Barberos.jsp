@@ -35,34 +35,7 @@
       </p>
     </header>
 
-    <!-- CONTROLES: SOLO FILTROS (sin barra de buscar) -->
-    <section class="card bg-black bg-opacity-50 border border-secondary rounded-4 shadow-sm mb-4">
-      <div class="card-body">
-        <div class="row g-3 align-items-center">
-          <div class="col-lg-6">
-            <label class="form-label text-white-50">Filtrar por especialidad</label>
-            <select id="selectEspecialidad" class="form-select bg-dark text-white border-secondary">
-              <option value="todos">Todos</option>
-              <option value="degradados">Degradados</option>
-              <option value="barbas">Barbas</option>
-              <option value="clasicos">Clásicos</option>
-              <option value="disenos">Diseños</option>
-              <option value="tinturas">Tinturas</option>
-            </select>
-          </div>
 
-          <div class="col-lg-6">
-            <label class="form-label text-white-50">Ordenar</label>
-            <select id="selectOrden" class="form-select bg-dark text-white border-secondary">
-              <option value="recomendado">Recomendado</option>
-              <option value="experiencia">Más experiencia</option>
-              <option value="rating">Mejor rating</option>
-              <option value="nombre">Nombre (A-Z)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </section>
 
 	   <!-- GRID DE BARBEROS -->
 	<section id="gridBarberos" class="row g-4">
