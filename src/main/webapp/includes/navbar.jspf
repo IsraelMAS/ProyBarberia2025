@@ -22,61 +22,7 @@
 
     
       <!-- Reloj Pills -->
-
-	    <div class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav">
-
-        <% if (clienteLogueado != null) { %>
-
-    <!-- CLIENTE -->
-    <li class="nav-item">
-        <span class="nav-link text-white">
-             <strong><%= clienteLogueado.getNombre() %></strong>
-        </span>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link text-danger"
-           href="<%= request.getContextPath() %>/LogoutController">
-            Cerrar sesión
-        </a>
-    </li>
-
-<% } else if (adminLogueado != null) { %>
-
-    <!-- ADMIN -->
-    <li class="nav-item">
-        <span class="nav-link text-warning">
-            <strong>Admin: <%= adminLogueado.getUsuario() %></strong>
-        </span>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link text-danger"
-           href="<%= request.getContextPath() %>/LogoutController">
-            Cerrar sesion
-        </a>
-    </li>
-
-<% } else { %>
-
-    <!-- NO LOGUEADO -->
-    <li class="nav-item">
-        <a class="nav-link"
-           href="<%= request.getContextPath() %>/Login">
-            Iniciar sesion
-        </a>
-    </li>
-
-<% } %>
-
-      </ul>
-    </div>
-  </div>
-	
-    <!-- Reloj Pills -->
-
-    <div id="clockPills"
+	<div id="clockPills"
          class="d-none d-lg-flex align-items-center gap-1 ms-3"
          data-bs-toggle="tooltip"
          data-bs-placement="bottom"
@@ -90,7 +36,7 @@
     </div>
 
 	    <div class="collapse navbar-collapse justify-content-end">
-     
+
 
     <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button"
