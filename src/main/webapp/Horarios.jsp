@@ -66,26 +66,33 @@
           </article>
         </aside>
 
+
+
         <aside>
-          <article class="bg-light p-3 rounded shadow-sm">
-            <h3 class="text-primary">Citas Reservadas</h3>
+		  <article class="p-3 rounded shadow-sm"
+		           style="background: rgba(0,0,0,.65); border: 1px solid rgba(255,255,255,.12);">
+		    <h3 class="mb-3" style="color:#0d6efd;">¡Nuestro Local!</h3>
+		
+		    <!-- Video insertado -->
+		    <div class="ratio ratio-16x9 rounded overflow-hidden"
+		         style="border: 1px solid rgba(255,255,255,.12);">
+		      <video class="w-100 h-100"
+		             autoplay
+		             muted
+		             loop
+		             playsinline
+		             controls
+		             preload="metadata">
+		        <source src="IMG/VideoBarberia.mp4" type="video/mp4">
+		      </video>
+		    </div>
+		
+		    <small class="d-block mt-2" style="color: rgba(255,255,255,.65);">
+		      Llegar 10 minutos antes a lo acordado
+		    </small>
+		  </article>
+		</aside>
 
-            <table class="table table-bordered table-hover mb-0">
-              <thead class="table-primary">
-                <tr>
-                  <th class="text-center">Barbero1</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-              </tbody>
-            </table>
-
-            <small class="text-muted">Llegar 10 minutos antes a lo acordado</small>
-          </article>
-        </aside>
 
       </div>
 
