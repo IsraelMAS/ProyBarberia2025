@@ -10,18 +10,21 @@ import java.sql.ResultSet;
 public class AdminDAO {
 
     Conexion cn = new Conexion();
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
 
     public Admin login(String usuario, String contrasena) {
+
         String sql = "SELECT * FROM admin WHERE usuario = ? AND contrasena = ?";
         Admin a = null;
 
-        try (Connection con = cn.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
             ps.setString(1, usuario);
             ps.setString(2, contrasena);
-
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 a = new Admin();
@@ -32,7 +35,7 @@ public class AdminDAO {
         } catch (Exception e) {
             System.err.println("Error login admin: " + e.getMessage());
         }
+
         return a;
     }
-
 }
