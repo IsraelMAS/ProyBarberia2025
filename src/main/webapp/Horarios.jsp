@@ -6,6 +6,7 @@
 <%@ page import="ModeloDAO.CitaDAO"%>
 <%@ page import="Modelos.Cita"%>
 <%@ page import ="ModeloDAO.ClienteDAO" %>
+<%@ page import="Modelos.Cliente" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -35,6 +36,9 @@
 
     <section class="row g-4">
 
+
+    
+  
       <!-- ================= HORARIOS ================= -->
       <div class="col-lg-6 d-flex flex-column gap-4">
 
@@ -97,13 +101,23 @@
 
       </div>
 
-      <!-- ================= FORMULARIO ================= -->
+     <!-- ================= FORMULARIO ================= -->
       <article class="col-lg-6">
+      <% if (clienteLogueado == null) { %>
+        <section class="bg-secondary p-5 rounded shadow text-center border border-primary h-100 d-flex flex-column justify-content-center">
+          <h3 class="text-primary mb-4">¿Deseas reservar una cita?</h3>
+          <p class="text-white">Para garantizar tu lugar con nuestros barberos, es necesario que inicies sesión en tu cuenta.</p>
+          <div class="d-grid gap-3 mt-4">
+            <a href="Login.jsp" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+            <a href="Registro.jsp" class="btn btn-outline-light">Crear una cuenta nueva</a>
+          </div>
+        </section>
+      <% } else { %>
         <section class="bg-secondary p-3 rounded">
           <h3 class="text-primary">Reservar cita</h3>
 
           <%
-            /* ================= CITA EN EDICIÓN ================= */
+			/* ================= CITA EN EDICIÓN ================= */
             Cita citaEdit = (Cita) session.getAttribute("citaSeleccionada");
 
             String f    = (citaEdit != null) ? citaEdit.getFecha().toString() : "";
@@ -153,6 +167,7 @@
             String accion = (citaEdit != null) ? "Actualizar" : "Agregar";
             String texto  = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
           %>
+          
 
           <form action="ControladorCita" method="GET">
 
@@ -208,9 +223,13 @@
           </form>
 
         </section>
+        <% } %>
       </article>
 
+
+      
       <!-- ================= MIS CITAS ================= -->
+      <% if (clienteLogueado != null) { %>
       <aside class="col-12">
         <article class="bg-light p-3 rounded shadow-sm">
           <h3 class="text-primary mb-3">Mis Citas Reservadas</h3>
@@ -260,6 +279,7 @@
           </div>
         </article>
       </aside>
+      <% } %>
 
     </section>
   </main>
