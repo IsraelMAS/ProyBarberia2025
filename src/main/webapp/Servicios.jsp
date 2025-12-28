@@ -39,7 +39,6 @@
     <section class="container text-center mb-3">
       <div class="d-inline-flex gap-2">
         <a href="#cortes"   class="btn btn-danger">Cortes</a>
-        <a href="#paquetes" class="btn btn-primary">Paquetes</a>
       </div>
     </section>
 
@@ -91,38 +90,6 @@
 		<% 
      		} 
     	%>
-      </div>
-    </section>
-
-    <!-- PAQUETES -->
-    <section id="paquetes" class="container pb-5">
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-      <%
-      	PaqueteDAO daoP = new PaqueteDAO();
-      	List<Paquete> listP = daoP.listar();
-      	Iterator<Paquete> iterP = listP.iterator();
-      	Paquete perP = null;
-
-      	while (iterP.hasNext()) {
-        perP = iterP.next();
-      %>
-
-        <article class="col">
-          <div class="card bg-secondary text-white border border-primary h-100 p-3 zoomable" data-accent="primary">
-            <h5 class="text-danger mb-2"><%= perP.getNombre() %></h5>
-            <p class="mb-2"><%= perP.getDescripcion() %></p>
-            <div class="small mb-3" style="white-space: pre-line;">
-      			<%= perP.getDetalles() %>
-    		</div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="badge bg-light text-dark">S/ <%= perP.getPrecio() %></span>
-              <a href="Horarios.jsp?id=<%= perP.getId() %>&nombre=<%= perP.getNombre() %>" class="btn btn-danger">Reservar</a>
-            </div>
-          </div>
-        </article>
-
-        
-		<% } %>
       </div>
     </section>
 
