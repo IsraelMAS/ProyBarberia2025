@@ -16,7 +16,6 @@
 
   <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
 
-  <!-- Bootstrap + estilos -->
   <link rel="stylesheet" href="CSS/bootstrap.min.css">
   <link rel="stylesheet" href="CSS/app.css">
   <link rel="stylesheet" href="CSS/Horario.css">
@@ -26,7 +25,6 @@
 
   <%@ include file="includes/navbar.jspf" %>
 
-  <!-- Fondo dinámico (NO afecta tu HTML interno) -->
   <div class="horario-bg" aria-hidden="true"></div>
   <div class="horario-ov" aria-hidden="true"></div>
 
@@ -42,7 +40,6 @@
 %>
     
   
-      <!-- ================= HORARIOS ================= -->
       <div class="col-lg-6 d-flex flex-column gap-4">
 
         <aside>
@@ -81,7 +78,6 @@
 		           style="background: rgba(0,0,0,.65); border: 1px solid rgba(255,255,255,.12);">
 		    <h3 class="mb-3" style="color:#0d6efd;">¡Nuestro Local!</h3>
 		
-		    <!-- Video insertado -->
 		    <div class="ratio ratio-16x9 rounded overflow-hidden"
 		         style="border: 1px solid rgba(255,255,255,.12);">
 		      <video class="w-100 h-100"
@@ -104,10 +100,7 @@
 
       </div>
 
-     <!-- ================= FORMULARIO ================= -->
-     
-     
-      <article class="col-lg-6">
+     <article class="col-lg-6">
       <% if (clienteLogueado == null) { %>
         <section class="bg-secondary p-5 rounded shadow text-center border border-primary h-100 d-flex flex-column justify-content-center">
           <h3 class="text-primary mb-4">¿Deseas reservar una cita?</h3>
@@ -225,8 +218,8 @@
               <%= texto %>
             </button>
 
-            <a href="Horarios.jsp" class="btn btn-primary ms-2">Limpiar</a>
-          </form>
+	<a href="ControladorCita?accion=limpiar" class="btn btn-primary ms-2">Limpiar</a>          
+	</form>
 
         </section>
         <% } %>
@@ -234,7 +227,6 @@
 
 
       
-      <!-- ================= MIS CITAS ================= -->
       <% if (clienteLogueado != null) { %>
       <aside class="col-12">
         <article class="bg-light p-3 rounded shadow-sm">
@@ -244,7 +236,8 @@
             <table class="table table-bordered table-hover mb-0">
               <%
                 CitaDAO daoC = new CitaDAO();
-                List<Cita> listaC = daoC.listarPorCliente(1);
+                // CAMBIO REALIZADO: Ahora usa clienteLogueado.getIdCliente() en lugar de 1
+                List<Cita> listaC = daoC.listarPorCliente(clienteLogueado.getIdCliente());
                 Iterator<Cita> iterC = listaC.iterator();
                 Cita perC = null;
 
@@ -292,11 +285,9 @@
 
   <%@ include file="includes/footer.jspf" %>
 
-  <!-- JS -->
   <script src="JS/bootstrap.bundle.min.js"></script>
   <script>window.APP_CTX = '<%= request.getContextPath() %>/';</script>
   <script src="JS/Horario.js"></script>
 
 </body>
 </html>
-	

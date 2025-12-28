@@ -2,9 +2,7 @@ package Controlador;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
@@ -16,67 +14,75 @@ import Modelos.Cita;
 import Modelos.Cliente;
 import Modelos.Servicio;
 
-
 @WebServlet("/ControladorCita")
 public class ControladorCita extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
- 
-    public ControladorCita() {
-        super();
-    }
-    String horarios = "Horarios.jsp";    
-   
-    CitaDAO dao = new CitaDAO();
+    private static final long serialVersionUID = 1L;
+    private final String horarios = "Horarios.jsp";    
+    private final CitaDAO dao = new CitaDAO();
 
-    
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("accion");
-        String acceso = "";
+        String acceso = horarios;
         Cita c = new Cita();
+        
+        // Obtener el cliente logueado de la sesión para filtrar citas
+        HttpSession session = request.getSession();
+        Cliente clienteSesion = (Cliente) session.getAttribute("clienteLogueado");
+        int idLogueado = (clienteSesion != null) ? clienteSesion.getIdCliente() : 0;
 
-        if (action == null || action.isEmpty()) {
-            acceso = horarios;
-        } 
-        else if (action.equalsIgnoreCase("Agregar")) {
-            capturarDatos(request, c);
-            dao.insertar(c);
-            acceso = horarios;
-        } 
-        else if (action.equalsIgnoreCase("editar")) {
-            int idCita = Integer.parseInt(request.getParameter("id"));
-            Cita citaParaForm = dao.listarId(idCita);
-            
-            // GUARDAR EN SESIÓN: Aquí está el truco. La cita se queda en la "memoria"
-            request.getSession().setAttribute("citaSeleccionada", citaParaForm);
-            acceso = horarios;
-        } 
-        else if (action.equalsIgnoreCase("Actualizar")) {
-            int idCita = Integer.parseInt(request.getParameter("txtIdCita"));
-            capturarDatos(request, c); 
-            c.setIdCita(idCita); 
-            dao.editar(c); 
-            
-            // LIMPIAR SESIÓN: Al terminar, borramos la mochila para que el form quede vacío
-            request.getSession().removeAttribute("citaSeleccionada");
-            acceso = horarios;
-        } 
-        else if (action.equalsIgnoreCase("eliminar")) {
-            int idCita = Integer.parseInt(request.getParameter("id"));
-            dao.CancelarCita(idCita);
-            acceso = horarios;
+        if (action != null) {
+            if (action.equalsIgnoreCase("Agregar")) {
+                capturarDatos(request, c);
+                dao.insertar(c);
+            }else if (action.equalsIgnoreCase("limpiar")) {
+                session.removeAttribute("citaSeleccionada");
+                session.removeAttribute("idBarbero");
+                session.removeAttribute("nombreBarbero");
+                session.removeAttribute("idServicio");
+                session.removeAttribute("nombreServicio");
+                
+            }else if (action.equalsIgnoreCase("editar")) {
+                int idCita = Integer.parseInt(request.getParameter("id"));
+                Cita citaParaForm = dao.listarId(idCita);
+                
+                // Guardamos la cita completa
+                session.setAttribute("citaSeleccionada", citaParaForm);
+                
+                // ACTUALIZACIÓN CLAVE: Sincronizamos los datos de la sesión con los de la cita recuperada
+                if (citaParaForm.getBarbero() != null) {
+                    session.setAttribute("idBarbero", String.valueOf(citaParaForm.getBarbero().getIdBarbero()));
+                    session.setAttribute("nombreBarbero", citaParaForm.getBarbero().getNombre());
+                }
+                if (citaParaForm.getServicio() != null) {
+                    session.setAttribute("idServicio", String.valueOf(citaParaForm.getServicio().getId()));
+                    session.setAttribute("nombreServicio", citaParaForm.getServicio().getNombre());
+                }
+            }
+            else if (action.equalsIgnoreCase("Actualizar")) {
+                int idCita = Integer.parseInt(request.getParameter("txtIdCita"));
+                capturarDatos(request, c); 
+                c.setIdCita(idCita); 
+                dao.editar(c); 
+                session.removeAttribute("citaSeleccionada");
+            } 
+            else if (action.equalsIgnoreCase("eliminar")) {
+                int idCita = Integer.parseInt(request.getParameter("id"));
+                dao.CancelarCita(idCita);
+            }
         }
 
-        // Listado normal para la tabla lateral
-        List<Cita> lista = dao.listarPorCliente(1);
+        // CORRECCIÓN: Ahora listamos usando el ID del cliente que inició sesión
+        List<Cita> lista = dao.listarPorCliente(idLogueado);
         request.setAttribute("misCitas", lista);
 
         request.getRequestDispatcher(acceso).forward(request, response);
     }
-	private void capturarDatos(HttpServletRequest request, Cita cita ) {
-		
-		try {
+
+    private void capturarDatos(HttpServletRequest request, Cita cita) {
+        try {
+            HttpSession session = request.getSession();
+            Cliente cliSesion = (Cliente) session.getAttribute("clienteLogueado");
+
             cita.setFecha(Date.valueOf(request.getParameter("txtFecha")));
             cita.setHora(Time.valueOf(request.getParameter("txtHora")));
             cita.setInstrucciones(request.getParameter("txtInstrucciones"));
@@ -92,19 +98,22 @@ public class ControladorCita extends HttpServlet {
             ser.setId(Integer.parseInt(request.getParameter("idServicio")));
             cita.setServicio(ser);
 
-            // Cliente (ID 1 estático según tu formulario)
+            // CORRECCIÓN: Asegurar que el ID del cliente venga de la sesión
             Cliente cli = new Cliente();
-            cli.setIdCliente(Integer.parseInt(request.getParameter("txtIdCliente")));
+            if (cliSesion != null) {
+                cli.setIdCliente(cliSesion.getIdCliente());
+            } else {
+                // Fallback por si la sesión expiró pero el parámetro está
+                cli.setIdCliente(Integer.parseInt(request.getParameter("txtIdCliente")));
+            }
             cita.setCliente(cli);
             
         } catch (Exception e) {
-            System.err.println("Error capturando datos: " + e.getMessage());
+            System.err.println("Error capturando datos en Controlador: " + e.getMessage());
         }
     }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
