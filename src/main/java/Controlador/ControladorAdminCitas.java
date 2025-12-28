@@ -28,16 +28,34 @@ public class ControladorAdminCitas extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+    	// 1. Lógica para procesar el cambio de estado (Botones Acciones)
+        String accion = request.getParameter("accion");
 
-		 List<Cita> lista = dao.listarTodas();
-	        request.setAttribute("listaCitas", lista);
+        if (accion != null && accion.equalsIgnoreCase("cambiar")) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                String nuevoEstado = request.getParameter("estado");
+                
+                dao.cambiarEstado(id, nuevoEstado);
+                
+                // Redirigimos al nombre correcto de tu Servlet
+                response.sendRedirect("AdminCitas"); 
+                return; 
+            } catch (Exception e) {
+                System.err.println("Error al cambiar estado: " + e.getMessage());
+            }
+        }
 
-	        request.getRequestDispatcher("/Vistas/Admin/citas.jsp")
-	               .forward(request, response);
-		
-	}
+        // 2. Listado normal de citas para la tabla
+        List<Cita> lista = dao.listarTodas();
+        request.setAttribute("listaCitas", lista);
 
+        request.getRequestDispatcher("/Vistas/Admin/citas.jsp")
+               .forward(request, response);
+    
+    }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -58,6 +58,27 @@
                     <td><%=(c.getFecha() != null) ? sdfFecha.format(c.getFecha()) : "-" %></td>
 					<td><%=(c.getHora() != null) ? sdfHora.format(c.getHora()) : "-" %></td>
                     <td><%=(c.getEstado() != null) ? c.getEstado() : "-" %></td>
+                    <td>
+    <% 
+        String est = c.getEstado();
+        if (est != null && est.equalsIgnoreCase("RESERVADA")) { 
+    %>
+        <div class="d-flex gap-2 justify-content-center">
+            <a href="${pageContext.request.contextPath}/AdminCitas?accion=cambiar&id=<%= c.getIdCita() %>&estado=COMPLETADA" 
+               class="btn btn-success btn-sm">
+               Finalizar
+            </a>
+            
+            <a href="${pageContext.request.contextPath}/AdminCitas?accion=cambiar&id=<%= c.getIdCita() %>&estado=CANCELADA" 
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('¿Seguro que desea cancelar esta cita?')">
+               Cancelar
+            </a>
+        </div>
+    <% } else { %>
+        <span class="text-muted btn btn-danger btn-sm">Sin acciones</span>
+    <% } %>
+</td>
                 </tr>
             <%
                     }
