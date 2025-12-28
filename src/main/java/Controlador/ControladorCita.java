@@ -31,16 +31,27 @@ public class ControladorCita extends HttpServlet {
         int idLogueado = (clienteSesion != null) ? clienteSesion.getIdCliente() : 0;
 
         if (action != null) {
-            if (action.equalsIgnoreCase("Agregar")) {
-                capturarDatos(request, c);
-                dao.insertar(c);
-            }else if (action.equalsIgnoreCase("limpiar")) {
-                session.removeAttribute("citaSeleccionada");
-                session.removeAttribute("idBarbero");
-                session.removeAttribute("nombreBarbero");
-                session.removeAttribute("idServicio");
-                session.removeAttribute("nombreServicio");
-                
+        	if (action.equalsIgnoreCase("Agregar")) {
+        	    capturarDatos(request, c);
+        	    
+        	    // VALIDACIÓN: 1 cita por día
+        	    boolean yaTieneCita = dao.tieneCitaEnFecha(c.getCliente().getIdCliente(), c.getFecha());
+        	    
+        	    if (yaTieneCita) {
+        	        // Guardamos un mensaje de error en el request para mostrarlo en el JSP
+        	        request.setAttribute("errorReserva", "Lo sentimos, solo puedes reservar una cita por día.");
+        	    } else {
+        	        boolean insertado = dao.insertar(c);
+        	        if(insertado) {
+        	            // Si se insertó bien, limpiamos la sesión de barberos/servicios para que no se queden pegados
+        	            session.removeAttribute("idBarbero");
+        	            session.removeAttribute("nombreBarbero");
+        	            session.removeAttribute("idServicio");
+        	            session.removeAttribute("nombreServicio");
+        	        }
+        	    }
+        	    acceso = horarios;
+        	    
             }else if (action.equalsIgnoreCase("editar")) {
                 int idCita = Integer.parseInt(request.getParameter("id"));
                 Cita citaParaForm = dao.listarId(idCita);
