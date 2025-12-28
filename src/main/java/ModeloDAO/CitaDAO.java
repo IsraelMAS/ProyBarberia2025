@@ -180,7 +180,7 @@ public class CitaDAO implements Inter_cita{
 	}
 
 	@Override
-	public List<Cita> listarPorCliente(int idCliente) {
+	public List<Cita> listarPorCliente(int idCliente) {	
 		List<Cita> lista = new ArrayList<>();
         String sql = "SELECT * FROM cita WHERE id_cliente=" + idCliente + " ORDER BY fecha DESC";
         try {
@@ -289,7 +289,22 @@ public class CitaDAO implements Inter_cita{
         return lista;
     }
 
-	
+	public boolean tieneCitaEnFecha(int idCliente, Date fecha) {
+	    String sql = "SELECT COUNT(*) FROM cita WHERE id_cliente = ? AND fecha = ? AND estado = 'RESERVADA'";
+	    try {
+	        con = cn.getConnection();
+	        ps = con.prepareStatement(sql);
+	        ps.setInt(1, idCliente);
+	        ps.setDate(2, fecha);
+	        rs = ps.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt(1) > 0; // Retorna true si ya tiene 1 o más
+	        }
+	    } catch (Exception e) {
+	        System.err.println("Error al verificar cita por fecha: " + e.getMessage());
+	    }
+	    return false;
+	}
 	
     
 }

@@ -165,10 +165,26 @@
             String accion = (citaEdit != null) ? "Actualizar" : "Agregar";
             String texto  = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
           %>
-          
-		
 
-          <form action="ControladorCita" method="GET">
+					<%-- Mensaje de error si ya tiene cita ese día --%>
+					<%
+					if (request.getAttribute("errorReserva") != null) {
+					%>
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<strong>¡Atención!</strong>
+						<%=request.getAttribute("errorReserva")%>
+						<button type="button" class="btn-close" data-bs-dismiss="alert"
+							aria-label="Close"></button>
+					</div>
+					<% } %>
+
+					<%
+					// Obtener la fecha de hoy en formato YYYY-MM-DD
+					String hoy = java.time.LocalDate.now().toString();
+					%>
+
+					<form action="ControladorCita" method="GET">
 
             <input type="hidden" name="txtIdCita" value="<%= idCita %>">
             <input type="hidden" name="txtIdCliente" value="<%= (clienteLogueado != null) ? clienteLogueado.getIdCliente() : 0 %>">
@@ -194,8 +210,7 @@
             <input type="hidden" name="idServicio" value="<%= (idS != null) ? idS : "" %>">
 
             <label>Fecha</label>
-            <input type="date" name="txtFecha" value="<%= f %>" class="form-control mb-2" required>
-
+			<input type="date" name="txtFecha" value="<%= f %>" min="<%= hoy %>" class="form-control mb-2" required>	
             <label>Hora</label>
             <select name="txtHora" class="form-select mb-3" required>
               <option value="">Seleccione</option>
