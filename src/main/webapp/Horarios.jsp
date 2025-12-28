@@ -36,7 +36,10 @@
 
     <section class="row g-4">
 
-
+<%
+    // Quitamos la palabra "Cliente" al principio porque ya existe la variable
+    clienteLogueado = (Modelos.Cliente) session.getAttribute("clienteLogueado");
+%>
     
   
       <!-- ================= HORARIOS ================= -->
@@ -102,6 +105,8 @@
       </div>
 
      <!-- ================= FORMULARIO ================= -->
+     
+     
       <article class="col-lg-6">
       <% if (clienteLogueado == null) { %>
         <section class="bg-secondary p-5 rounded shadow text-center border border-primary h-100 d-flex flex-column justify-content-center">
@@ -168,11 +173,12 @@
             String texto  = (citaEdit != null) ? "Actualizar cita" : "Reservar cita";
           %>
           
+		
 
           <form action="ControladorCita" method="GET">
 
             <input type="hidden" name="txtIdCita" value="<%= idCita %>">
-            <input type="hidden" name="txtIdCliente" value="1">
+            <input type="hidden" name="txtIdCliente" value="<%= (clienteLogueado != null) ? clienteLogueado.getIdCliente() : 0 %>">
 
             <label>Nombre</label>
             <input type="text" class="form-control mb-2" value="<%= clienteLogueado.getNombre() %>" readonly>

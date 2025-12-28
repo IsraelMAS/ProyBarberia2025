@@ -44,8 +44,7 @@
             <%
                 List<Cita> lista = (List<Cita>) request.getAttribute("listaCitas");
                 SimpleDateFormat sdfFecha = new SimpleDateFormat("dd/MM/yyyy");
-                SimpleDateFormat sdfHora = new SimpleDateFormat("HH:mm");
-
+                java.text.SimpleDateFormat sdfHora = new java.text.SimpleDateFormat("HH:mm");
                 if (lista != null && !lista.isEmpty()) {
                     for (Cita c : lista) {
             %>
@@ -56,7 +55,7 @@
                     <td><%=(c.getServicio() != null) ? c.getServicio().getNombre() : "-"%></td>
                     <td><%=(c.getServicio() != null) ? String.format("%.2f", c.getServicio().getPrecio()) : "-"%></td>
                     <td><%=(c.getFecha() != null) ? sdfFecha.format(c.getFecha()) : "-" %></td>
-                    <td><%=(c.getFecha() != null) ? sdfHora.format(c.getFecha()) : "-" %></td>
+					<td><%=(c.getHora() != null) ? sdfHora.format(c.getHora()) : "-" %></td>
                     <td><%=(c.getEstado() != null) ? c.getEstado() : "-" %></td>
                 </tr>
             <%
