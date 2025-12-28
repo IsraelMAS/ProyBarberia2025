@@ -36,7 +36,18 @@
         <div class="card bg-secondary text-white border border-primary shadow-sm">
           <div class="card-body p-4">
 
-            <form action="<%= request.getContextPath() %>/Registro" method="post" autocomplete="off">
+						<%
+						String error = (String) request.getAttribute("error");
+						if (error != null) {
+						%>
+						<div class="alert alert-danger">
+							<%=error%>
+						</div>
+						<%
+						}
+						%>
+
+						<form action="<%= request.getContextPath() %>/Registro" method="post" autocomplete="off">
               <input type="hidden" name="accion" value="registrar">
 
               <div class="mb-3">
