@@ -20,10 +20,13 @@ public class Barberos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    	// 1. Obtener los datos frescos de la BD
         List<Barbero> lista = dao.listar();
+        
+        // 2. Guardarlos en el "saquito" (request) para que el JSP los vea
         request.setAttribute("lista", lista);
-
-        // 👉 AQUÍ debe ir el JSP DE LA TABLA
+        
+        // 3. ENVIAR al JSP (El Dispatcher es el que 'infla' el JSP con los datos)
         request.getRequestDispatcher("/Vistas/Admin/ver-barberos.jsp")
                .forward(request, response);
     }

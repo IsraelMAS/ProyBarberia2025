@@ -60,7 +60,7 @@
                             <label class="form-label">Imagen (ruta)</label>
                             <input type="text" name="imagen"
                                    class="form-control"
-                                   placeholder="IMG/Barbero1.jpg">
+                                   placeholder="IMG/barbero1.jpg">
                         </div>
 
                         <!-- Botón -->
@@ -73,7 +73,12 @@
                         
 
                     </form>
-                </div>
+                    
+    	   </div>
+    	   <a href="<%= request.getContextPath() %>/Barberos" class="btn btn-primary">
+   				regresar
+			</a>
+             
             </div>
         </div>
     </div>

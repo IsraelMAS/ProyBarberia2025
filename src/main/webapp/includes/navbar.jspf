@@ -53,11 +53,11 @@
               <a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/AdminClientes">Gestión Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/AdminBarberos">Gestión Barberos</a>
+              <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/Barberos">Gestión Barberos</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/AdminServicios">Gestión Servicios</a>
-            </li>
+    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/ServiciosController">Gestión Servicios</a>
+			</li>
             <li class="nav-item">
               <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/AdminCitas">Citas Reservadas</a>
             </li>

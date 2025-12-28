@@ -89,6 +89,7 @@
         %>
         </tbody>
     </table>
+   
 </div>
 
 <%@ include file="/includes/footer.jspf" %>
