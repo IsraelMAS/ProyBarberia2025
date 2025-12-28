@@ -43,8 +43,10 @@
                 <td><%= s.getDuracionMin() %> min</td>
                 <td class="text-center"><img src="<%= s.getImagen() %>" width="50" class="rounded"></td>
                 <td class="text-center">
-                    <a href="${pageContext.request.contextPath}/ServiciosAdmin?accion=editar&id=<%= s.getId() %>" 
-                       class="btn btn-warning btn-sm">✏️ Editar</a>
+                    <a href="${pageContext.request.contextPath}/ServiciosController?accion=editar&id=<%= s.getId() %>" 
+   					class="btn btn-warning btn-sm">
+   						✏️ Editar
+					</a>
 
                     <form action="${pageContext.request.contextPath}/ServiciosController" method="post" style="display:inline;">
                         <input type="hidden" name="accion" value="eliminar">
