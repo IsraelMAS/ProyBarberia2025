@@ -39,17 +39,25 @@ public class RegistroController extends HttpServlet {
 
         // 🔎 verificar si ya existe
         if (dao.buscarPorTelefono(telefono) != null) {
-            request.setAttribute("error", "El teléfono ya está registrado");
+            request.setAttribute("error", "⚠️ El teléfono ya está registrado, intenta con otro ⚠️");
             request.getRequestDispatcher("/Registro.jsp").forward(request, response);
             return;
         }
 
         Cliente c = new Cliente();
-        c.setNombre(nombre);
-        c.setTelefono(telefono);
-        c.setContrasena(contrasena);
+        c.setNombre(request.getParameter("nombre"));
+        c.setTelefono(request.getParameter("telefono"));
+        c.setContrasena(request.getParameter("contrasena"));
 
-        dao.registrar(c);
+        ClienteDAO dao = new ClienteDAO();
+        boolean registrado = dao.registrar(c);        
+        
+        if (registrado) {
+            response.sendRedirect("Login.jsp");
+        } else {
+            request.setAttribute("error", "El número de celular ya está registrado");
+            request.getRequestDispatcher("Registro.jsp").forward(request, response);
+        }
 
         // luego de registrar → login
         response.sendRedirect(request.getContextPath() + "/Login");
