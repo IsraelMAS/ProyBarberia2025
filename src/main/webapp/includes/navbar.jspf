@@ -58,6 +58,9 @@
             <li class="nav-item">
     			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/ServiciosController">Gestión Servicios</a>
 			</li>
+			 <li class="nav-item">
+    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/HorariosController">Gestión horario</a>
+			</li>
             <li class="nav-item">
               <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/AdminCitas">Citas Reservadas</a>
             </li>
