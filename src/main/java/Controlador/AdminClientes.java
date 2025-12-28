@@ -32,6 +32,8 @@ public class AdminClientes extends HttpServlet {
         } else {
             listar(req, resp);
         }
+        
+
     }
 
     @Override

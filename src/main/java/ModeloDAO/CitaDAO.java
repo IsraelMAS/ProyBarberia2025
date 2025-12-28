@@ -204,25 +204,57 @@ public class CitaDAO implements Inter_cita{
 
 	@Override
 	public List<Cita> listarTodas() {
-		List<Cita> lista = new ArrayList<>();
-        String sql = "SELECT * FROM cita";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Cita cita = new Cita();
-                cita.setIdCita(rs.getInt("id_cita"));
-                cita.setFecha(rs.getDate("fecha"));
-                cita.setHora(rs.getTime("hora"));
-                cita.setEstado(rs.getString("estado"));
-                lista.add(cita);
-            }
-        } catch (Exception e) {
-            System.err.println("Error listarTodas: " + e.getMessage());
-        }
-        return lista;
+
+	    List<Cita> lista = new ArrayList<>();
+
+	    String sql =
+	        "SELECT c.id_cita, c.fecha, c.hora, c.estado, " +
+	        "cli.nombre AS nomCli, cli.telefono, " +
+	        "b.nombre AS nomBar, " +
+	        "s.nombre AS nomSer, s.precio " +
+	        "FROM cita c " +
+	        "INNER JOIN cliente cli ON c.id_cliente = cli.id_cliente " +
+	        "INNER JOIN barbero b ON c.id_barbero = b.id_barbero " +
+	        "INNER JOIN servicio s ON c.id_servicio = s.id_servicio " +
+	        "ORDER BY c.fecha DESC, c.hora DESC";
+
+	    try {
+	        con = cn.getConnection();
+	        ps = con.prepareStatement(sql);
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+
+	            Cita cita = new Cita();
+	            cita.setIdCita(rs.getInt("id_cita"));
+	            cita.setFecha(rs.getDate("fecha"));
+	            cita.setHora(rs.getTime("hora"));
+	            cita.setEstado(rs.getString("estado"));
+
+	            Cliente cli = new Cliente();
+	            cli.setNombre(rs.getString("nomCli"));
+	            cli.setTelefono(rs.getString("telefono"));
+	            cita.setCliente(cli);
+
+	            Barbero bar = new Barbero();
+	            bar.setNombre(rs.getString("nomBar"));
+	            cita.setBarbero(bar);
+
+	            Servicio ser = new Servicio();
+	            ser.setNombre(rs.getString("nomSer"));
+	            ser.setPrecio(rs.getDouble("precio"));
+	            cita.setServicio(ser);
+
+	            lista.add(cita);
+	        }
+
+	    } catch (Exception e) {
+	        System.err.println("Error listarTodas CitaDAO: " + e.getMessage());
+	    }
+
+	    return lista;
 	}
+
 
 	@Override
 	public boolean cambiarEstado(int idCita, String nuevoEstado) {
@@ -257,5 +289,7 @@ public class CitaDAO implements Inter_cita{
         return lista;
     }
 
+	
+	
     
 }
