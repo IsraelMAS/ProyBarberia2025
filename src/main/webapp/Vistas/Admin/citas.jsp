@@ -102,4 +102,3 @@
 <script src="${pageContext.request.contextPath}/JS/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-s
