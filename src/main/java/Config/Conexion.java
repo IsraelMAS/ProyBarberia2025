@@ -3,6 +3,60 @@ package Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+public class Conexion {
+
+    private Connection con;
+
+    public Conexion() {
+
+        try {
+            // DRIVER NUEVO (el viejo ya está deprecado)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Variables de entorno (Railway)
+            String host = System.getenv("MYSQLHOST");
+            String port = System.getenv("MYSQLPORT");
+            String db   = System.getenv("MYSQLDATABASE");
+            String user = System.getenv("MYSQLUSER");
+            String pass = System.getenv("MYSQLPASSWORD");
+
+
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + db
+                       + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+
+            con = DriverManager.getConnection(url, user, pass);
+
+            System.out.println("✅ Conexión MySQL exitosa");
+
+        } catch (Exception e) {
+            System.err.println("❌ Error de conexión MySQL");
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() {
+        return con;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+package Config;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 
 
 public class Conexion {
@@ -26,4 +80,4 @@ public class Conexion {
 	}
 	
 	
-}
+}*/
