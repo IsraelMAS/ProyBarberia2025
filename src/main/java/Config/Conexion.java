@@ -8,29 +8,20 @@ public class Conexion {
     private Connection con;
 
     public Conexion() {
-
         try {
-        	
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Variables de entorno (Railway)
-            String host = System.getenv("MYSQLHOST");
-            String port = System.getenv("MYSQLPORT");
-            String db   = System.getenv("MYSQLDATABASE");
-            String user = System.getenv("MYSQLUSER");
-            String pass = System.getenv("MYSQLPASSWORD");
-
-
-            String url = "jdbc:mysql://" + host + ":" + port + "/" + db
-                       + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-
+            
+            // AQUÍ ESTÁN TUS DATOS DE RAILWAY DIRECTOS:
+            // Esto funcionará tanto en tu PC como en la Nube
+            String url = "jdbc:mysql://nozomi.proxy.rlwy.net:10989/railway";
+            String user = "root";
+            String pass = "NPZVRHqmRpvWGtKNEpjbkpQpEBnxTQaH"; 
+            
             con = DriverManager.getConnection(url, user, pass);
-
-            System.out.println("Conexión MySQL exitosa");
-
+            System.out.println("✅ Conexión exitosa a la base de datos de Railway");
+            
         } catch (Exception e) {
-            System.err.println("Error de conexión MySQL");
-            e.printStackTrace();
+            System.err.println("Error de conexión: " + e.getMessage());
         }
     }
 
