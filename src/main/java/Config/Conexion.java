@@ -10,7 +10,7 @@ public class Conexion {
     public Conexion() {
 
         try {
-            // DRIVER NUEVO (el viejo ya está deprecado)
+        	
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Variables de entorno (Railway)
@@ -26,10 +26,10 @@ public class Conexion {
 
             con = DriverManager.getConnection(url, user, pass);
 
-            System.out.println("✅ Conexión MySQL exitosa");
+            System.out.println("Conexión MySQL exitosa");
 
         } catch (Exception e) {
-            System.err.println("❌ Error de conexión MySQL");
+            System.err.println("Error de conexión MySQL");
             e.printStackTrace();
         }
     }
@@ -41,7 +41,7 @@ public class Conexion {
 
 
 
-
+// mysql://root:dvUqnwdyAjMasJNhmodtbzAtqvrCEIiA@switchyard.proxy.rlwy.net:13545/railway
 
 
 
