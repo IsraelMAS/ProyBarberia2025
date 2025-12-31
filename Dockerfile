@@ -21,5 +21,5 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY --from=build /app/target/app.war /usr/local/tomcat/webapps/ROOT.war
 
 # Abrimos el puerto y arrancamos
-EXPOSE 8080
+EXPOSE 8081
 CMD ["catalina.sh", "run"]
