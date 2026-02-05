@@ -50,16 +50,16 @@
 
         <% if (adminLogueado != null) { %>
           <li class="nav-item">
-              <a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/AdminClientes">Gestión Clientes</a>
+              <a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/AdminClientes">Gestion Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/Barberos">Gestión Barberos</a>
+              <a class="btn btn-primary btn-sm px-3" href="<%= contextPath %>/Barberos">Gestion Barberos</a>
             </li>
             <li class="nav-item">
-    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/ServiciosController">Gestión Servicios</a>
+    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/ServiciosController">Gestion Servicios</a>
 			</li>
 			 <li class="nav-item">
-    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/HorariosController">Gestión horario</a>
+    			<a class="btn btn-danger btn-sm px-3" href="<%= contextPath %>/HorariosController">Gestion horario</a>
 			</li>
             <li class="nav-item">
               <a class="btn btn-primary btn-sm px-3"  href="<%= request.getContextPath() %>/AdminCitas">Citas Reservadas</a>
@@ -89,12 +89,12 @@
 
         <% if (adminLogueado != null) { %>
           <li class="nav-item"><span class="nav-link text-warning"><strong>Admin: <%= adminLogueado.getUsuario() %></strong></span></li>
-          <li class="nav-item"><a class="nav-link text-danger fw-bold" href="<%= contextPath %>/LogoutController">Cerrar sesión</a></li>
+          <li class="nav-item"><a class="nav-link text-danger fw-bold" href="<%= contextPath %>/LogoutController">Cerrar sesion</a></li>
         <% } else if (clienteLogueado != null) { %>
           <li class="nav-item"><span class="nav-link text-white"><strong><%= clienteLogueado.getNombre() %></strong></span></li>
-          <li class="nav-item"><a class="nav-link text-danger fw-bold" href="<%= contextPath %>/LogoutController">Cerrar sesión</a></li>
+          <li class="nav-item"><a class="nav-link text-danger fw-bold" href="<%= contextPath %>/LogoutController">Cerrar sesion</a></li>
         <% } else { %>
-          <li class="nav-item"><a class="nav-link text-primary fw-bold" href="<%= contextPath %>/Login.jsp">Iniciar sesión</a></li>
+          <li class="nav-item"><a class="nav-link text-primary fw-bold" href="<%= contextPath %>/Login.jsp">Iniciar sesion</a></li>
         <% } %>
 
       </ul>

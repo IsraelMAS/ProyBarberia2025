@@ -68,4 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (item) abrirDesde(item);
     });
   });
-});
+}); 
