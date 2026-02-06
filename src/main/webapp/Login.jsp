@@ -49,11 +49,11 @@
 
                         <!-- Usuario / Teléfono -->
                         <div class="mb-3">
-                            <label class="form-label text-white-50">Teléfono o usuario</label> 
+                            <label class="form-label text-white-50">Nombre de usuario</label> 
                             <input type="text" 
                             name="login"
 									class="form-control bg-dark text-white border-0"
-									placeholder="Teléfono o usuario admin" required>
+									placeholder="Nombre de  usuario o admin" required>
 							</div>
 
                         <!-- Contraseña -->

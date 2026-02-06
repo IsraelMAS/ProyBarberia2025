@@ -37,14 +37,14 @@ public class ClienteDAO implements Inter_cliente {
     }
    
     // ================= LOGIN CLIENTE=================
-    public Cliente login(String telefono, String contrasena) {
-        String sql = "SELECT * FROM cliente WHERE telefono = ? AND contrasena = ?";
+    public Cliente login(String nombre, String contrasena) {
+        String sql = "SELECT * FROM cliente WHERE nombre = ? AND contrasena = ?";
         Cliente c = null;
 
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, telefono);
+            ps.setString(1, nombre);
             ps.setString(2, contrasena);
             rs = ps.executeQuery();
 
