@@ -305,6 +305,67 @@ public class CitaDAO implements Inter_cita{
 	    }
 	    return false;
 	}
+
+	@Override
+	public Cita obtenerPorId(int idCita) {
+
+		    Cita cita = null;
+
+		    String sql =
+		        "SELECT c.id_cita, c.fecha, c.hora, c.instrucciones, c.estado, " +
+		        "cli.id_cliente, cli.nombre AS nomCli, cli.telefono, " +
+		        "b.id_barbero, b.nombre AS nomBar, " +
+		        "s.id_servicio, s.nombre AS nomSer, s.precio " +
+		        "FROM cita c " +
+		        "INNER JOIN cliente cli ON c.id_cliente = cli.id_cliente " +
+		        "INNER JOIN barbero b ON c.id_barbero = b.id_barbero " +
+		        "INNER JOIN servicio s ON c.id_servicio = s.id_servicio " +
+		        "WHERE c.id_cita = ?";
+
+		    try {
+		        con = cn.getConnection();
+		        ps = con.prepareStatement(sql);
+		        ps.setInt(1, idCita);
+		        rs = ps.executeQuery();
+
+		        if (rs.next()) {
+		            cita = new Cita();
+		            cita.setIdCita(rs.getInt("id_cita"));
+		            cita.setFecha(rs.getDate("fecha"));
+		            cita.setHora(rs.getTime("hora"));
+		            cita.setInstrucciones(rs.getString("instrucciones"));
+		            cita.setEstado(rs.getString("estado"));
+
+		            // Cliente
+		            Cliente cli = new Cliente();
+		            cli.setIdCliente(rs.getInt("id_cliente"));
+		            cli.setNombre(rs.getString("nomCli"));
+		            cli.setTelefono(rs.getString("telefono"));
+		            cita.setCliente(cli);
+
+		            // Barbero
+		            Barbero bar = new Barbero();
+		            bar.setIdBarbero(rs.getInt("id_barbero"));
+		            bar.setNombre(rs.getString("nomBar"));
+		            cita.setBarbero(bar);
+
+		            // Servicio
+		            Servicio ser = new Servicio();
+		            ser.setId(rs.getInt("id_servicio"));
+		            ser.setNombre(rs.getString("nomSer"));
+		            ser.setPrecio(rs.getDouble("precio"));
+		            cita.setServicio(ser);
+		        }
+
+		    } catch (Exception e) {
+		        System.err.println("Error obtenerPorId CitaDAO: " + e.getMessage());
+		    }
+
+		    return cita;
+		
+	}
+
+	
 	
     
 }

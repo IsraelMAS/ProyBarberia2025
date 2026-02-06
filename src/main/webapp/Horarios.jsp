@@ -274,13 +274,29 @@
                     </div>
 
                     <div class="d-flex gap-2 justify-content-center">
-                      <a href="ControladorCita?accion=editar&id=<%= perC.getIdCita() %>" class="btn btn-sm btn-warning">
-                        Editar
-                      </a>
-                      <a href="ControladorCita?accion=eliminar&id=<%= perC.getIdCita() %>" class="btn btn-sm btn-dark">
-                        Cancelar
-                      </a>
-                    </div>
+
+					  <a href="ControladorCita?accion=editar&id=<%= perC.getIdCita() %>"
+					     class="btn btn-sm btn-warning">
+					     Editar
+					  </a>
+					
+					  <a href="ControladorCita?accion=eliminar&id=<%= perC.getIdCita() %>"
+					     class="btn btn-sm btn-dark"
+					     onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
+					     Cancelar
+					  </a>
+					
+					  <%-- Botón BOLETA: solo si la cita NO está cancelada --%>
+					  <% if (!perC.getEstado().equals("CANCELADA")) { %>
+					    <a href="BoletaServlet?id=<%= perC.getIdCita() %>"
+					       class="btn btn-sm btn-success"
+					       target="_blank">
+					       📄 Boleta
+					    </a>
+					  <% } %>
+					
+					</div>
+
                   </td>
                 </tr>
               </tbody>

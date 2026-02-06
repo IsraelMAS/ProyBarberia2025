@@ -69,3 +69,5 @@
   // Cambia cada 12 segundos (ajusta si quieres)
   setInterval(cambiarFondo, 12000);
 })();
+
+

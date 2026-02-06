@@ -41,4 +41,7 @@ public interface Inter_cita {
     
     // Reporte de citas por rango de fechas
     public List<Cita> listarPorRango(Date inicio, Date fin);
+    
+    // Buscar cita por Id
+    public Cita obtenerPorId(int idCita);
 }
