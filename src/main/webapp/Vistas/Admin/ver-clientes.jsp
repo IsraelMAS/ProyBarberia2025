@@ -35,6 +35,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Teléfono</th>
+                                <th scope="col">Correo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,7 @@
                                 <td><%= c.getIdCliente() %></td>
                                 <td><%= c.getNombre() %></td>
                                 <td><%= c.getTelefono() %></td>
+                                <td><%= c.getCorreo()%>
                             </tr>
                             <%
                                     }

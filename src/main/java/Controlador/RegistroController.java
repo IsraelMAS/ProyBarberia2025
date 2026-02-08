@@ -25,11 +25,16 @@ public class RegistroController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
         String telefono = request.getParameter("telefono");
         String contrasena = request.getParameter("contrasena");
 
-        // Validar campos vacíos
-        if (nombre == null || nombre.isBlank() || telefono == null || telefono.isBlank() || contrasena == null || contrasena.isBlank()) {
+     // Validar campos vacíos
+        if (nombre == null || nombre.isBlank() ||
+            correo == null || correo.isBlank() ||
+            telefono == null || telefono.isBlank() ||
+            contrasena == null || contrasena.isBlank()) {
+
             request.setAttribute("error", "Todos los campos son obligatorios");
             request.getRequestDispatcher("/Registro.jsp").forward(request, response);
             return; 
@@ -44,6 +49,7 @@ public class RegistroController extends HttpServlet {
 
         Cliente c = new Cliente();
         c.setNombre(nombre);
+        c.setCorreo(correo);
         c.setTelefono(telefono);
         c.setContrasena(contrasena);
 

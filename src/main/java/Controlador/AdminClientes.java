@@ -23,7 +23,7 @@ public class AdminClientes extends HttpServlet {
 
         if (accion == null || accion.equals("list")) {
             listar(req, resp);
-            return;
+            return; 
         }
 
         if (accion.equals("new")) {
@@ -44,12 +44,13 @@ public class AdminClientes extends HttpServlet {
 
         String nombre = req.getParameter("nombre");
         String telefono = req.getParameter("telefono");
+        String correo = req.getParameter("correo");
         String contrasena = req.getParameter("contrasena");
 
         if (nombre != null && !nombre.isBlank()
                 && telefono != null && !telefono.isBlank()) {
 
-            Cliente c = new Cliente(nombre, telefono, contrasena);
+            Cliente c = new Cliente(nombre, telefono, correo, contrasena);
             dao.insertar(c);
         }
 

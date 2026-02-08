@@ -57,7 +57,15 @@
                        placeholder="Ej: Israaa" required>
               </div>
 
-              <div class="mb-3">
+				<div class="mb-3">
+					<label for="correo" class="form-label text-white-50">Correo
+						electrónico</label> <input type="email" id="correo" name="correo"
+						class="form-control bg-dark text-white border-0"
+						placeholder="Ej: usuario@correo.com" required>
+				</div>
+
+
+							<div class="mb-3">
                 <label for="telefono" class="form-label text-white-50">Teléfono</label>
                 <input type="text" id="telefono" name="telefono"
                        class="form-control bg-dark text-white border-0"
@@ -75,19 +83,21 @@
                   <button class="btn btn-outline-light" type="button" id="btnVerPassReg">Ver</button>
                 </div>
               </div>
+              
 
               <button type="submit" class="btn btn-danger w-100 mt-4 fw-semibold">
                 Registrarme
               </button>
 
-              <div class="text-center mt-3">
+							<div class="text-center mt-3">
                 <span class="text-white-50 small">¿Ya tienes cuenta?</span>
                 <a href="<%= request.getContextPath() %>/Login" class="link-light fw-semibold text-decoration-none">
                   Inicia sesión
                 </a>
               </div>
 
-            </form>
+
+				</form>
 
           </div>
         </div>
