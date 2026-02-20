@@ -11,25 +11,18 @@ import java.util.List;
 import ModeloDAO.ServicioDAO;
 import Modelos.Servicio;
 
-/**
- * Servlet implementation class ServiciosController
- */
+
 @WebServlet("/ServiciosController")
 public class ServiciosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ServicioDAO dao = new ServicioDAO();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+ 
     public ServiciosController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 String accion = request.getParameter("accion");
         
@@ -48,9 +41,6 @@ String accion = request.getParameter("accion");
         request.getRequestDispatcher("/Vistas/Admin/ver-servicios.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
         String accion = request.getParameter("accion");

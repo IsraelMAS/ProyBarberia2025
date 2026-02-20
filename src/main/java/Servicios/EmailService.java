@@ -10,8 +10,8 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailService {
 
-    private final String correoRemitente = "villarliza5@gmail.com";
-    private final String claveAplicacion = "gpaqbecusbeglmap";
+    private final String correoRemitente = "israel.angulo.salas4@gmail.com";
+    private final String claveAplicacion = "mvhmrplbccnbmbtg";
 
     public void enviarCorreo(String destinatario, String asunto, String contenido) throws Exception {
 

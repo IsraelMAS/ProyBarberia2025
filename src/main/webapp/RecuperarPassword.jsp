@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BARBERSHOP — Cambiar Contraseña</title>
+    <title>BARBERSHOP — Olvide mi Contraseña</title>
 
     <link rel="icon" href="IMG/ICONOS/BarberShop_ICO.ico">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/bootstrap.min.css">

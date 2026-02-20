@@ -51,16 +51,67 @@
             <div class="card bg-secondary text-white border border-primary shadow-sm">
                 <div class="card-body p-4">
 
-						<form action="<%=request.getContextPath()%>/CambiarPassword"
-							method="post">
+						  <form action="<%=request.getContextPath()%>/CambiarPassword"
+                          method="post">
 
-							<input type="hidden" name="token" value="${param.token}">
+                        <input type="hidden" name="token" value="${param.token}">
 
-							<input type="password" name="nuevaContrasena" required> <input
-								type="password" name="confirmarContrasena" required>
+                        <!-- Nueva contraseña -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label fw-semibold mb-0">
+                                    Nueva contraseña
+                                </label>
 
-							<button type="submit">Cambiar contraseña</button>
-						</form>
+                                <i class="fa fa-eye toggle-icon"
+                                   onclick="togglePassword('nuevaContrasena', this)">
+                                </i>
+                            </div>
+
+                            <input type="password"
+                                   id="nuevaContrasena"
+                                   name="nuevaContrasena"
+                                   class="form-control custom-input"
+                                   placeholder="********"
+                                   required>
+                        </div>
+
+                        <!-- Confirmar contraseña -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label fw-semibold mb-0">
+                                    Confirmar contraseña
+                                </label>
+
+                                <i class="fa fa-eye toggle-icon"
+                                   onclick="togglePassword('confirmarContrasena', this)">
+                                </i>
+                            </div>
+
+                            <input type="password"
+                                   id="confirmarContrasena"
+                                   name="confirmarContrasena"
+                                   class="form-control custom-input"
+                                   placeholder="********"
+                                   required>
+                        </div>
+
+                        <!-- Botón -->
+                        <button type="submit"
+                                class="btn btn-primary w-100 fw-bold py-2">
+                            Cambiar contraseña
+                        </button>
+
+                        <!-- Volver -->
+                        <div class="text-center mt-3">
+                            <a href="<%=request.getContextPath()%>/Login"
+                               class="link-light text-decoration-none">
+                                Volver al inicio de sesión
+                            </a>
+                        </div>
+
+                    </form>
+
 
 
 					</div>
@@ -75,6 +126,7 @@
 
 <script>window.APP_CTX = '<%= request.getContextPath() %>/';</script>
 <script src="<%= request.getContextPath() %>/JS/app.js"></script>
+<script src="<%= request.getContextPath() %>/JS/OlvidarContraseña.js"></script>
 
 <%@ include file="/includes/footer.jspf" %>
 </body>

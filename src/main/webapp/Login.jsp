@@ -89,9 +89,12 @@
                         </div>
                         
                         <div class="text-end mb-3">
-					<a href="<%=request.getContextPath()%>/RecuperarPassword.jsp"
-					class="small text-white-50 text-decoration-none">
-					¿Olvidaste tu contraseña? </a>
+					<div class="text-center mt-3">
+				    <a href="<%=request.getContextPath()%>/RecuperarPassword.jsp"
+				       class="small text-white-50 text-decoration-none">
+				       ¿Olvidaste tu contraseña?
+				    </a>
+				</div>
 				</div>
 
                     </form>

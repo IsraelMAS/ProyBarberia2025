@@ -13,7 +13,7 @@ public class Conexion {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia_db","root","mysql");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/barberia_db","root","Sistemas141004*");
 		}catch(Exception e) {
 			System.err.print("Error "+ e);
 		}

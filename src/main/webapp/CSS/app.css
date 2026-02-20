@@ -377,3 +377,45 @@ img[data-fade].on { opacity: 1; }
 }
 
 
+/* ===== PANEL CAMBIAR CONTRASEÑA ===== */
+
+.password-wrapper {
+    background: rgba(45, 45, 45, 0.92); /* gris oscuro elegante */
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+/* efecto suave al pasar mouse */
+.password-wrapper:hover {
+    transform: translateY(-4px);
+}
+
+/* labels */
+.password-wrapper .form-label {
+    color: #ddd;
+    font-weight: 500;
+}
+
+/* inputs */
+.password-wrapper .form-control {
+    background-color: #2b2b2b;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 10px;
+}
+
+.password-wrapper .form-control:focus {
+    background-color: #333;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    color: white;
+}
+
+/* botón */
+.password-wrapper .btn-danger {
+    border-radius: 12px;
+    font-weight: 600;
+}
